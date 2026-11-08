@@ -10,6 +10,9 @@
   
   <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Audio Effects Engine -->
+  <script src="../script/sound-effects.js"></script>
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -159,8 +162,14 @@
         </a>
       </div>
 
-      <!-- Right: Badges -->
+      <!-- Right: Badges & Audio Toggle -->
       <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Sound Toggle Button -->
+        <button onclick="ZahraAudio.toggleMute()" class="sound-toggle-btn flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95 shadow-2xs" title="Pengaturan Suara">
+          <i class="sound-icon fa-solid fa-volume-high text-emerald-600 animate-pulse"></i>
+          <span class="sound-text hidden sm:inline">Suara Aktif</span>
+        </button>
+
         <!-- Bintang Score Badge -->
         <div class="flex items-center bg-amber-50 border border-amber-200 px-3.5 py-1.5 rounded-2xl space-x-1.5 shadow-2xs">
           <span class="text-base text-amber-500">⭐</span>
@@ -1363,6 +1372,7 @@
       const quickText = document.getElementById('quick-feedback-text');
 
       if (isCorrect) {
+        if (typeof ZahraAudio !== 'undefined') ZahraAudio.playCorrect();
         addStars(1);
         quizScore++;
         buttonEl.classList.remove('bg-white', 'border-slate-200');
@@ -1378,6 +1388,7 @@
           origin: { y: 0.7 }
         });
       } else {
+        if (typeof ZahraAudio !== 'undefined') ZahraAudio.playWrong();
         buttonEl.classList.remove('bg-white', 'border-slate-200');
         buttonEl.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-900');
 
@@ -1405,6 +1416,7 @@
     }
 
     function showQuizResults() {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playFanfare();
       document.querySelector('#view-quiz > div').classList.add('hidden');
       const resultBox = document.getElementById('quiz-result-box');
       resultBox.classList.remove('hidden');
@@ -1476,6 +1488,7 @@
     }
 
     function restartQuiz() {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playRestart();
       startNewQuizSession();
     }
 
@@ -1495,6 +1508,7 @@
     ];
 
     function initMatchGame() {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playRestart();
       matchedPairs = 0;
       selectedLeftMatch = null;
       connectedLines = [];
@@ -1612,6 +1626,7 @@
     }
 
     function selectLeftMatch(id) {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playSelect();
       selectedLeftMatch = id;
 
       document.querySelectorAll('.match-left-btn').forEach(btn => {
@@ -1668,6 +1683,7 @@
     }
 
     function switchTab(tabName) {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playTabSwitch();
       const tabs = ['flashcards', 'quiz', 'match'];
 
       tabs.forEach(t => {
@@ -1690,6 +1706,7 @@
 
     function selectRightMatch(rightId) {
       if (!selectedLeftMatch) {
+        if (typeof ZahraAudio !== 'undefined') ZahraAudio.playMatchError();
         const rightEl = document.getElementById(`right-${rightId}`);
         rightEl.classList.add('animate-match-error');
         setTimeout(() => rightEl.classList.remove('animate-match-error'), 400);
@@ -1701,6 +1718,7 @@
 
       if (selectedLeftMatch === rightId) {
         // --- COCOK! (ANIMASI MATCH SUCCESS) ---
+        if (typeof ZahraAudio !== 'undefined') ZahraAudio.playMatchSuccess();
         addStars(1);
 
         leftEl.classList.remove('border-purple-500', 'bg-purple-50', 'ring-2', 'ring-purple-200', 'scale-102');
@@ -1731,6 +1749,7 @@
 
         if (matchedPairs === MATCH_ITEMS.length) {
           setTimeout(() => {
+            if (typeof ZahraAudio !== 'undefined') ZahraAudio.playFanfare();
             addStars(5);
             document.getElementById('match-complete-msg').classList.remove('hidden');
             confetti({
@@ -1742,6 +1761,7 @@
         }
       } else {
         // --- TIDAK COCOK! (ANIMASI SHAKE & WARNA MERAH SEMENTARA) ---
+        if (typeof ZahraAudio !== 'undefined') ZahraAudio.playMatchError();
         rightEl.classList.add('border-rose-400', 'bg-rose-50', 'animate-match-error');
         if (leftEl) {
           leftEl.classList.add('animate-match-error');

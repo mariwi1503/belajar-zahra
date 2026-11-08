@@ -11,6 +11,9 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
+  <!-- Audio Effects Engine -->
+  <script src="../script/sound-effects.js"></script>
+  
   <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,8 +127,14 @@
         </a>
       </div>
 
-      <!-- Right: Badges -->
+      <!-- Right: Badges & Audio Toggle -->
       <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Sound Toggle Button -->
+        <button onclick="ZahraAudio.toggleMute()" class="sound-toggle-btn flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95 shadow-2xs" title="Pengaturan Suara">
+          <i class="sound-icon fa-solid fa-volume-high text-emerald-600 animate-pulse"></i>
+          <span class="sound-text hidden sm:inline">Suara Aktif</span>
+        </button>
+
         <!-- Grade Badge -->
         <div class="flex items-center gap-1.5 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-2xl text-xs font-normal text-slate-600">
           <i class="fa-solid fa-shapes text-teal-600"></i>
@@ -372,6 +381,7 @@
     let currentIndex = 0;
     let userAnswers = new Array(quizData.length).fill(null);
     let hasSpokenForCurrentQuestion = false;
+    let isLocked = false;
 
     // Initialize quiz
     window.onload = function() {
@@ -379,6 +389,7 @@
     };
 
     function loadQuestion() {
+      isLocked = false;
       hasSpokenForCurrentQuestion = false;
       const q = quizData[currentIndex];
 
@@ -465,16 +476,53 @@
     }
 
     function selectOption(selectedText) {
+      if (isLocked) return;
+      isLocked = true;
       userAnswers[currentIndex] = selectedText;
+
+      const q = quizData[currentIndex];
+      const isCorrect = selectedText.trim().toLowerCase() === q.answer.trim().toLowerCase();
+
+      // Efek Suara Jawaban Benar / Salah
+      if (typeof ZahraAudio !== 'undefined') {
+        if (isCorrect) {
+          ZahraAudio.playCorrect();
+        } else {
+          ZahraAudio.playWrong();
+        }
+      }
+
+      // Tampilkan feedback visual pada pilihan jawaban secara instan
+      const buttons = document.querySelectorAll("#mc-options-container button");
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        const spanText = btn.querySelector("span") ? btn.querySelector("span").innerText.trim() : "";
+        const icon = btn.querySelector("i");
+        
+        if (spanText.toLowerCase() === selectedText.trim().toLowerCase()) {
+          if (isCorrect) {
+            btn.className = "w-full text-left p-4 sm:p-4.5 rounded-2xl border transition-all duration-200 font-playful flex items-center justify-between text-sm sm:text-base cursor-pointer bg-emerald-50 border-emerald-400 text-emerald-900 shadow-xs ring-2 ring-emerald-200 scale-102";
+            if (icon) icon.className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+          } else {
+            btn.className = "w-full text-left p-4 sm:p-4.5 rounded-2xl border transition-all duration-200 font-playful flex items-center justify-between text-sm sm:text-base cursor-pointer bg-rose-50 border-rose-400 text-rose-900 shadow-xs ring-2 ring-rose-200";
+            if (icon) icon.className = "fa-solid fa-circle-xmark text-rose-600 text-lg";
+          }
+        } else if (!isCorrect && spanText.toLowerCase() === q.answer.trim().toLowerCase()) {
+          // Sorot jawaban yang benar agar anak dapat belajar dari kesalahannya
+          btn.className = "w-full text-left p-4 sm:p-4.5 rounded-2xl border transition-all duration-200 font-playful flex items-center justify-between text-sm sm:text-base cursor-pointer bg-emerald-50/70 border-emerald-300 text-emerald-800 shadow-xs";
+          if (icon) icon.className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+        }
+      });
       
       setTimeout(() => {
+        isLocked = false;
         if (currentIndex < quizData.length - 1) {
           currentIndex++;
           loadQuestion();
         } else {
           finishQuiz();
         }
-      }, 250);
+      }, 750);
     }
 
     function prevQuestion() {
@@ -508,6 +556,7 @@
 
     // Finish Quiz & Show Overview
     function finishQuiz() {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playFanfare();
       document.getElementById("quiz-container").classList.add("hidden");
       document.getElementById("summary-container").classList.remove("hidden");
 
@@ -562,6 +611,7 @@
     }
 
     function restartQuiz() {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playRestart();
       currentIndex = 0;
       userAnswers = new Array(quizData.length).fill(null);
       document.getElementById("summary-container").classList.add("hidden");

@@ -11,6 +11,9 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
+  <!-- Audio Effects Engine -->
+  <script src="script/sound-effects.js"></script>
+  
   <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -128,6 +131,12 @@
 
       <!-- Quick Action Right -->
       <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Sound Toggle Button -->
+        <button onclick="ZahraAudio.toggleMute()" class="sound-toggle-btn flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95 shadow-2xs" title="Pengaturan Suara">
+          <i class="sound-icon fa-solid fa-volume-high text-emerald-600 animate-pulse"></i>
+          <span class="sound-text hidden sm:inline">Suara Aktif</span>
+        </button>
+
         <!-- Grade Badge -->
         <div class="hidden sm:flex items-center gap-2 bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-2xl text-xs font-normal text-slate-600">
           <i class="fa-solid fa-graduation-cap text-indigo-500"></i>
@@ -630,6 +639,7 @@
 
     // Filter Change Handler
     function setSubjectFilter(key) {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playPop();
       activeSubjectFilter = key;
       renderSubjectFilters();
       renderCards();
@@ -652,6 +662,7 @@
     }
 
     function clearSearch() {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playPop();
       const input = document.getElementById('search-input');
       input.value = '';
       searchQuery = '';
@@ -659,11 +670,13 @@
     }
 
     function toggleReadyOnly(checked) {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playSelect();
       readyOnlyFilter = checked;
       renderCards();
     }
 
     function resetFilters() {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playRestart();
       activeSubjectFilter = 'all';
       searchQuery = '';
       readyOnlyFilter = false;
@@ -739,6 +752,7 @@
           actionButtonHtml = `
             <a 
               href="${mod.url}" 
+              onclick="if(typeof ZahraAudio!=='undefined') ZahraAudio.playPop();"
               class="w-full py-3 px-4 rounded-2xl ${mod.theme.btnBg} text-white font-normal text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-all active:scale-[0.98] tracking-wide"
             >
               <span>Mulai Belajar Sekarang</span>
@@ -828,6 +842,7 @@
 
     // Modal Info Developer / Bantuan
     function toggleInfoModal() {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playPop();
       const modal = document.getElementById('info-modal');
       modal.classList.toggle('hidden');
     }
@@ -835,6 +850,7 @@
     // Toast Notification
     let toastTimeout = null;
     function showToast(msg) {
+      if (typeof ZahraAudio !== 'undefined') ZahraAudio.playPop();
       const toast = document.getElementById('toast-notification');
       const msgElem = document.getElementById('toast-message');
       
