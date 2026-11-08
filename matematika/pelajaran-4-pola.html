@@ -1,0 +1,3086 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pola Bangun, Warna, Gerak & Suara - Belajar Zahra (Kelas 2 SD)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Audio Effects Engine -->
+  <script src="../script/sound-effects.js"></script>
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            playful: ['Fredoka', 'cursive'],
+            arabic: ['Amiri', 'serif']
+          },
+          colors: {
+            cream: '#FAF7F2',
+            softbg: '#F6F1EA',
+            zahra: {
+              coral: '#F26E60',
+              coralLight: '#FEEFEF',
+              coralHover: '#E05A4C',
+              sage: '#568D80',
+              sageLight: '#E8F3F0',
+              yellow: '#F7C948',
+              yellowLight: '#FEF9E7',
+              purple: '#8462A0',
+              purpleLight: '#F3EEF9',
+              blue: '#4A90E2',
+              blueLight: '#EBF4FE'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF7F2;
+      color: #334155;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    .font-playful {
+      font-family: 'Fredoka', cursive;
+    }
+
+    /* Soft Glow & Shadows */
+    .portal-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(226, 232, 240, 0.9);
+      border-radius: 1.75rem;
+      transition: all 0.28s cubic-bezier(0.34, 1.35, 0.64, 1);
+    }
+
+    .bubble-btn {
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .bubble-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+    .bubble-btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* Floating subtle animation */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+    .float-item {
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes matchPop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.08) rotate(-2deg); }
+      70% { transform: scale(0.96) rotate(2deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    .animate-match-success {
+      animation: matchPop 0.45s ease-out forwards;
+    }
+
+    @keyframes shakeError {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .animate-match-error {
+      animation: shakeError 0.4s ease-in-out;
+    }
+
+    @keyframes drawPath {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    .connecting-rope {
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: drawPath 0.55s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    /* Custom smooth scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF7F2;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-700 flex flex-col justify-between selection:bg-rose-100 selection:text-rose-700">
+
+  <!-- ================= TOP HEADER NAVIGATION ================= -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.04)]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
+      
+      <!-- Left: Back Button & Brand Logo -->
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95" title="Kembali ke Menu Utama Portal">
+          <i class="fa-solid fa-arrow-left text-xs"></i>
+          <span>Menu Utama</span>
+        </a>
+
+        <div class="h-5 w-px bg-slate-200 hidden sm:block"></div>
+
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-200 via-rose-200 to-indigo-200 flex items-center justify-center text-xl shadow-inner group-hover:scale-105 transition-transform">
+            🎓
+          </div>
+          <div class="hidden sm:block">
+            <div class="flex items-center gap-1.5">
+              <span class="text-base font-normal tracking-wide text-slate-800 group-hover:text-amber-600 transition-colors font-playful">
+                Belajar Zahra
+              </span>
+              <span class="bg-amber-100/80 text-amber-800 text-[10px] px-2 py-0.5 rounded-full border border-amber-200 font-normal">
+                SD Ceria
+              </span>
+            </div>
+            <p class="text-[11px] text-slate-500 font-normal">Matematika • Pelajaran 4 Mengenal & Melengkapi Pola</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Right: Badges & Audio Toggle -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Sound Toggle Button -->
+        <button onclick="ZahraAudio.toggleMute()" class="sound-toggle-btn flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95 shadow-2xs" title="Pengaturan Suara">
+          <i class="sound-icon fa-solid fa-volume-high text-emerald-600 animate-pulse"></i>
+          <span class="sound-text hidden sm:inline">Suara Aktif</span>
+        </button>
+
+        <!-- Bintang Score Badge -->
+        <div class="flex items-center bg-amber-50 border border-amber-200 px-3.5 py-1.5 rounded-2xl space-x-1.5 shadow-2xs">
+          <span class="text-base text-amber-500">⭐</span>
+          <span id="star-count" class="font-normal text-amber-800 text-xs sm:text-sm font-playful">0</span>
+          <span class="text-[11px] text-amber-700/80 font-normal hidden sm:inline">Bintang</span>
+        </div>
+
+        <!-- Grade Badge -->
+        <div class="hidden sm:flex items-center gap-1.5 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-2xl text-xs font-normal text-slate-600">
+          <i class="fa-solid fa-shapes text-amber-600"></i>
+          <span>Kelas 2 SD</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 w-full flex-1 space-y-6">
+
+    <!-- HERO GREETING BANNER -->
+    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#FEF7EC] via-[#FFF8F0] to-[#FAF7F2] border border-amber-200/80 p-6 sm:p-8 shadow-sm">
+      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        
+        <div class="max-w-xl space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-amber-200 text-amber-800 text-xs font-normal font-playful shadow-xs">
+            <span>✨</span> Pelajaran Matematika • Pelajaran 4
+          </div>
+          
+          <h1 class="font-playful text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-800 leading-tight">
+            Mengenal & Melengkapi Pola 🧩
+          </h1>
+          
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+            Pelajari keteraturan pola gambar bangun datar, pola warna, pola gerakan tari saman, dan pola bunyi irama suara dari buku teks matematika SD. Dilengkapi 60 soal latihan interaktif dan permainan pasangkan pola!
+          </p>
+
+          <!-- Quick Stats Pills -->
+          <div class="pt-1 flex flex-wrap items-center gap-2 text-xs font-normal text-slate-600">
+            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+              <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+              <span class="font-normal text-slate-800 font-playful">4</span> Jenis Pola Utama
+            </div>
+            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+              <span class="text-amber-500">⭐</span>
+              <span class="font-normal text-slate-800 font-playful">60</span> Soal Latihan & HOTS
+            </div>
+            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+              <span class="text-emerald-500">🔊</span> Audio Ramah Anak
+            </div>
+          </div>
+        </div>
+
+        <!-- Mascot Badge Illustration -->
+        <div class="flex items-center justify-center self-center md:self-auto">
+          <div class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-3xl bg-white/80 backdrop-blur-sm border-2 border-white shadow-lg flex flex-col items-center justify-center p-3 text-center float-item">
+            <div class="text-5xl sm:text-6xl mb-1 select-none">🧩</div>
+            <span class="font-playful font-normal text-sm sm:text-base text-slate-800">Pola Ceria!</span>
+            <span class="text-[11px] text-slate-500 font-normal">Keteraturan Berulang</span>
+            
+            <div class="absolute -bottom-2 -right-2 bg-amber-600 text-white font-playful text-[11px] font-normal px-2.5 py-0.5 rounded-full shadow-md">
+              100% Interaktif 🎉
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Decorative subtle background blobs -->
+      <div class="absolute -top-16 -right-16 w-56 h-56 bg-amber-200/40 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-16 -left-16 w-56 h-56 bg-orange-200/30 rounded-full blur-3xl pointer-events-none"></div>
+    </section>
+
+    <!-- NAVIGATION TABS -->
+    <div class="flex items-center gap-2 p-1.5 bg-slate-100 border border-slate-200/80 rounded-2xl w-fit max-w-full overflow-x-auto">
+      <button onclick="switchTab('summary')" id="tab-summary" class="tab-btn px-4 py-2 rounded-xl transition-all duration-200 bg-amber-600 text-white shadow-xs font-normal text-xs sm:text-sm font-playful flex items-center gap-1.5">
+        <span>📚</span> Rangkuman Materi
+      </button>
+      <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-4 py-2 rounded-xl transition-all duration-200 text-slate-600 hover:text-amber-700 hover:bg-slate-200/50 font-normal text-xs sm:text-sm font-playful flex items-center gap-1.5">
+        <span>⭐</span> Latihan Soal (60 Soal)
+      </button>
+      <button onclick="switchTab('match')" id="tab-match" class="tab-btn px-4 py-2 rounded-xl transition-all duration-200 text-slate-600 hover:text-amber-700 hover:bg-slate-200/50 font-normal text-xs sm:text-sm font-playful flex items-center gap-1.5">
+        <span>🧩</span> Pasangkan Pola
+      </button>
+    </div>
+
+    <!-- ================= TAB 1: RANGKUMAN MATERI ================= -->
+    <section id="view-summary" class="space-y-6">
+      
+      <!-- Pengertian Pola & Peta Materi -->
+      <div class="bg-white border border-slate-200/80 p-6 sm:p-7 rounded-3xl shadow-2xs space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-playful rounded-full mb-2">
+              Buku Matematika Hal. 80-81 & 89
+            </span>
+            <h2 class="text-xl sm:text-2xl font-normal text-slate-800 font-playful flex items-center gap-2">
+              <span>🔍</span> Apa itu Pola?
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+              <strong>Pola</strong> adalah bentuk atau susunan model yang memiliki <strong>keteraturan</strong>. Karena sifatnya yang berulang dan teratur, kita dapat menebak dan meneruskan susunan pola berikutnya dengan tepat!
+            </p>
+          </div>
+          <div class="hidden sm:block text-5xl float-item">🌟</div>
+        </div>
+
+        <!-- Peta Materi Bagan -->
+        <div class="bg-amber-50/70 border border-amber-200/80 p-4 sm:p-5 rounded-2xl">
+          <div class="text-xs font-playful text-amber-900 font-normal flex items-center gap-1.5 mb-2">
+            <i class="fa-solid fa-sitemap text-amber-600"></i> Peta Materi Pola Bukan Bilangan:
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+            <div class="bg-white p-2.5 rounded-xl border border-amber-200/70 shadow-2xs">
+              <span class="text-lg block mb-1">📐</span>
+              <strong class="font-playful text-slate-800">1. Pola Gambar</strong>
+              <p class="text-[10px] text-slate-500 mt-0.5">Bangun datar & benda</p>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border border-amber-200/70 shadow-2xs">
+              <span class="text-lg block mb-1">🎨</span>
+              <strong class="font-playful text-slate-800">2. Pola Warna</strong>
+              <p class="text-[10px] text-slate-500 mt-0.5">Warna-warni berulang</p>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border border-amber-200/70 shadow-2xs">
+              <span class="text-lg block mb-1">💃</span>
+              <strong class="font-playful text-slate-800">3. Pola Gerakan</strong>
+              <p class="text-[10px] text-slate-500 mt-0.5">Tari Saman & gerak tubuh</p>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border border-amber-200/70 shadow-2xs">
+              <span class="text-lg block mb-1">🥁</span>
+              <strong class="font-playful text-slate-800">4. Pola Bunyi</strong>
+              <p class="text-[10px] text-slate-500 mt-0.5">Ketukan drum & suara</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 KARTU JENIS POLA DENGAN CONTOH VISUAL BUKU -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+        
+        <!-- 1. Pola Gambar -->
+        <div class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-3">
+          <div>
+            <div class="flex items-center gap-2.5 mb-2">
+              <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-xl">
+                📐
+              </div>
+              <div>
+                <h3 class="font-playful text-base sm:text-lg text-slate-800 font-normal">1. Pola Gambar (Bangun Datar & Benda)</h3>
+                <p class="text-[11px] text-slate-500">Buku Pelajaran 4 Hal. 81 & 92</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Susunan bentuk bangun datar atau gambar benda yang berulang secara teratur.
+            </p>
+            
+            <!-- Contoh Visual 1: Bangun Datar -->
+            <div class="mt-3 bg-slate-50 p-3 rounded-2xl border border-slate-100 flex items-center justify-center gap-2">
+              <span class="text-2xl">🔺</span>
+              <span class="text-2xl">🔵</span>
+              <span class="text-2xl">🟩</span>
+              <span class="text-slate-400 font-bold">➜</span>
+              <span class="text-2xl">🔺</span>
+              <span class="text-2xl">🔵</span>
+              <span class="text-2xl">🟩</span>
+              <span class="text-slate-400 font-bold">➜</span>
+              <span class="w-8 h-8 rounded-xl border-2 border-dashed border-indigo-400 flex items-center justify-center text-xs font-playful font-bold text-indigo-600 bg-indigo-50/50 animate-pulse">?</span>
+            </div>
+            
+            <!-- Contoh Visual 2: Bunga & Kepik (Buku hal 92) -->
+            <div class="mt-2 bg-slate-50 p-2.5 rounded-2xl border border-slate-100 flex items-center justify-center gap-1.5 text-xs text-slate-700">
+              <span class="text-lg">🌸</span>
+              <span class="text-lg">🐞</span>
+              <span class="text-lg">🐞</span>
+              <span class="text-slate-300">|</span>
+              <span class="text-lg">🌸</span>
+              <span class="text-lg">🐞</span>
+              <span class="text-lg">🐞</span>
+              <span class="text-slate-300">|</span>
+              <span class="text-indigo-600 font-playful font-normal">Bunga - Kepik - Kepik</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-indigo-700 bg-indigo-50 px-3 py-1.5 rounded-xl text-center font-playful">
+            Aturan: Segitiga - Lingkaran - Segiempat
+          </div>
+        </div>
+
+        <!-- 2. Pola Warna -->
+        <div class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-3">
+          <div>
+            <div class="flex items-center gap-2.5 mb-2">
+              <div class="w-10 h-10 rounded-2xl bg-rose-100 text-rose-700 flex items-center justify-center text-xl">
+                🎨
+              </div>
+              <div>
+                <h3 class="font-playful text-base sm:text-lg text-slate-800 font-normal">2. Pola Warna</h3>
+                <p class="text-[11px] text-slate-500">Buku Pelajaran 4 Hal. 81, 85 & 93</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Bentuk bendanya bisa sama (misal sama-sama lingkaran atau lampu), tetapi urutan warnanya berulang teratur!
+            </p>
+            
+            <!-- Contoh Visual Warna Lingkaran -->
+            <div class="mt-3 bg-slate-50 p-3 rounded-2xl border border-slate-100 flex items-center justify-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-yellow-400 border border-yellow-500 shadow-2xs" title="Kuning"></div>
+              <div class="w-6 h-6 rounded-full bg-blue-500 shadow-2xs" title="Biru"></div>
+              <div class="w-6 h-6 rounded-full bg-rose-400 shadow-2xs" title="Merah Muda"></div>
+              <span class="text-slate-400 font-bold">➜</span>
+              <div class="w-6 h-6 rounded-full bg-yellow-400 border border-yellow-500 shadow-2xs"></div>
+              <div class="w-6 h-6 rounded-full bg-blue-500 shadow-2xs"></div>
+              <div class="w-6 h-6 rounded-full bg-rose-400 shadow-2xs"></div>
+              <span class="text-slate-400 font-bold">➜</span>
+              <span class="w-6 h-6 rounded-full border-2 border-dashed border-rose-400 flex items-center justify-center text-[10px] font-playful font-bold text-rose-500 bg-rose-50/50 animate-pulse">?</span>
+            </div>
+
+            <!-- Contoh Lampu Taman Pak Toni (Buku hal 93) -->
+            <div class="mt-2 bg-slate-50 p-2.5 rounded-2xl border border-slate-100 flex items-center justify-center gap-1.5 text-xs text-slate-700">
+              <span class="text-sm">💡 Baris 1:</span>
+              <span class="w-3.5 h-3.5 rounded-full bg-red-500 inline-block"></span>
+              <span class="w-3.5 h-3.5 rounded-full bg-orange-400 inline-block"></span>
+              <span class="w-3.5 h-3.5 rounded-full bg-yellow-400 inline-block"></span>
+              <span class="w-3.5 h-3.5 rounded-full bg-green-500 inline-block"></span>
+              <span class="text-[10px] text-slate-500 font-playful">(Merah - Oranye - Kuning - Hijau)</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-rose-700 bg-rose-50 px-3 py-1.5 rounded-xl text-center font-playful">
+            Aturan: Kuning - Biru - Merah Muda
+          </div>
+        </div>
+
+        <!-- 3. Pola Gerakan -->
+        <div class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-3">
+          <div>
+            <div class="flex items-center gap-2.5 mb-2">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">
+                💃
+              </div>
+              <div>
+                <h3 class="font-playful text-base sm:text-lg text-slate-800 font-normal">3. Pola Gerakan (Tari Saman & Senam)</h3>
+                <p class="text-[11px] text-slate-500">Buku Pelajaran 4 Hal. 82 & 84</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Gerakan tubuh yang dilakukan secara kompak dan bergantian teratur. Contoh terkenal adalah <strong>Tari Saman</strong> asal Aceh!
+            </p>
+            
+            <!-- Contoh Visual Gerak Tari Saman -->
+            <div class="mt-3 bg-slate-50 p-3 rounded-2xl border border-slate-100 flex items-center justify-center gap-2 text-xs font-playful text-slate-700">
+              <span class="bg-white px-2.5 py-1.5 rounded-xl border border-slate-200 shadow-2xs">🙆 Rentang</span>
+              <span class="text-slate-400">➜</span>
+              <span class="bg-white px-2.5 py-1.5 rounded-xl border border-slate-200 shadow-2xs">🙇 Bungkuk</span>
+              <span class="text-slate-400">➜</span>
+              <span class="bg-white px-2.5 py-1.5 rounded-xl border border-slate-200 shadow-2xs">🙆 Rentang</span>
+              <span class="text-slate-400">➜</span>
+              <span class="bg-emerald-50 text-emerald-700 px-2.5 py-1.5 rounded-xl border-2 border-dashed border-emerald-400 font-bold animate-pulse">?</span>
+            </div>
+
+            <!-- Contoh Senam Anak -->
+            <div class="mt-2 bg-slate-50 p-2.5 rounded-2xl border border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-600 font-playful">
+              <span>🧍 Berdiri</span>
+              <span>➜</span>
+              <span>🧘 Jongkok</span>
+              <span>➜</span>
+              <span>🧍 Berdiri</span>
+              <span>➜</span>
+              <span>🧘 Jongkok</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl text-center font-playful">
+            Aturan: Penari Ganjil Rentang, Penari Genap Bungkuk
+          </div>
+        </div>
+
+        <!-- 4. Pola Bunyi / Suara -->
+        <div class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-3">
+          <div>
+            <div class="flex items-center gap-2.5 mb-2">
+              <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl">
+                🥁
+              </div>
+              <div>
+                <h3 class="font-playful text-base sm:text-lg text-slate-800 font-normal">4. Pola Bunyi & Irama Suara</h3>
+                <p class="text-[11px] text-slate-500">Buku Pelajaran 4 Hal. 82 & 84</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Irama suara atau ketukan alat musik yang dipukul secara berselang-seling menghasilkan melodi pola yang ritmis.
+            </p>
+            
+            <!-- Contoh Ketukan Drum -->
+            <div class="mt-3 bg-slate-50 p-3 rounded-2xl border border-slate-100 flex items-center justify-center gap-1.5 text-xs text-slate-700 font-playful">
+              <span class="bg-amber-100 text-amber-900 px-2.5 py-1.5 rounded-xl border border-amber-200 shadow-2xs">🥁 Duk Duk</span>
+              <span class="text-slate-400">•</span>
+              <span class="bg-amber-50 text-amber-800 px-2.5 py-1.5 rounded-xl border border-amber-200 shadow-2xs">🥁 Duk Duk Duk</span>
+              <span class="text-slate-400">•</span>
+              <span class="bg-amber-100 text-amber-900 px-2.5 py-1.5 rounded-xl border border-amber-200 shadow-2xs">🥁 Duk Duk</span>
+              <span class="text-slate-400">•</span>
+              <span class="border-2 border-dashed border-amber-400 px-2 py-1.5 rounded-xl text-amber-700 bg-amber-50/50 animate-pulse">?</span>
+            </div>
+
+            <!-- Contoh Suara Mulut Murid (Buku hal 84) -->
+            <div class="mt-2 bg-slate-50 p-2.5 rounded-2xl border border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-600 font-playful">
+              <span>🗣️ 'Ayo!'</span>
+              <span>➜</span>
+              <span>🗣️ 'Ayo! Ayo!'</span>
+              <span>➜</span>
+              <span>🗣️ 'Ayo!'</span>
+              <span>➜</span>
+              <span>🗣️ 'Ayo! Ayo!'</span>
+            </div>
+          </div>
+          <div class="text-[11px] text-amber-800 bg-amber-50 px-3 py-1.5 rounded-xl text-center font-playful">
+            Aturan Irama: 2 Ketukan - 3 Ketukan - 2 Ketukan - 3 Ketukan
+          </div>
+        </div>
+
+      </div>
+
+      <!-- KARTU POLA DI SEKITAR KITA & SOAL HOTS -->
+      <div class="bg-white border border-slate-200/80 p-6 rounded-3xl shadow-2xs space-y-4">
+        <h3 class="font-playful text-base sm:text-lg text-slate-800 font-normal flex items-center gap-2">
+          <span>🏠</span> Pola di Kehidupan Sehari-hari (Buku Hal. 79, 88, 89, 94 & 98)
+        </h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-xs text-slate-600">
+          
+          <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100 space-y-1.5">
+            <div class="font-playful text-slate-800 text-sm flex items-center gap-1.5">
+              <span>🖼️</span> Motif Kain Batik & Kado
+            </div>
+            <p class="leading-relaxed">
+              Motif batik kawung dan kertas kado memiliki pengulangan bentuk simetris yang indah dan rapi (Hal. 79 & 88).
+            </p>
+          </div>
+
+          <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100 space-y-1.5">
+            <div class="font-playful text-slate-800 text-sm flex items-center gap-1.5">
+              <span>🧱</span> Ubin Teras Pak Wayan (HOTS)
+            </div>
+            <p class="leading-relaxed">
+              Kotak hijau ubin berputar searah jarum jam: Kiri Atas ➜ Kanan Atas ➜ Kanan Bawah ➜ Kiri Bawah (Hal. 89).
+            </p>
+          </div>
+
+          <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100 space-y-1.5">
+            <div class="font-playful text-slate-800 text-sm flex items-center gap-1.5">
+              <span>📦</span> Pola Manik-manik
+            </div>
+            <p class="leading-relaxed">
+              Pola jumlah benda bertingkat: Kotak 1 (1 manik), Kotak 2 (2 manik), Kotak 3 (3 manik), berulang kembali (Hal. 98).
+            </p>
+          </div>
+
+        </div>
+
+        <!-- 3 Poin Rangkuman Buku Teks -->
+        <div class="mt-4 p-4 rounded-2xl bg-amber-50/70 border border-amber-200/70">
+          <h4 class="font-playful text-amber-900 text-xs sm:text-sm font-normal mb-2 flex items-center gap-1.5">
+            <i class="fa-solid fa-bookmark text-amber-600"></i> Rangkuman Intisari Pelajaran 4 (Buku Hal. 89):
+          </h4>
+          <ol class="list-decimal list-inside space-y-1 text-xs text-amber-800 leading-relaxed font-normal">
+            <li><strong>Pola</strong> adalah bentuk atau model susunan yang memiliki keteraturan.</li>
+            <li><strong>Jenis-jenis pola:</strong> Pola gambar, pola warna, pola gerakan, dan pola bunyi/suara.</li>
+            <li><strong>Pola sifatnya berulang</strong> sehingga susunannya bisa diteruskan.</li>
+          </ol>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 2: LATIHAN SOAL / KUIS ================= -->
+    <section id="view-quiz" class="hidden space-y-6">
+      
+      <!-- Quiz Card Container -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm max-w-2xl mx-auto relative overflow-hidden space-y-6">
+        
+        <!-- Header Kuis & Progress -->
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-normal uppercase tracking-wider px-3 py-1 bg-amber-100 text-amber-800 border border-amber-200/70 rounded-xl font-playful" id="quiz-category">
+              Pola Gambar
+            </span>
+          </div>
+          <div class="text-xs font-normal text-slate-500 bg-slate-100 px-2.5 py-1 rounded-xl border border-slate-200">
+            Soal <span id="current-q-num" class="text-amber-700 font-normal font-playful">1</span> dari <span id="total-q-num" class="font-playful">10</span>
+          </div>
+        </div>
+
+        <!-- Progress Bar Baris -->
+        <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+          <div id="quiz-progress-bar" class="bg-gradient-to-r from-amber-500 to-orange-500 h-2.5 rounded-full transition-all duration-300 w-1/10"></div>
+        </div>
+
+        <!-- Pertanyaan & Kotak Visual Pola -->
+        <div class="text-center py-2 space-y-3">
+          <h2 id="quiz-question-id" class="text-base sm:text-lg font-normal text-slate-800 font-playful leading-relaxed">
+            Memuat pertanyaan...
+          </h2>
+
+          <!-- Visual Pattern Display Box -->
+          <div id="quiz-visual-box" class="flex flex-wrap items-center justify-center gap-2 p-4 bg-slate-50 border border-slate-200/80 rounded-2xl min-h-[70px]">
+            <!-- Items rendered dynamically -->
+          </div>
+
+          <p id="quiz-sub-question" class="text-xs sm:text-sm text-slate-500 font-normal">
+            Pilihlah salah satu jawaban yang paling tepat di bawah ini:
+          </p>
+        </div>
+
+        <!-- Tombol Pilihan Jawaban -->
+        <div id="quiz-options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Opsi dibuat dinamis -->
+        </div>
+
+        <!-- Feedback Singkat Otomatis -->
+        <div id="quiz-quick-feedback" class="h-6 text-center font-normal text-xs sm:text-sm transition-opacity opacity-0 font-playful">
+          <span id="quick-feedback-text"></span>
+        </div>
+
+      </div>
+
+      <!-- Hasil Skor & Review Modal (Tersembunyi Awal) -->
+      <div id="quiz-result-box" class="hidden bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm max-w-2xl mx-auto space-y-6">
+        <div class="text-center space-y-2">
+          <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
+            🏆
+          </div>
+          <h3 class="text-2xl font-normal text-slate-800 font-playful" id="result-title">Mumtaz! Luar Biasa!</h3>
+          <p class="text-slate-500 text-xs sm:text-sm font-normal">Alhamdulillah, kamu telah menyelesaikan sesi latihan pola matematika ini!</p>
+        </div>
+
+        <!-- Ringkasan Nilai -->
+        <div class="bg-amber-50/70 border border-amber-200/80 p-4 rounded-2xl grid grid-cols-3 gap-2 text-center">
+          <div>
+            <div class="text-xs text-slate-500 font-normal font-playful">BENAR</div>
+            <div class="text-2xl font-normal text-emerald-600 font-playful" id="final-correct">0</div>
+          </div>
+          <div class="border-x border-amber-200">
+            <div class="text-xs text-slate-500 font-normal font-playful">SALAH</div>
+            <div class="text-2xl font-normal text-rose-500 font-playful" id="final-wrong">0</div>
+          </div>
+          <div>
+            <div class="text-xs text-slate-500 font-normal font-playful">NILAI</div>
+            <div class="text-2xl font-normal text-amber-700 font-playful" id="final-score">100</div>
+          </div>
+        </div>
+
+        <!-- Review Jawaban Benar & Pembahasan -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-normal text-slate-800 text-xs sm:text-sm flex items-center gap-1.5 font-playful">
+              <i class="fa-solid fa-list-check text-amber-600"></i>
+              <span>Review & Kunci Jawaban</span>
+            </h4>
+            <span class="text-xs text-slate-400 font-normal font-playful">10 Soal Selesai</span>
+          </div>
+
+          <div id="quiz-review-list" class="space-y-2.5 max-h-80 overflow-y-auto pr-1">
+            <!-- Item review dibuat dinamis oleh JS -->
+          </div>
+        </div>
+
+        <button onclick="restartQuiz()" class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-normal rounded-2xl shadow-sm flex items-center justify-center gap-2 font-playful active:scale-95 transition">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span>Ulangi Latihan (Soal Acak Baru dari Bank 60 Soal)</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: PASANGKAN POLA (MATCHING GAME) ================= -->
+    <section id="view-match" class="hidden space-y-6">
+      
+      <div class="bg-white border border-slate-200/80 p-5 rounded-3xl shadow-2xs flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 class="text-base sm:text-lg font-normal text-slate-800 font-playful">Permainan Mencocokkan Pola 🎯</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5 font-normal">Pilih contoh susunan di sebelah kiri, lalu sambungkan dengan jenis pola yang sesuai di sebelah kanan!</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="initMatchGame()" class="px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl font-normal text-xs text-emerald-800 shadow-2xs active:scale-95 transition flex items-center gap-1.5 font-playful">
+            <i class="fa-solid fa-shuffle"></i>
+            <span>Acak Ulang</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm max-w-2xl mx-auto">
+        <div class="grid grid-cols-2 gap-4 md:gap-6 relative" id="match-container">
+          <!-- Canvas Overlay SVG untuk Tali / Garis Penghubung -->
+          <svg id="match-svg-lines" class="absolute inset-0 w-full h-full pointer-events-none z-20 overflow-visible" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="rope-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.12"/>
+              </filter>
+            </defs>
+          </svg>
+
+          <!-- Kolom Kiri -->
+          <div class="space-y-3 z-10" id="match-col-left">
+            <!-- Rendered by JS -->
+          </div>
+          <!-- Kolom Kanan -->
+          <div class="space-y-3 z-10" id="match-col-right">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Pesan Sukses Game Pasangkan -->
+        <div id="match-complete-msg" class="hidden mt-6 text-center p-5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl space-y-2 animate-match-success">
+          <span class="text-3xl">🎉</span>
+          <h4 class="text-lg font-normal text-emerald-800 font-playful">Luar Biasa! Semua Berhasil Dipasangkan!</h4>
+          <p class="text-xs text-emerald-600 font-normal">Hebat sekali, kamu mendapatkan tambahan +5 Bintang! ⭐</p>
+          <button onclick="initMatchGame()" class="mt-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-normal shadow-sm font-playful active:scale-95 transition">
+            Mainkan Lagi 🔄
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-slate-200/80 mt-12 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      
+      <div class="flex items-center gap-2">
+        <span class="text-slate-700 font-normal text-sm font-playful">🎓 Belajar Zahra</span>
+        <span>•</span>
+        <span>Pelajaran Matematika Kelas 2 SD • Pelajaran 4 Mengenal & Melengkapi Pola</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span>Dibuat dengan ❤️ untuk generasi cerdas masa depan</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    /* ========================================================
+       MASTER BANK SOAL MATEMATIKA POLA (60 SOAL LENGKAP)
+       Berdasarkan Buku Matematika 2 SD Kurikulum Merdeka (Bab 4)
+       ======================================================== */
+    const MASTER_QUESTIONS = [
+  {
+    "category": "Pola Gambar",
+    "question": "Lengkapi pola bangun datar berikut:",
+    "patternItems": [
+      "🔺",
+      "🔵",
+      "🟩",
+      "🔺",
+      "🔵",
+      "🟩",
+      "🔺",
+      "🔵"
+    ],
+    "options": [
+      {
+        "text": "🟩 Segiempat Hijau",
+        "correct": true
+      },
+      {
+        "text": "🔺 Segitiga Merah",
+        "correct": false
+      },
+      {
+        "text": "🔵 Lingkaran Biru",
+        "correct": false
+      },
+      {
+        "text": "⭐ Bintang Kuning",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola berulang adalah: Segitiga - Lingkaran - Segiempat. Setelah lingkaran biru adalah segiempat hijau."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Lengkapi pola bangun berikut:",
+    "patternItems": [
+      "⭐",
+      "❤️",
+      "🌙",
+      "⭐",
+      "❤️",
+      "🌙",
+      "⭐"
+    ],
+    "options": [
+      {
+        "text": "❤️ Hati Merah",
+        "correct": true
+      },
+      {
+        "text": "🌙 Bulan Sabit",
+        "correct": false
+      },
+      {
+        "text": "⭐ Bintang",
+        "correct": false
+      },
+      {
+        "text": "🔵 Lingkaran",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola berulang terdiri dari 3 gambar: Bintang - Hati - Bulan Sabit. Setelah bintang adalah hati merah."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Perhatikan pola ganda: Segiempat - Segiempat - Segitiga - Lingkaran.",
+    "patternItems": [
+      "🟩",
+      "🟩",
+      "🔺",
+      "🔵",
+      "🟩",
+      "🟩",
+      "🔺"
+    ],
+    "options": [
+      {
+        "text": "🔵 Lingkaran Biru",
+        "correct": true
+      },
+      {
+        "text": "🟩 Segiempat Hijau",
+        "correct": false
+      },
+      {
+        "text": "🔺 Segitiga Merah",
+        "correct": false
+      },
+      {
+        "text": "⭐ Bintang Kuning",
+        "correct": false
+      }
+    ],
+    "explanation": "Aturan pola: 2 Segiempat - 1 Segitiga - 1 Lingkaran. Setelah segitiga adalah lingkaran biru."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Perhatikan pola: Lingkaran - Segitiga - Segitiga - Segiempat.",
+    "patternItems": [
+      "🔵",
+      "🔺",
+      "🔺",
+      "🟩",
+      "🔵",
+      "🔺",
+      "🔺"
+    ],
+    "options": [
+      {
+        "text": "🟩 Segiempat Hijau",
+        "correct": true
+      },
+      {
+        "text": "🔺 Segitiga Merah",
+        "correct": false
+      },
+      {
+        "text": "🔵 Lingkaran Biru",
+        "correct": false
+      },
+      {
+        "text": "🟡 Lingkaran Kuning",
+        "correct": false
+      }
+    ],
+    "explanation": "Sesuai latihan di buku hal 83: Pola berulang 1 Lingkaran - 2 Segitiga - 1 Segiempat. Selanjutnya adalah segiempat."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Lengkapi pola bangun datar segi banyak berikut: Segiempat - Segienam - Lingkaran - Segilima.",
+    "patternItems": [
+      "🟩",
+      "⬡",
+      "🔵",
+      "⬠",
+      "🟩",
+      "⬡",
+      "🔵"
+    ],
+    "options": [
+      {
+        "text": "⬠ Segilima",
+        "correct": true
+      },
+      {
+        "text": "🟩 Segiempat",
+        "correct": false
+      },
+      {
+        "text": "⬡ Segienam",
+        "correct": false
+      },
+      {
+        "text": "🔺 Segitiga",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola dari buku hal 83 nomor 6: Segiempat - Segienam - Lingkaran - Segilima. Gambar berikutnya adalah segilima."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Perhatikan pola gambar bunga dan kepik (Buku hal 92):",
+    "patternItems": [
+      "🌸",
+      "🐞",
+      "🐞",
+      "🌸",
+      "🐞",
+      "🐞",
+      "🌸",
+      "🐞"
+    ],
+    "options": [
+      {
+        "text": "🐞 Kepik Merah",
+        "correct": true
+      },
+      {
+        "text": "🌸 Bunga",
+        "correct": false
+      },
+      {
+        "text": "🐝 Lebah",
+        "correct": false
+      },
+      {
+        "text": "🦋 Kupu-kupu",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola pada Gambar 1 buku adalah: Bunga - Kepik - Kepik (1 bunga, 2 kepik). Setelah 1 kepik berikutnya adalah kepik."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Pada pola Gambar 1 (Bunga - Kepik - Kepik), benda pada urutan kesembilan (ke-9) adalah...",
+    "patternItems": [
+      "🌸 ke-1",
+      "🐞 ke-2",
+      "🐞 ke-3",
+      "🌸 ke-4",
+      "🐞 ke-5",
+      "🐞 ke-6",
+      "🌸 ke-7",
+      "🐞 ke-8"
+    ],
+    "options": [
+      {
+        "text": "🐞 Kepik (Urutan ke-9)",
+        "correct": true
+      },
+      {
+        "text": "🌸 Bunga",
+        "correct": false
+      },
+      {
+        "text": "🐝 Lebah",
+        "correct": false
+      },
+      {
+        "text": "🍃 Daun",
+        "correct": false
+      }
+    ],
+    "explanation": "Siklus pola setiap 3 benda: ke-1 Bunga, ke-2 Kepik, ke-3 Kepik. Maka ke-7 Bunga, ke-8 Kepik, ke-9 Kepik! (Soal buku hal 93)"
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Perhatikan pola boneka dan bola (Buku hal 92):",
+    "patternItems": [
+      "🧸",
+      "⚽",
+      "⚽",
+      "🧸",
+      "⚽",
+      "⚽",
+      "🧸"
+    ],
+    "options": [
+      {
+        "text": "⚽ Bola",
+        "correct": true
+      },
+      {
+        "text": "🧸 Boneka",
+        "correct": false
+      },
+      {
+        "text": "🚗 Mobil",
+        "correct": false
+      },
+      {
+        "text": "⭐ Bintang",
+        "correct": false
+      }
+    ],
+    "explanation": "Polanya adalah 1 Boneka diikuti 2 Bola (Boneka - Bola - Bola). Setelah boneka adalah bola."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Perhatikan pola mobil dan bintang (Buku hal 92 Gambar 3): Mobil - Bintang - Bintang.",
+    "patternItems": [
+      "🚗 ke-1",
+      "⭐ ke-2",
+      "⭐ ke-3",
+      "🚗 ke-4",
+      "⭐ ke-5"
+    ],
+    "options": [
+      {
+        "text": "⭐ Bintang (Urutan ke-6)",
+        "correct": true
+      },
+      {
+        "text": "🚗 Mobil",
+        "correct": false
+      },
+      {
+        "text": "🚲 Sepeda",
+        "correct": false
+      },
+      {
+        "text": "🚀 Roket",
+        "correct": false
+      }
+    ],
+    "explanation": "Benda ke-6 pada pola mobil - bintang - bintang adalah bintang (ke-1: mobil, ke-2: bintang, ke-3: bintang, ke-4: mobil, ke-5: bintang, ke-6: bintang)."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Perhatikan pola alat tulis (Buku hal 92 Gambar 4): Tas - Pensil - Buku.",
+    "patternItems": [
+      "🎒",
+      "✏️",
+      "📖",
+      "🎒",
+      "✏️",
+      "📖",
+      "🎒"
+    ],
+    "options": [
+      {
+        "text": "✏️ Pensil",
+        "correct": true
+      },
+      {
+        "text": "📖 Buku",
+        "correct": false
+      },
+      {
+        "text": "🎒 Tas",
+        "correct": false
+      },
+      {
+        "text": "📏 Penggaris",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola berulang: Tas - Pensil - Buku. Setelah tas berikutnya adalah pensil."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Pada pola alat tulis (Tas - Pensil - Buku), benda urutan ke-10 adalah...",
+    "patternItems": [
+      "🎒 1",
+      "✏️ 2",
+      "📖 3",
+      "🎒 4",
+      "✏️ 5",
+      "📖 6",
+      "🎒 7",
+      "✏️ 8",
+      "📖 9"
+    ],
+    "options": [
+      {
+        "text": "🎒 Tas (Urutan ke-10)",
+        "correct": true
+      },
+      {
+        "text": "✏️ Pensil",
+        "correct": false
+      },
+      {
+        "text": "📖 Buku",
+        "correct": false
+      },
+      {
+        "text": "🖍️ Krayon",
+        "correct": false
+      }
+    ],
+    "explanation": "Urutan ke-1, 4, 7, 10 selalu Tas! Urutan ke-2, 5, 8 Pensil. Urutan ke-3, 6, 9 Buku. Jadi benda ke-10 adalah Tas."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Rio dan teman-temannya melukis pagar (Buku hal 80):",
+    "patternItems": [
+      "⭐",
+      "☀️",
+      "⭐",
+      "☀️",
+      "⭐",
+      "☀️",
+      "⭐"
+    ],
+    "options": [
+      {
+        "text": "☀️ Matahari",
+        "correct": true
+      },
+      {
+        "text": "⭐ Bintang",
+        "correct": false
+      },
+      {
+        "text": "☁️ Awan",
+        "correct": false
+      },
+      {
+        "text": "🌙 Bulan",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola lukisan Rio berselang-seling: Bintang - Matahari - Bintang - Matahari. Setelah bintang adalah matahari."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Susunan lukisan lain di pagar sekolah (Buku hal 80):",
+    "patternItems": [
+      "☁️",
+      "🌙",
+      "⭐",
+      "☁️",
+      "🌙",
+      "⭐",
+      "☁️"
+    ],
+    "options": [
+      {
+        "text": "🌙 Bulan Sabit",
+        "correct": true
+      },
+      {
+        "text": "☁️ Awan",
+        "correct": false
+      },
+      {
+        "text": "⭐ Bintang",
+        "correct": false
+      },
+      {
+        "text": "☀️ Matahari",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola susunan: Awan - Bulan Sabit - Bintang. Setelah awan adalah bulan sabit."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Ibu membungkus kado dengan kertas bermotif (Buku hal 79):",
+    "patternItems": [
+      "🎁",
+      "🕯️",
+      "🎁",
+      "🕯️",
+      "🎁",
+      "🕯️"
+    ],
+    "options": [
+      {
+        "text": "🎁 Kotak Kado",
+        "correct": true
+      },
+      {
+        "text": "🕯️ Lilin",
+        "correct": false
+      },
+      {
+        "text": "🎈 Balon",
+        "correct": false
+      },
+      {
+        "text": "🎂 Kue",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola motif kertas kado: Kotak Kado - Lilin - Kotak Kado - Lilin. Berikutnya adalah kotak kado."
+  },
+  {
+    "category": "Pola Gambar",
+    "question": "Lengkapi bagian rumpang (kosong di tengah) pola bangun datar berikut (Buku hal 85):",
+    "patternItems": [
+      "🔺",
+      "🔵",
+      "❓",
+      "🔵",
+      "🔺",
+      "🔵"
+    ],
+    "options": [
+      {
+        "text": "🔺 Segitiga",
+        "correct": true
+      },
+      {
+        "text": "🔵 Lingkaran",
+        "correct": false
+      },
+      {
+        "text": "🟩 Segiempat",
+        "correct": false
+      },
+      {
+        "text": "⭐ Bintang",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola berulang adalah Segitiga - Lingkaran. Di antara lingkaran dan lingkaran harus ada segitiga."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Lengkapi pola warna lingkaran berikut (Buku hal 85):",
+    "patternItems": [
+      "🟡 Kuning",
+      "🔵 Biru",
+      "🔴 Merah",
+      "🟡 Kuning",
+      "🔵 Biru",
+      "🔴 Merah",
+      "🟡 Kuning"
+    ],
+    "options": [
+      {
+        "text": "🔵 Biru",
+        "correct": true
+      },
+      {
+        "text": "🔴 Merah",
+        "correct": false
+      },
+      {
+        "text": "🟡 Kuning",
+        "correct": false
+      },
+      {
+        "text": "🟢 Hijau",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola warna berulang: Kuning - Biru - Merah. Setelah warna kuning adalah warna biru."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Perhatikan pola warna segitiga pada buku hal 81: Hijau - Merah Muda - Biru.",
+    "patternItems": [
+      "🟢",
+      "🌸",
+      "🔵",
+      "🟢",
+      "🌸",
+      "🔵",
+      "🟢"
+    ],
+    "options": [
+      {
+        "text": "🌸 Merah Muda (Pink)",
+        "correct": true
+      },
+      {
+        "text": "🔵 Biru",
+        "correct": false
+      },
+      {
+        "text": "🟢 Hijau",
+        "correct": false
+      },
+      {
+        "text": "🟡 Kuning",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola warna berulang 3 warna: Hijau - Merah Muda - Biru. Setelah hijau adalah merah muda."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Rio mewarnai lingkaran dengan pola (Buku hal 92): Biru - Oranye - Kuning - Ungu.",
+    "patternItems": [
+      "🔵 Biru",
+      "🟠 Oranye",
+      "🟡 Kuning",
+      "🟣 Ungu",
+      "🔵 Biru",
+      "🟠 Oranye",
+      "🟡 Kuning"
+    ],
+    "options": [
+      {
+        "text": "🟣 Ungu",
+        "correct": true
+      },
+      {
+        "text": "🔵 Biru",
+        "correct": false
+      },
+      {
+        "text": "🟠 Oranye",
+        "correct": false
+      },
+      {
+        "text": "🟡 Kuning",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola warna Rio terdiri dari 4 warna: Biru - Oranye - Kuning - Ungu. Setelah kuning adalah ungu."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Ari mewarnai lingkaran dengan pola (Buku hal 92): Oranye - Kuning - Ungu - Biru.",
+    "patternItems": [
+      "🟠 Oranye",
+      "🟡 Kuning",
+      "🟣 Ungu",
+      "🔵 Biru",
+      "🟠 Oranye"
+    ],
+    "options": [
+      {
+        "text": "🟡 Kuning",
+        "correct": true
+      },
+      {
+        "text": "🟣 Ungu",
+        "correct": false
+      },
+      {
+        "text": "🔵 Biru",
+        "correct": false
+      },
+      {
+        "text": "🟠 Oranye",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola warna Ari dimulai dari: Oranye - Kuning - Ungu - Biru. Setelah oranye adalah kuning."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Cika mewarnai lingkaran dengan pola (Buku hal 92): Hijau - Biru - Kuning - Oranye. Dua warna berikutnya setelah oranye adalah...",
+    "patternItems": [
+      "🟢 Hijau",
+      "🔵 Biru",
+      "🟡 Kuning",
+      "🟠 Oranye"
+    ],
+    "options": [
+      {
+        "text": "🟢 Hijau dan 🔵 Biru",
+        "correct": true
+      },
+      {
+        "text": "🟡 Kuning dan 🟠 Oranye",
+        "correct": false
+      },
+      {
+        "text": "🟣 Ungu dan 🔴 Merah",
+        "correct": false
+      },
+      {
+        "text": "🔵 Biru dan 🟢 Hijau",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola berulang kembali ke awal: Hijau lalu Biru (Soal buku hal 92 nomor 2)."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Perhatikan pola warna hati (Buku hal 83): Ungu - Hijau - Ungu - Hijau.",
+    "patternItems": [
+      "💜 Ungu",
+      "💚 Hijau",
+      "💜 Ungu",
+      "💚 Hijau",
+      "💜 Ungu"
+    ],
+    "options": [
+      {
+        "text": "💚 Hijau",
+        "correct": true
+      },
+      {
+        "text": "💜 Ungu",
+        "correct": false
+      },
+      {
+        "text": "💛 Kuning",
+        "correct": false
+      },
+      {
+        "text": "💙 Biru",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola 2 warna selang-seling sederhana: Ungu - Hijau. Setelah ungu adalah hijau."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Perhatikan pola warna tanda tambah (Buku hal 83 Ayo Berlatih 1 nomor 4):",
+    "patternItems": [
+      "🟣 Ungu",
+      "🌸 Pink",
+      "🔵 Biru",
+      "🟡 Kuning",
+      "🟣 Ungu",
+      "🌸 Pink"
+    ],
+    "options": [
+      {
+        "text": "🔵 Biru",
+        "correct": true
+      },
+      {
+        "text": "🟡 Kuning",
+        "correct": false
+      },
+      {
+        "text": "🟣 Ungu",
+        "correct": false
+      },
+      {
+        "text": "🌸 Pink",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola 4 warna: Ungu - Pink - Biru - Kuning. Setelah pink adalah biru."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Pak Toni memasang lampu taman Baris 1 (Buku hal 93): Merah - Oranye - Kuning - Hijau. Warna lampu ketiga adalah...",
+    "patternItems": [
+      "🔴 ke-1",
+      "🟠 ke-2",
+      "🟡 ke-3",
+      "🟢 ke-4"
+    ],
+    "options": [
+      {
+        "text": "🟡 Kuning",
+        "correct": true
+      },
+      {
+        "text": "🔴 Merah",
+        "correct": false
+      },
+      {
+        "text": "🟠 Oranye",
+        "correct": false
+      },
+      {
+        "text": "🟢 Hijau",
+        "correct": false
+      }
+    ],
+    "explanation": "Urutan lampu Baris 1: ke-1 Merah, ke-2 Oranye, ke-3 Kuning, ke-4 Hijau. Jadi lampu ke-3 adalah Kuning."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Pak Toni memasang lampu taman Baris 2 (Buku hal 93): Biru - Hijau - Biru - Hijau. Lampu ke-4 berwarna...",
+    "patternItems": [
+      "🔵 ke-1",
+      "🟢 ke-2",
+      "🔵 ke-3",
+      "❓ ke-4"
+    ],
+    "options": [
+      {
+        "text": "🟢 Hijau",
+        "correct": true
+      },
+      {
+        "text": "🔵 Biru",
+        "correct": false
+      },
+      {
+        "text": "🔴 Merah",
+        "correct": false
+      },
+      {
+        "text": "🟡 Kuning",
+        "correct": false
+      }
+    ],
+    "explanation": "Baris 2 selang-seling: ke-1 Biru, ke-2 Hijau, ke-3 Biru, ke-4 Hijau. Nomor genap selalu Hijau!"
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Pada lampu taman Pak Toni Baris 1 (Merah - Oranye - Kuning - Hijau), warna lampu ke-6 adalah... (Buku hal 94)",
+    "patternItems": [
+      "🔴 1",
+      "🟠 2",
+      "🟡 3",
+      "🟢 4",
+      "🔴 5",
+      "❓ 6"
+    ],
+    "options": [
+      {
+        "text": "🟠 Oranye",
+        "correct": true
+      },
+      {
+        "text": "🔴 Merah",
+        "correct": false
+      },
+      {
+        "text": "🟡 Kuning",
+        "correct": false
+      },
+      {
+        "text": "🟢 Hijau",
+        "correct": false
+      }
+    ],
+    "explanation": "Lampu ke-5 Merah, maka lampu ke-6 adalah Oranye. (Pernyataan lampu ke-6 kuning di buku bernilai SALAH)."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Pada lampu taman Pak Toni Baris 2 (Biru - Hijau), lampu ke-15 berwarna... (Buku hal 94)",
+    "patternItems": [
+      "🔵 Ganjil (1, 3, 5, ...)",
+      "🟢 Genap (2, 4, 6, ...)"
+    ],
+    "options": [
+      {
+        "text": "🔵 Biru (karena angka 15 ganjil)",
+        "correct": true
+      },
+      {
+        "text": "🟢 Hijau",
+        "correct": false
+      },
+      {
+        "text": "🔴 Merah",
+        "correct": false
+      },
+      {
+        "text": "🟡 Kuning",
+        "correct": false
+      }
+    ],
+    "explanation": "Urutan ganjil (1, 3, 5, 7, 9, 11, 13, 15) berwarna Biru! Urutan genap berwarna Hijau."
+  },
+  {
+    "category": "Pola Warna",
+    "question": "Pada lampu taman Baris 1 (Merah - Oranye - Kuning - Hijau), lampu ke-17 berwarna... (Buku hal 94)",
+    "patternItems": [
+      "Siklus 4 warna: 4x4 = 16 lampu",
+      "Lampu ke-17 adalah awal siklus baru!"
+    ],
+    "options": [
+      {
+        "text": "🔴 Merah",
+        "correct": true
+      },
+      {
+        "text": "🟠 Oranye",
+        "correct": false
+      },
+      {
+        "text": "🟡 Kuning",
+        "correct": false
+      },
+      {
+        "text": "🟢 Hijau",
+        "correct": false
+      }
+    ],
+    "explanation": "16 lampu membentuk 4 putaran penuh. Lampu ke-17 kembali ke warna pertama, yaitu Merah!"
+  },
+  {
+    "category": "Pola Gerakan",
+    "question": "Pada Tari Saman dari Aceh (Buku hal 82), penari bergantian: Merentangkan tangan lalu membungkuk.",
+    "patternItems": [
+      "🙆 Rentang",
+      "🙇 Bungkuk",
+      "🙆 Rentang",
+      "🙇 Bungkuk",
+      "🙆 Rentang"
+    ],
+    "options": [
+      {
+        "text": "🙇 Membungkuk",
+        "correct": true
+      },
+      {
+        "text": "🙆 Merentangkan tangan",
+        "correct": false
+      },
+      {
+        "text": "🙋 Melompat",
+        "correct": false
+      },
+      {
+        "text": "🙅 Duduk diam",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola gerak tari Saman berulang: Rentang tangan - Membungkuk. Setelah rentang tangan adalah membungkuk."
+  },
+  {
+    "category": "Pola Gerakan",
+    "question": "Jika penari ke-1 merentang tangan, penari ke-2 bungkuk, penari ke-3 rentang tangan, maka penari ke-6 melakukan gerakan...",
+    "patternItems": [
+      "1: 🙆",
+      "2: 🙇",
+      "3: 🙆",
+      "4: 🙇",
+      "5: 🙆"
+    ],
+    "options": [
+      {
+        "text": "🙇 Membungkuk (karena penari genap)",
+        "correct": true
+      },
+      {
+        "text": "🙆 Merentangkan tangan",
+        "correct": false
+      },
+      {
+        "text": "🏃 Berlari",
+        "correct": false
+      },
+      {
+        "text": "🛌 Berbaring",
+        "correct": false
+      }
+    ],
+    "explanation": "Penari dengan nomor genap (2, 4, 6) selalu melakukan gerakan membungkuk."
+  },
+  {
+    "category": "Pola Gerakan",
+    "question": "Dalam senam ceria anak (Buku hal 84): Berdiri - Jongkok - Berdiri - Jongkok.",
+    "patternItems": [
+      "🧍 Berdiri",
+      "🧘 Jongkok",
+      "🧍 Berdiri",
+      "🧘 Jongkok"
+    ],
+    "options": [
+      {
+        "text": "🧍 Berdiri",
+        "correct": true
+      },
+      {
+        "text": "🧘 Jongkok",
+        "correct": false
+      },
+      {
+        "text": "🤸 Meroda",
+        "correct": false
+      },
+      {
+        "text": "🧗 Memanjat",
+        "correct": false
+      }
+    ],
+    "explanation": "Gerakan selang-seling antara berdiri dan jongkok. Setelah jongkok adalah gerakan berdiri."
+  },
+  {
+    "category": "Pola Gerakan",
+    "question": "Perhatikan pola tepuk berulang anak-anak: Tepuk Paha - Tepuk Tangan - Tepuk Paha - Tepuk Tangan.",
+    "patternItems": [
+      "🦵 Tepuk Paha",
+      "👏 Tepuk Tangan",
+      "🦵 Tepuk Paha",
+      "👏 Tepuk Tangan"
+    ],
+    "options": [
+      {
+        "text": "🦵 Tepuk Paha",
+        "correct": true
+      },
+      {
+        "text": "👏 Tepuk Tangan",
+        "correct": false
+      },
+      {
+        "text": "🙆 Angkat Tangan",
+        "correct": false
+      },
+      {
+        "text": "🦶 Injak Bumi",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola bergantian: Tepuk Paha lalu Tepuk Tangan. Gerakan berikutnya adalah Tepuk Paha."
+  },
+  {
+    "category": "Pola Gerakan",
+    "question": "Gerakan senam kepala: Geleng Kiri - Geleng Kanan - Angguk Bawah - Geleng Kiri - Geleng Kanan.",
+    "patternItems": [
+      "⬅️ Geleng Kiri",
+      "➡️ Geleng Kanan",
+      "⬇️ Angguk",
+      "⬅️ Geleng Kiri",
+      "➡️ Geleng Kanan"
+    ],
+    "options": [
+      {
+        "text": "⬇️ Angguk Bawah",
+        "correct": true
+      },
+      {
+        "text": "⬅️ Geleng Kiri",
+        "correct": false
+      },
+      {
+        "text": "➡️ Geleng Kanan",
+        "correct": false
+      },
+      {
+        "text": "⬆️ Tengadah Atas",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola terdiri dari 3 gerakan kepala: Geleng Kiri - Geleng Kanan - Angguk Bawah. Selanjutnya adalah angguk bawah."
+  },
+  {
+    "category": "Pola Bunyi",
+    "question": "Sebuah drum dipukul dengan pola bunyi (Buku hal 82): Duk Duk - Duk Duk Duk.",
+    "patternItems": [
+      "🥁 2x (Duk Duk)",
+      "🥁 3x (Duk Duk Duk)",
+      "🥁 2x (Duk Duk)"
+    ],
+    "options": [
+      {
+        "text": "🥁 3x (Duk Duk Duk)",
+        "correct": true
+      },
+      {
+        "text": "🥁 2x (Duk Duk)",
+        "correct": false
+      },
+      {
+        "text": "🥁 1x (Duk)",
+        "correct": false
+      },
+      {
+        "text": "🤫 Diam tanpa suara",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola ketukan drum bergantian antara 2 ketukan dan 3 ketukan (2 - 3 - 2 - 3)."
+  },
+  {
+    "category": "Pola Bunyi",
+    "question": "Murid-murid membuat pola suara mulut (Buku hal 84): 'Ayo!' - 'Ayo! Ayo!' - 'Ayo!' - 'Ayo! Ayo!'. Suara selanjutnya adalah...",
+    "patternItems": [
+      "🗣️ Ayo!",
+      "🗣️ Ayo! Ayo!",
+      "🗣️ Ayo!",
+      "🗣️ Ayo! Ayo!"
+    ],
+    "options": [
+      {
+        "text": "🗣️ 'Ayo!' (1 kali)",
+        "correct": true
+      },
+      {
+        "text": "🗣️ 'Ayo! Ayo!' (2 kali)",
+        "correct": false
+      },
+      {
+        "text": "🗣️ 'Hore!'",
+        "correct": false
+      },
+      {
+        "text": "🗣️ 'Semangat!'",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola berselang-seling: seruan 1 kali ('Ayo!') lalu 2 kali ('Ayo! Ayo!'). Berikutnya adalah 'Ayo!'."
+  },
+  {
+    "category": "Pola Bunyi",
+    "question": "Kelompok bernyanyi membuat irama: Tepuk Tangan (Prok) - Hentak Kaki (Bum) - Tepuk Tangan (Prok).",
+    "patternItems": [
+      "👏 Prok",
+      "🦶 Bum",
+      "👏 Prok",
+      "🦶 Bum",
+      "👏 Prok"
+    ],
+    "options": [
+      {
+        "text": "🦶 Hentak Kaki (Bum)",
+        "correct": true
+      },
+      {
+        "text": "👏 Tepuk Tangan (Prok)",
+        "correct": false
+      },
+      {
+        "text": "🔔 Lonceng (Ting)",
+        "correct": false
+      },
+      {
+        "text": "🎺 Terompet (Tet)",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola irama: Prok - Bum - Prok - Bum. Bunyi berikutnya adalah Bum (hentak kaki)."
+  },
+  {
+    "category": "Pola Bunyi",
+    "question": "Ketukan meja kayu (Buku hal 84): Tok Tok - Tung - Tok Tok - Tung.",
+    "patternItems": [
+      "🪵 Tok Tok",
+      "🔊 Tung",
+      "🪵 Tok Tok",
+      "🔊 Tung"
+    ],
+    "options": [
+      {
+        "text": "🪵 Tok Tok",
+        "correct": true
+      },
+      {
+        "text": "🔊 Tung",
+        "correct": false
+      },
+      {
+        "text": "🔔 Ting Ting",
+        "correct": false
+      },
+      {
+        "text": "🥁 Dung Dung",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola berulang: 'Tok Tok' lalu 'Tung'. Setelah 'Tung' pola kembali ke 'Tok Tok'."
+  },
+  {
+    "category": "Pola Bunyi",
+    "question": "Pola tiupan peluit guru olahraga: Priiit! - Priit Priit! - Priiit! - Priit Priit! Tiupan berikutnya adalah...",
+    "patternItems": [
+      "📢 Priiit! (Panjang)",
+      "📢 Priit Priit! (Pendek 2x)",
+      "📢 Priiit! (Panjang)"
+    ],
+    "options": [
+      {
+        "text": "📢 Priit Priit! (Pendek 2 kali)",
+        "correct": true
+      },
+      {
+        "text": "📢 Priiit! (Panjang 1 kali)",
+        "correct": false
+      },
+      {
+        "text": "📢 Priit Priit Priit! (3 kali)",
+        "correct": false
+      },
+      {
+        "text": "🤐 Berhenti",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola berselang-seling antara satu tiupan panjang dan dua tiupan pendek."
+  },
+  {
+    "category": "Pola Arah",
+    "question": "Perhatikan arah panah berputar searah jarum jam (Buku hal 86):",
+    "patternItems": [
+      "⬆️ Atas",
+      "➡️ Kanan",
+      "⬇️ Bawah",
+      "⬅️ Kiri",
+      "⬆️ Atas",
+      "➡️ Kanan"
+    ],
+    "options": [
+      {
+        "text": "⬇️ Panah ke Bawah",
+        "correct": true
+      },
+      {
+        "text": "⬆️ Panah ke Atas",
+        "correct": false
+      },
+      {
+        "text": "⬅️ Panah ke Kiri",
+        "correct": false
+      },
+      {
+        "text": "↗️ Panah Serong",
+        "correct": false
+      }
+    ],
+    "explanation": "Panah berputar teratur: Atas ➜ Kanan ➜ Bawah ➜ Kiri. Setelah arah kanan adalah arah bawah."
+  },
+  {
+    "category": "Pola Arah",
+    "question": "Perhatikan pola panah bolak-balik (Buku hal 86 nomor 2):",
+    "patternItems": [
+      "⬆️ Atas",
+      "⬇️ Bawah",
+      "⬆️ Atas",
+      "⬇️ Bawah",
+      "⬆️ Atas"
+    ],
+    "options": [
+      {
+        "text": "⬇️ Panah ke Bawah",
+        "correct": true
+      },
+      {
+        "text": "⬆️ Panah ke Atas",
+        "correct": false
+      },
+      {
+        "text": "➡️ Panah ke Kanan",
+        "correct": false
+      },
+      {
+        "text": "⬅️ Panah ke Kiri",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola bolak-balik bergantian arah: Atas lalu Bawah. Berikutnya adalah Bawah."
+  },
+  {
+    "category": "Pola Arah",
+    "question": "Perhatikan pola dua panah: Atas - Atas - Bawah - Bawah.",
+    "patternItems": [
+      "⬆️",
+      "⬆️",
+      "⬇️",
+      "⬇️",
+      "⬆️",
+      "⬆️",
+      "⬇️"
+    ],
+    "options": [
+      {
+        "text": "⬇️ Panah ke Bawah",
+        "correct": true
+      },
+      {
+        "text": "⬆️ Panah ke Atas",
+        "correct": false
+      },
+      {
+        "text": "➡️ Panah ke Kanan",
+        "correct": false
+      },
+      {
+        "text": "⬅️ Panah ke Kiri",
+        "correct": false
+      }
+    ],
+    "explanation": "Aturan pola: 2 panah ke atas diikuti 2 panah ke bawah. Setelah 1 panah ke bawah adalah 1 panah ke bawah lagi."
+  },
+  {
+    "category": "Pola Arah",
+    "question": "Perhatikan arah hadap segitiga: Hadap Atas - Hadap Bawah - Hadap Atas - Hadap Bawah.",
+    "patternItems": [
+      "▲ Hadap Atas",
+      "▼ Hadap Bawah",
+      "▲ Hadap Atas",
+      "▼ Hadap Bawah"
+    ],
+    "options": [
+      {
+        "text": "▲ Hadap Atas",
+        "correct": true
+      },
+      {
+        "text": "▼ Hadap Bawah",
+        "correct": false
+      },
+      {
+        "text": "► Hadap Kanan",
+        "correct": false
+      },
+      {
+        "text": "◄ Hadap Kiri",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola arah bangun berselang-seling ke atas dan ke bawah. Selanjutnya menghadap ke atas."
+  },
+  {
+    "category": "Pola Arah",
+    "question": "Perhatikan pola hadap bulan sabit (Buku hal 86 nomor 3): Kiri - Kanan - Kiri - Kanan.",
+    "patternItems": [
+      "🌙 Hadap Kiri",
+      "🌛 Hadap Kanan",
+      "🌙 Hadap Kiri",
+      "🌛 Hadap Kanan",
+      "🌙 Hadap Kiri"
+    ],
+    "options": [
+      {
+        "text": "🌛 Hadap Kanan",
+        "correct": true
+      },
+      {
+        "text": "🌙 Hadap Kiri",
+        "correct": false
+      },
+      {
+        "text": "🌕 Bulan Purnama",
+        "correct": false
+      },
+      {
+        "text": "⭐ Bintang",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola hadap bulan sabit bolak-balik antara menghadap ke kiri dan ke kanan. Berikutnya adalah hadap kanan."
+  },
+  {
+    "category": "Soal HOTS",
+    "question": "Soal HOTS Ubin Pak Wayan (Buku hal 89): Kotak kecil hijau pada ubin berputar searah jarum jam: Kiri Atas ➜ Kanan Atas ➜ Kanan Bawah ➜ Kiri Bawah. Pola ubin ke-5 adalah...",
+    "patternItems": [
+      "1: ↖️ Kiri Atas",
+      "2: ↗️ Kanan Atas",
+      "3: ↘️ Kanan Bawah",
+      "4: ↙️ Kiri Bawah"
+    ],
+    "options": [
+      {
+        "text": "↖️ Kiri Atas (Pola berulang kembali)",
+        "correct": true
+      },
+      {
+        "text": "↗️ Kanan Atas",
+        "correct": false
+      },
+      {
+        "text": "↘️ Kanan Bawah",
+        "correct": false
+      },
+      {
+        "text": "↙️ Kiri Bawah",
+        "correct": false
+      }
+    ],
+    "explanation": "Setelah 4 putaran (Kiri Atas, Kanan Atas, Kanan Bawah, Kiri Bawah), pada ubin ke-5 pola kembali ke posisi Kiri Atas."
+  },
+  {
+    "category": "Soal HOTS",
+    "question": "Soal HOTS Ubin Pak Wayan (Buku hal 89): Manakah posisi kotak hijau yang sesuai untuk susunan ubin ke-15?",
+    "patternItems": [
+      "Siklus 4 posisi: 1, 2, 3, 4",
+      "12 susunan = 3 siklus penuh",
+      "Susunan 13 (Kiri Atas), 14 (Kanan Atas), 15 (??)"
+    ],
+    "options": [
+      {
+        "text": "↘️ Kanan Bawah (Sisa 3)",
+        "correct": true
+      },
+      {
+        "text": "↖️ Kiri Atas",
+        "correct": false
+      },
+      {
+        "text": "↗️ Kanan Atas",
+        "correct": false
+      },
+      {
+        "text": "↙️ Kiri Bawah",
+        "correct": false
+      }
+    ],
+    "explanation": "15 dibagi 4 bersisa 3. Urutan ke-3 pada siklus adalah sudut Kanan Bawah! Jawaban buku hal 89."
+  },
+  {
+    "category": "Pola Arah",
+    "question": "Perhatikan arah panah serong: Kanan Atas ↗️ - Kanan Bawah ↘️ - Kanan Atas ↗️.",
+    "patternItems": [
+      "↗️ Serong Atas",
+      "↘️ Serong Bawah",
+      "↗️ Serong Atas"
+    ],
+    "options": [
+      {
+        "text": "↘️ Serong Bawah",
+        "correct": true
+      },
+      {
+        "text": "↗️ Serong Atas",
+        "correct": false
+      },
+      {
+        "text": "↖️ Serong Kiri Atas",
+        "correct": false
+      },
+      {
+        "text": "↙️ Serong Kiri Bawah",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola bergantian antara serong atas dan serong bawah. Setelah serong atas adalah serong bawah."
+  },
+  {
+    "category": "Pola Nyata & Motif",
+    "question": "Ayo Berlatih 4 Pola Batik (Buku hal 88): Kain batik bermotif teratur memiliki bagian yang robek. Cara menemukan potongan yang hilang adalah...",
+    "patternItems": [
+      "Motif A",
+      "Motif B",
+      "Motif A",
+      "❓ Bagian Robek",
+      "Motif A",
+      "Motif B"
+    ],
+    "options": [
+      {
+        "text": "Mencari potongan dengan Motif B yang sesuai polanya",
+        "correct": true
+      },
+      {
+        "text": "Memasang gambar apa saja secara acak",
+        "correct": false
+      },
+      {
+        "text": "Memotong semua kain batik",
+        "correct": false
+      },
+      {
+        "text": "Mengganti dengan kain polos",
+        "correct": false
+      }
+    ],
+    "explanation": "Kain batik memiliki keteraturan berulang. Di antara Motif A dan Motif A adalah potongan Motif B."
+  },
+  {
+    "category": "Pola Nyata & Motif",
+    "question": "Wallpaper Kamar Danu Baris 1 (Buku hal 94): Lingkaran 🔵 - Persegi 🟨 - Lingkaran 🔵. Hiasan urutan ke-4 adalah...",
+    "patternItems": [
+      "🔵 ke-1",
+      "🟨 ke-2",
+      "🔵 ke-3",
+      "❓ ke-4"
+    ],
+    "options": [
+      {
+        "text": "🟨 Persegi Kuning",
+        "correct": true
+      },
+      {
+        "text": "🔵 Lingkaran Biru",
+        "correct": false
+      },
+      {
+        "text": "🔺 Segitiga Oranye",
+        "correct": false
+      },
+      {
+        "text": "⭐ Bintang",
+        "correct": false
+      }
+    ],
+    "explanation": "Urutan Baris 1: Lingkaran - Persegi - Lingkaran - Persegi. Hiasan urutan ke-4 adalah persegi kuning."
+  },
+  {
+    "category": "Pola Nyata & Motif",
+    "question": "Wallpaper Kamar Danu Baris 2 (Buku hal 94): Segitiga 🔺 - Belah Ketupat 🔷 - Segitiga 🔺 - Belah Ketupat 🔷. Hiasan urutan kelima adalah...",
+    "patternItems": [
+      "🔺 ke-1",
+      "🔷 ke-2",
+      "🔺 ke-3",
+      "🔷 ke-4"
+    ],
+    "options": [
+      {
+        "text": "🔺 Segitiga (Urutan ke-5)",
+        "correct": true
+      },
+      {
+        "text": "🔷 Belah Ketupat",
+        "correct": false
+      },
+      {
+        "text": "🔵 Lingkaran",
+        "correct": false
+      },
+      {
+        "text": "🟨 Persegi",
+        "correct": false
+      }
+    ],
+    "explanation": "Urutan ganjil (1, 3, 5) pada baris kedua selalu gambar segitiga! Jadi hiasan ke-5 adalah segitiga."
+  },
+  {
+    "category": "Pola Nyata & Motif",
+    "question": "Wallpaper Kamar Danu Baris 3 (Buku hal 94): Motif Bunga 🌺 - Daun 🍃 - Bunga 🌺 - Daun 🍃. Jika ditambah 1 hiasan lagi di ujung, gambar tersebut adalah...",
+    "patternItems": [
+      "🌺 Bunga",
+      "🍃 Daun",
+      "🌺 Bunga",
+      "🍃 Daun"
+    ],
+    "options": [
+      {
+        "text": "🌺 Bunga",
+        "correct": true
+      },
+      {
+        "text": "🍃 Daun",
+        "correct": false
+      },
+      {
+        "text": "🌳 Pohon",
+        "correct": false
+      },
+      {
+        "text": "🌸 Kepik",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola berulang: Bunga - Daun. Setelah daun berikutnya adalah gambar bunga."
+  },
+  {
+    "category": "Pola Nyata & Motif",
+    "question": "Aktivitas Pola Manik-manik (Buku hal 98): Kotak 1 ada 1 manik, Kotak 2 ada 2 manik, Kotak 3 ada 3 manik, Kotak 4 ada 1 manik, Kotak 5 ada 2 manik. Kotak 6 ada berapa manik?",
+    "patternItems": [
+      "📦1: 🔴",
+      "📦2: 🟡🟡",
+      "📦3: 🔵🔵🔵",
+      "📦4: 🔴",
+      "📦5: 🟡🟡"
+    ],
+    "options": [
+      {
+        "text": "3 manik-manik (🔵🔵🔵)",
+        "correct": true
+      },
+      {
+        "text": "1 manik-manik (🔴)",
+        "correct": false
+      },
+      {
+        "text": "2 manik-manik (🟡🟡)",
+        "correct": false
+      },
+      {
+        "text": "4 manik-manik",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola jumlah benda berulang: 1 - 2 - 3 - 1 - 2 - 3. Maka kotak ke-6 berisi 3 manik-manik."
+  },
+  {
+    "category": "Pola Nyata & Motif",
+    "question": "Di perpustakaan, pustakawan menyusun buku berurutan: Sampul Merah 📕 - Sampul Biru 📘 - Sampul Biru 📘. Buku ke-4 bersampul...",
+    "patternItems": [
+      "📕 ke-1",
+      "📘 ke-2",
+      "📘 ke-3"
+    ],
+    "options": [
+      {
+        "text": "📕 Sampul Merah (Awal pola baru)",
+        "correct": true
+      },
+      {
+        "text": "📘 Sampul Biru",
+        "correct": false
+      },
+      {
+        "text": "📗 Sampul Hijau",
+        "correct": false
+      },
+      {
+        "text": "📙 Sampul Oranye",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola berulang: 1 Merah, 2 Biru (Merah - Biru - Biru). Buku ke-4 mengulang pola dengan warna Merah."
+  },
+  {
+    "category": "Pola Nyata & Motif",
+    "question": "Hiasan bendera perayaan HUT RI di gapura desa: Merah - Putih - Merah - Putih - Merah.",
+    "patternItems": [
+      "🔴 Merah",
+      "⚪ Putih",
+      "🔴 Merah",
+      "⚪ Putih",
+      "🔴 Merah"
+    ],
+    "options": [
+      {
+        "text": "⚪ Bendera Putih",
+        "correct": true
+      },
+      {
+        "text": "🔴 Bendera Merah",
+        "correct": false
+      },
+      {
+        "text": "🟡 Bendera Kuning",
+        "correct": false
+      },
+      {
+        "text": "🟢 Bendera Hijau",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola bendera dua warna: Merah lalu Putih. Setelah bendera merah adalah bendera putih."
+  },
+  {
+    "category": "Pola Nyata & Motif",
+    "question": "Pola susunan piring di meja makan: Piring Besar 🍽️ - Piring Kecil 🥣 - Piring Besar 🍽️ - Piring Kecil 🥣.",
+    "patternItems": [
+      "🍽️ Besar",
+      "🥣 Kecil",
+      "🍽️ Besar",
+      "🥣 Kecil"
+    ],
+    "options": [
+      {
+        "text": "🍽️ Piring Besar",
+        "correct": true
+      },
+      {
+        "text": "🥣 Piring Kecil",
+        "correct": false
+      },
+      {
+        "text": "🥄 Sendok",
+        "correct": false
+      },
+      {
+        "text": "🥛 Gelas",
+        "correct": false
+      }
+    ],
+    "explanation": "Pola ukuran benda berselang-seling: Besar - Kecil - Besar - Kecil. Selanjutnya adalah Piring Besar."
+  },
+  {
+    "category": "Konsep Pola",
+    "question": "Apa yang dimaksud dengan Pola dalam matematika? (Buku hal 81 & 89)",
+    "patternItems": [
+      "Keteraturan",
+      "Pengulangan",
+      "Dapat Diprediksi"
+    ],
+    "options": [
+      {
+        "text": "Bentuk atau susunan model yang memiliki keteraturan berulang",
+        "correct": true
+      },
+      {
+        "text": "Kumpulan benda yang diletakkan sembarangan tanpa aturan",
+        "correct": false
+      },
+      {
+        "text": "Gambar warna-warni yang selalu berubah secara acak",
+        "correct": false
+      },
+      {
+        "text": "Angka hitungan yang tidak beraturan",
+        "correct": false
+      }
+    ],
+    "explanation": "Rangkuman buku hal 89: Pola adalah bentuk atau model susunan yang memiliki keteraturan dan sifatnya berulang."
+  },
+  {
+    "category": "Konsep Pola",
+    "question": "Manakah di bawah ini yang merupakan sifat utama dari sebuah pola? (Buku hal 89 poin 3)",
+    "patternItems": [
+      "Sifat Utama Pola:"
+    ],
+    "options": [
+      {
+        "text": "Sifatnya berulang sehingga susunannya bisa diteruskan",
+        "correct": true
+      },
+      {
+        "text": "Hanya boleh digunakan satu kali saja",
+        "correct": false
+      },
+      {
+        "text": "Selalu berhenti dan tidak dapat diprediksi lanjutannya",
+        "correct": false
+      },
+      {
+        "text": "Harus dibuat tidak teratur dan berubah-ubah",
+        "correct": false
+      }
+    ],
+    "explanation": "Buku Pelajaran 4 Pola hal 89: 'Pola sifatnya berulang sehingga bisa diteruskan'."
+  },
+  {
+    "category": "Konsep Pola",
+    "question": "Manakah di bawah ini yang BUKAN merupakan jenis pola bukan bilangan di Pelajaran 4? (Buku hal 79)",
+    "patternItems": [
+      "Pola Gambar",
+      "Pola Warna",
+      "Pola Gerakan",
+      "Pola Suara"
+    ],
+    "options": [
+      {
+        "text": "Pola Acak Tak Beraturan",
+        "correct": true
+      },
+      {
+        "text": "Pola Gambar / Bangun Datar",
+        "correct": false
+      },
+      {
+        "text": "Pola Gerakan Tubuh",
+        "correct": false
+      },
+      {
+        "text": "Pola Bunyi / Suara",
+        "correct": false
+      }
+    ],
+    "explanation": "Pelajaran 4 membahas 4 pola: Pola gambar/bangun datar, pola warna, pola gerakan, dan pola bunyi/suara. Pola acak bukan pola!"
+  },
+  {
+    "category": "Konsep Pola",
+    "question": "Langkah pertama yang harus kita lakukan saat ingin melengkapi pola yang rumpang adalah...",
+    "patternItems": [
+      "1. Amati susunan",
+      "2. Temukan aturan keteraturan",
+      "3. Lanjutkan!"
+    ],
+    "options": [
+      {
+        "text": "Menemukan aturan keteraturan yang berulang terlebih dahulu",
+        "correct": true
+      },
+      {
+        "text": "Langsung menebak gambar yang disukai",
+        "correct": false
+      },
+      {
+        "text": "Menghapus semua susunan yang sudah ada",
+        "correct": false
+      },
+      {
+        "text": "Menutup mata dan memilih sembarang gambar",
+        "correct": false
+      }
+    ],
+    "explanation": "Untuk melengkapi pola, kita harus mengamati dan menemukan aturan keteraturan berulangnya terlebih dahulu."
+  },
+  {
+    "category": "Konsep Pola",
+    "question": "Perhatikan susunan: 🔺 🔵 🟩 🔺 🔵 🟩. Keteraturan berulang pada susunan ini terjadi setiap berapa bangun datar?",
+    "patternItems": [
+      "🔺",
+      "🔵",
+      "🟩",
+      "|",
+      "🔺",
+      "🔵",
+      "🟩"
+    ],
+    "options": [
+      {
+        "text": "Setiap 3 bangun datar",
+        "correct": true
+      },
+      {
+        "text": "Setiap 2 bangun datar",
+        "correct": false
+      },
+      {
+        "text": "Setiap 4 bangun datar",
+        "correct": false
+      },
+      {
+        "text": "Setiap 5 bangun datar",
+        "correct": false
+      }
+    ],
+    "explanation": "Siklus berulangnya terdiri dari 3 bangun datar: Segitiga, Lingkaran, dan Segiempat."
+  },
+  {
+    "category": "Konsep Pola",
+    "question": "Perhatikan pernyataan tentang pola warna Rio dan Cika (Buku hal 92): Manakah pernyataan yang BENAR?",
+    "patternItems": [
+      "Rio: Biru - Oranye - Kuning - Ungu",
+      "Cika: Hijau - Biru - Kuning - Oranye"
+    ],
+    "options": [
+      {
+        "text": "Pola warna Ari adalah oranye - kuning - ungu - biru",
+        "correct": true
+      },
+      {
+        "text": "Pola warna Rio adalah hijau - biru - kuning - oranye",
+        "correct": false
+      },
+      {
+        "text": "Pola warna Cika adalah hijau - ungu - biru - kuning",
+        "correct": false
+      },
+      {
+        "text": "Pola warna Rio dan Cika persis sama",
+        "correct": false
+      }
+    ],
+    "explanation": "Sesuai soal nomor 1 buku hal 92: Pernyataan a (Pola warna Ari adalah oranye - kuning - ungu - biru) bernilai BENAR."
+  },
+  {
+    "category": "Konsep Pola",
+    "question": "Mengapa pola banyak dimanfaatkan dalam pembuatan motif kain batik dan arsitektur taman? (Buku hal 88-94)",
+    "patternItems": [
+      "Motif Batik",
+      "Ubin Teras",
+      "Lampu Taman"
+    ],
+    "options": [
+      {
+        "text": "Karena keteraturan pola menciptakan susunan yang rapi dan indah dipandang",
+        "correct": true
+      },
+      {
+        "text": "Supaya ruangan terlihat membosankan dan berantakan",
+        "correct": false
+      },
+      {
+        "text": "Agar orang yang melihat merasa bingung",
+        "correct": false
+      },
+      {
+        "text": "Hanya untuk menghabiskan cat warna",
+        "correct": false
+      }
+    ],
+    "explanation": "Keteraturan dan simetri pada pola menciptakan keselarasan visual yang rapi, tertib, dan indah bagi mata kita."
+  }
+];
+
+    /* ========================================================
+       STATE APLIKASI
+       ======================================================== */
+    const QUIZ_SESSION_LENGTH = 10;
+    let activeQuizQuestions = [];
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+    let quizUserAnswers = [];
+    let quizLocked = false;
+    let currentStars = 0;
+
+    // Baca Bintang dari LocalStorage
+    try {
+      const savedStars = localStorage.getItem('belajar_zahra_stars');
+      if (savedStars) currentStars = parseInt(savedStars, 10) || 0;
+    } catch(e) {}
+
+    function updateStarUI() {
+      const starEl = document.getElementById('star-count');
+      if (starEl) starEl.innerText = currentStars;
+      try {
+        localStorage.setItem('belajar_zahra_stars', currentStars);
+      } catch(e) {}
+    }
+
+    function addStars(num) {
+      currentStars += num;
+      updateStarUI();
+      if (typeof ZahraAudio !== 'undefined') {
+        ZahraAudio.playStar();
+      }
+    }
+
+    // Fisher-Yates Shuffle
+    function shuffleArray(array) {
+      const cloned = [...array];
+      for (let i = cloned.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cloned[i], cloned[j]] = [cloned[j], cloned[i]];
+      }
+      return cloned;
+    }
+
+    /* ========================================================
+       TAB SWITCHING
+       ======================================================== */
+    function switchTab(tabName) {
+      if (typeof ZahraAudio !== 'undefined') {
+        ZahraAudio.playTabSwitch();
+      }
+
+      // Tombol Tab
+      const tabSummary = document.getElementById('tab-summary');
+      const tabQuiz = document.getElementById('tab-quiz');
+      const tabMatch = document.getElementById('tab-match');
+
+      const tabs = [
+        { id: 'summary', el: tabSummary },
+        { id: 'quiz', el: tabQuiz },
+        { id: 'match', el: tabMatch }
+      ];
+
+      tabs.forEach(t => {
+        if (t.id === tabName) {
+          t.el.className = "tab-btn px-4 py-2 rounded-xl transition-all duration-200 bg-amber-600 text-white shadow-xs font-normal text-xs sm:text-sm font-playful flex items-center gap-1.5";
+        } else {
+          t.el.className = "tab-btn px-4 py-2 rounded-xl transition-all duration-200 text-slate-600 hover:text-amber-700 hover:bg-slate-200/50 font-normal text-xs sm:text-sm font-playful flex items-center gap-1.5";
+        }
+      });
+
+      // Tampilan View
+      document.getElementById('view-summary').classList.add('hidden');
+      document.getElementById('view-quiz').classList.add('hidden');
+      document.getElementById('view-match').classList.add('hidden');
+
+      if (tabName === 'summary') {
+        document.getElementById('view-summary').classList.remove('hidden');
+      } else if (tabName === 'quiz') {
+        document.getElementById('view-quiz').classList.remove('hidden');
+        if (activeQuizQuestions.length === 0) {
+          startNewQuizSession();
+        }
+      } else if (tabName === 'match') {
+        document.getElementById('view-match').classList.remove('hidden');
+        initMatchGame();
+        setTimeout(redrawAllLines, 80);
+      }
+    }
+
+    /* ========================================================
+       KUIS LOGIKA DENGAN AUTO-NEXT & REVIEW AKHIR
+       ======================================================== */
+    function startNewQuizSession() {
+      const shuffledMaster = shuffleArray(MASTER_QUESTIONS);
+      
+      activeQuizQuestions = shuffledMaster.slice(0, QUIZ_SESSION_LENGTH).map(q => {
+        return {
+          ...q,
+          options: shuffleArray(q.options)
+        };
+      });
+
+      currentQuizIndex = 0;
+      quizScore = 0;
+      quizUserAnswers = [];
+      quizLocked = false;
+
+      document.querySelector('#view-quiz > div').classList.remove('hidden');
+      document.getElementById('quiz-result-box').classList.add('hidden');
+      loadQuizQuestion(0);
+    }
+
+    function loadQuizQuestion(index) {
+      quizLocked = false;
+      const q = activeQuizQuestions[index];
+
+      const quickFeedback = document.getElementById('quiz-quick-feedback');
+      quickFeedback.classList.add('opacity-0');
+
+      document.getElementById('current-q-num').innerText = index + 1;
+      document.getElementById('total-q-num').innerText = activeQuizQuestions.length;
+      document.getElementById('quiz-category').innerText = q.category;
+      document.getElementById('quiz-question-id').innerText = q.question;
+
+      // Progress bar
+      const pct = ((index + 1) / activeQuizQuestions.length) * 100;
+      document.getElementById('quiz-progress-bar').style.width = pct + '%';
+
+      // Visual box deretan pola
+      const visualBox = document.getElementById('quiz-visual-box');
+      visualBox.innerHTML = '';
+
+      if (q.patternItems && q.patternItems.length > 0) {
+        q.patternItems.forEach((item) => {
+          const span = document.createElement('span');
+          span.className = "text-base sm:text-lg md:text-xl px-2.5 py-1.5 bg-white rounded-xl shadow-2xs border border-slate-200/90 font-playful flex items-center justify-center";
+          span.innerText = item;
+          visualBox.appendChild(span);
+        });
+
+        // Tanda tanya pola selanjutnya jika belum ada tanda tanya di pattern
+        const hasQuestionMark = q.patternItems.some(it => it.includes('❓') || it.includes('??'));
+        if (!hasQuestionMark && !q.patternItems.some(it => it.includes('Siklus') || it.includes('Aturan'))) {
+          const arrow = document.createElement('span');
+          arrow.className = "text-slate-400 font-bold px-1";
+          arrow.innerText = "➜";
+          visualBox.appendChild(arrow);
+
+          const mystery = document.createElement('span');
+          mystery.className = "w-8 h-8 sm:w-9 sm:h-9 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50 text-amber-700 flex items-center justify-center text-sm font-playful font-bold animate-pulse shadow-2xs";
+          mystery.innerText = "?";
+          visualBox.appendChild(mystery);
+        }
+      } else {
+        visualBox.innerHTML = '<span class="text-sm text-slate-400 font-playful">Amati soal dan pilihlah pola yang tepat</span>';
+      }
+
+      // Render Options
+      const optionsContainer = document.getElementById('quiz-options-container');
+      optionsContainer.innerHTML = '';
+
+      const optionLabels = ['A', 'B', 'C', 'D'];
+
+      q.options.forEach((opt, optIdx) => {
+        const btn = document.createElement('button');
+        btn.className = "bubble-btn w-full p-3.5 sm:p-4 rounded-2xl border-2 border-slate-200/90 bg-white hover:border-amber-400 hover:bg-amber-50/40 text-left transition-all flex items-center gap-3 text-xs sm:text-sm font-normal text-slate-700 shadow-2xs";
+        btn.innerHTML = `
+          <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 flex items-center justify-center text-xs font-playful font-bold flex-shrink-0">
+            ${optionLabels[optIdx]}
+          </span>
+          <span class="flex-1 font-playful leading-snug">${opt.text}</span>
+        `;
+        btn.onclick = () => handleQuizAnswer(btn, opt, q);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function handleQuizAnswer(buttonEl, selectedOpt, questionObj) {
+      if (quizLocked) return;
+      quizLocked = true;
+
+      const isCorrect = selectedOpt.correct === true;
+      const quickFeedback = document.getElementById('quiz-quick-feedback');
+      const feedbackText = document.getElementById('quick-feedback-text');
+
+      // Rekam jawaban
+      quizUserAnswers.push({
+        question: questionObj.question,
+        patternItems: questionObj.patternItems,
+        category: questionObj.category,
+        explanation: questionObj.explanation,
+        userAnswer: selectedOpt.text,
+        isCorrect: isCorrect,
+        correctAnswer: questionObj.options.find(o => o.correct).text
+      });
+
+      // Nonaktifkan semua tombol
+      const allButtons = document.querySelectorAll('#quiz-options-container button');
+      allButtons.forEach(btn => btn.classList.add('pointer-events-none'));
+
+      if (isCorrect) {
+        quizScore += 10;
+        addStars(1);
+        if (typeof ZahraAudio !== 'undefined') {
+          ZahraAudio.playCorrect();
+        }
+        
+        buttonEl.classList.remove('border-slate-200/90', 'bg-white');
+        buttonEl.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+
+        quickFeedback.className = "h-6 text-center font-normal text-xs sm:text-sm transition-opacity opacity-100 font-playful text-emerald-600";
+        feedbackText.innerText = "Hebat! Jawabanmu Benar! ⭐ (+1 Bintang)";
+      } else {
+        if (typeof ZahraAudio !== 'undefined') {
+          ZahraAudio.playWrong();
+        }
+        
+        buttonEl.classList.remove('border-slate-200/90', 'bg-white');
+        buttonEl.classList.add('border-rose-400', 'bg-rose-50', 'text-rose-900', 'animate-match-error');
+
+        // Tunjukkan tombol yang benar
+        allButtons.forEach(btn => {
+          const btnText = btn.querySelector('span.flex-1').innerText;
+          const correctText = questionObj.options.find(o => o.correct).text;
+          if (btnText === correctText) {
+            btn.classList.add('border-emerald-500', 'bg-emerald-50/70', 'text-emerald-900');
+          }
+        });
+
+        quickFeedback.className = "h-6 text-center font-normal text-xs sm:text-sm transition-opacity opacity-100 font-playful text-rose-500";
+        feedbackText.innerText = "Oops! Kurang tepat. Semangat, yuk lanjut!";
+      }
+
+      // Auto advance
+      setTimeout(() => {
+        currentQuizIndex++;
+        if (currentQuizIndex < activeQuizQuestions.length) {
+          loadQuizQuestion(currentQuizIndex);
+        } else {
+          showQuizResults();
+        }
+      }, 1400);
+    }
+
+    function showQuizResults() {
+      document.querySelector('#view-quiz > div').classList.add('hidden');
+      const resultBox = document.getElementById('quiz-result-box');
+      resultBox.classList.remove('hidden');
+
+      const correctCount = quizUserAnswers.filter(a => a.isCorrect).length;
+      const wrongCount = quizUserAnswers.length - correctCount;
+      const totalScore = Math.round((correctCount / quizUserAnswers.length) * 100);
+
+      document.getElementById('final-correct').innerText = correctCount;
+      document.getElementById('final-wrong').innerText = wrongCount;
+      document.getElementById('final-score').innerText = totalScore;
+
+      const titleEl = document.getElementById('result-title');
+      if (totalScore >= 90) {
+        titleEl.innerText = "Mumtaz! Luar Biasa Sempurna! 🌟";
+        addStars(5);
+      } else if (totalScore >= 70) {
+        titleEl.innerText = "Hebat Sekali! Kamu Pintar! 👏";
+        addStars(3);
+      } else {
+        titleEl.innerText = "Bagus! Tetap Semangat Berlatih! 💪";
+        addStars(1);
+      }
+
+      if (typeof ZahraAudio !== 'undefined') {
+        ZahraAudio.playFanfare();
+      }
+
+      // Review List
+      const reviewList = document.getElementById('quiz-review-list');
+      reviewList.innerHTML = '';
+
+      quizUserAnswers.forEach((ans, idx) => {
+        const item = document.createElement('div');
+        item.className = `p-3 rounded-2xl border text-xs leading-relaxed ${ans.isCorrect ? 'bg-emerald-50/60 border-emerald-200 text-emerald-950' : 'bg-rose-50/60 border-rose-200 text-rose-950'}`;
+        item.innerHTML = `
+          <div class="flex items-start justify-between gap-2 mb-1">
+            <span class="font-playful font-bold">Soal #${idx + 1} (${ans.category}):</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-playful font-bold ${ans.isCorrect ? 'bg-emerald-200 text-emerald-800' : 'bg-rose-200 text-rose-800'}">
+              ${ans.isCorrect ? '✓ Benar' : '✗ Kurang Tepat'}
+            </span>
+          </div>
+          <p class="font-normal text-slate-700 mb-1.5">${ans.question}</p>
+          <div class="space-y-0.5 text-[11px]">
+            <div><strong>Jawabanmu:</strong> <span class="${ans.isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-600 line-through'}">${ans.userAnswer}</span></div>
+            ${!ans.isCorrect ? `<div><strong>Kunci Benar:</strong> <span class="text-emerald-700 font-bold">${ans.correctAnswer}</span></div>` : ''}
+            <div class="mt-1 text-slate-500 italic bg-white/70 p-1.5 rounded-lg border border-slate-100">
+              💡 <strong>Penjelasan:</strong> ${ans.explanation}
+            </div>
+          </div>
+        `;
+        reviewList.appendChild(item);
+      });
+
+      confetti({
+        particleCount: 80,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+    }
+
+    function restartQuiz() {
+      if (typeof ZahraAudio !== 'undefined') {
+        ZahraAudio.playRestart();
+      }
+      startNewQuizSession();
+    }
+
+    /* ========================================================
+       PASANGKAN POLA (MATCHING GAME DENGAN TALI SVG)
+       ======================================================== */
+    const MATCH_ITEMS_POOL = [
+      { id: 'p1', sample: '🔺 🔵 🟩 🔺 🔵 🟩', name: 'Pola Bangun Datar', color: '#6366F1' },
+      { id: 'p2', sample: '🟡 🔵 🔴 🟡 🔵 🔴', name: 'Pola Warna Lingkaran', color: '#EC4899' },
+      { id: 'p3', sample: '🙆 🙇 🙆 🙇 (Tari Saman)', name: 'Pola Gerakan Tubuh', color: '#10B981' },
+      { id: 'p4', sample: '🥁 Duk Duk - Duk Duk Duk', name: 'Pola Bunyi Irama Drum', color: '#F59E0B' },
+      { id: 'p5', sample: '⬆️ ➡️ ⬇️ ⬅️ (Berputar)', name: 'Pola Arah Jarum Jam', color: '#3B82F6' },
+      { id: 'p6', sample: '🌸 🐞 🐞 🌸 🐞 🐞', name: 'Pola Bunga & Kepik', color: '#8B5CF6' },
+      { id: 'p7', sample: '🗣️ Ayo! - Ayo! Ayo!', name: 'Pola Suara Sorakan', color: '#14B8A6' },
+      { id: 'p8', sample: '📦 1 Manik - 2 Manik - 3 Manik', name: 'Pola Kuantitas Manik', color: '#F97316' }
+    ];
+
+    let currentMatchItems = [];
+    let matchedPairs = 0;
+    let selectedLeftMatch = null;
+    let connectedLines = [];
+
+    function initMatchGame() {
+      matchedPairs = 0;
+      selectedLeftMatch = null;
+      connectedLines = [];
+      document.getElementById('match-complete-msg').classList.add('hidden');
+
+      clearMatchLines();
+
+      // Pilih 6 item dari pool
+      currentMatchItems = shuffleArray(MATCH_ITEMS_POOL).slice(0, 6);
+
+      const colLeft = document.getElementById('match-col-left');
+      const colRight = document.getElementById('match-col-right');
+      colLeft.innerHTML = '';
+      colRight.innerHTML = '';
+
+      const shuffledLeft = shuffleArray(currentMatchItems);
+      const shuffledRight = shuffleArray(currentMatchItems);
+
+      // Render Kolom Kiri
+      shuffledLeft.forEach(item => {
+        const btn = document.createElement('button');
+        btn.id = `left-${item.id}`;
+        btn.className = "match-left-btn w-full p-3 sm:p-3.5 rounded-2xl border-2 border-slate-200/90 bg-white hover:border-amber-400 flex items-center justify-between transition-all relative overflow-hidden group shadow-2xs";
+        btn.innerHTML = `
+          <div class="text-left pr-2">
+            <span class="text-[10px] text-slate-400 font-bold block mb-0.5">Contoh Susunan:</span>
+            <span class="font-playful text-xs sm:text-sm text-slate-800">${item.sample}</span>
+          </div>
+          <div class="connection-pin-left w-3.5 h-3.5 rounded-full border-2 border-slate-300 bg-slate-100 flex-shrink-0 transition-all"></div>
+        `;
+        btn.onclick = () => selectLeftMatch(item.id);
+        colLeft.appendChild(btn);
+      });
+
+      // Render Kolom Kanan
+      shuffledRight.forEach(item => {
+        const btn = document.createElement('button');
+        btn.id = `right-${item.id}`;
+        btn.className = "match-right-btn w-full p-3 sm:p-3.5 rounded-2xl border-2 border-slate-200/90 bg-white hover:border-amber-400 flex items-center transition-all relative overflow-hidden group shadow-2xs";
+        btn.innerHTML = `
+          <div class="connection-pin-right w-3.5 h-3.5 rounded-full border-2 border-slate-300 bg-slate-100 flex-shrink-0 mr-2.5 transition-all"></div>
+          <div class="text-left flex-1">
+            <span class="font-playful text-xs sm:text-sm text-slate-800">${item.name}</span>
+          </div>
+        `;
+        btn.onclick = () => selectRightMatch(item.id);
+        colRight.appendChild(btn);
+      });
+    }
+
+    function clearMatchLines() {
+      const svg = document.getElementById('match-svg-lines');
+      if (svg) {
+        const paths = svg.querySelectorAll('path, circle');
+        paths.forEach(p => p.remove());
+      }
+    }
+
+    function drawMatchLine(leftEl, rightEl, colorHex = '#10B981') {
+      const container = document.getElementById('match-container');
+      const svg = document.getElementById('match-svg-lines');
+      if (!container || !svg) return null;
+
+      const containerRect = container.getBoundingClientRect();
+      const leftPin = leftEl.querySelector('.connection-pin-left') || leftEl;
+      const rightPin = rightEl.querySelector('.connection-pin-right') || rightEl;
+
+      const leftRect = leftPin.getBoundingClientRect();
+      const rightRect = rightPin.getBoundingClientRect();
+
+      const x1 = leftRect.left + leftRect.width / 2 - containerRect.left;
+      const y1 = leftRect.top + leftRect.height / 2 - containerRect.top;
+      const x2 = rightRect.left + rightRect.width / 2 - containerRect.left;
+      const y2 = rightRect.top + rightRect.height / 2 - containerRect.top;
+
+      const dx = Math.abs(x2 - x1) * 0.45;
+      const cx1 = x1 + dx;
+      const cy1 = y1;
+      const cx2 = x2 - dx;
+      const cy2 = y2;
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', `M ${x1} ${y1} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x2} ${y2}`);
+      path.setAttribute('stroke', colorHex);
+      path.setAttribute('stroke-width', '4');
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('fill', 'none');
+      path.setAttribute('filter', 'url(#rope-shadow)');
+      path.classList.add('connecting-rope');
+
+      const startCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      startCircle.setAttribute('cx', x1);
+      startCircle.setAttribute('cy', y1);
+      startCircle.setAttribute('r', '5');
+      startCircle.setAttribute('fill', colorHex);
+
+      const endCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      endCircle.setAttribute('cx', x2);
+      endCircle.setAttribute('cy', y2);
+      endCircle.setAttribute('r', '5');
+      endCircle.setAttribute('fill', colorHex);
+
+      svg.appendChild(path);
+      svg.appendChild(startCircle);
+      svg.appendChild(endCircle);
+
+      return { path, startCircle, endCircle, leftId: leftEl.id, rightId: rightEl.id, color: colorHex };
+    }
+
+    function redrawAllLines() {
+      clearMatchLines();
+      const tempLines = [...connectedLines];
+      connectedLines = [];
+      tempLines.forEach(item => {
+        const leftEl = document.getElementById(item.leftId);
+        const rightEl = document.getElementById(item.rightId);
+        if (leftEl && rightEl) {
+          const drawn = drawMatchLine(leftEl, rightEl, item.color);
+          if (drawn) connectedLines.push(drawn);
+        }
+      });
+    }
+
+    window.addEventListener('resize', () => {
+      redrawAllLines();
+    });
+
+    function selectLeftMatch(id) {
+      if (typeof ZahraAudio !== 'undefined') {
+        ZahraAudio.playSelect();
+      }
+      selectedLeftMatch = id;
+
+      document.querySelectorAll('.match-left-btn').forEach(btn => {
+        if (!btn.classList.contains('matched-success')) {
+          btn.classList.remove('border-amber-500', 'bg-amber-50/60');
+          const pin = btn.querySelector('.connection-pin-left');
+          if (pin) pin.classList.remove('bg-amber-500', 'border-amber-600');
+        }
+      });
+
+      const selectedEl = document.getElementById(`left-${id}`);
+      if (selectedEl && !selectedEl.classList.contains('matched-success')) {
+        selectedEl.classList.add('border-amber-500', 'bg-amber-50/60');
+        const pin = selectedEl.querySelector('.connection-pin-left');
+        if (pin) pin.classList.add('bg-amber-500', 'border-amber-600');
+      }
+    }
+
+    function selectRightMatch(rightId) {
+      if (!selectedLeftMatch) {
+        if (typeof ZahraAudio !== 'undefined') {
+          ZahraAudio.playMatchError();
+        }
+        const rightEl = document.getElementById(`right-${rightId}`);
+        rightEl.classList.add('animate-match-error');
+        setTimeout(() => rightEl.classList.remove('animate-match-error'), 400);
+        return;
+      }
+
+      const leftEl = document.getElementById(`left-${selectedLeftMatch}`);
+      const rightEl = document.getElementById(`right-${rightId}`);
+
+      if (selectedLeftMatch === rightId) {
+        // Cocok
+        if (typeof ZahraAudio !== 'undefined') {
+          ZahraAudio.playMatchSuccess();
+        }
+
+        const itemData = currentMatchItems.find(m => m.id === selectedLeftMatch);
+        const themeColor = itemData ? itemData.color : '#10B981';
+
+        leftEl.classList.remove('border-amber-500', 'bg-amber-50/60');
+        leftEl.classList.add('matched-success', 'border-emerald-500', 'bg-emerald-50/60', 'pointer-events-none');
+        rightEl.classList.add('matched-success', 'border-emerald-500', 'bg-emerald-50/60', 'pointer-events-none');
+
+        const leftPin = leftEl.querySelector('.connection-pin-left');
+        const rightPin = rightEl.querySelector('.connection-pin-right');
+        if (leftPin) leftPin.style.backgroundColor = themeColor;
+        if (rightPin) rightPin.style.backgroundColor = themeColor;
+
+        const lineObj = drawMatchLine(leftEl, rightEl, themeColor);
+        if (lineObj) connectedLines.push(lineObj);
+
+        matchedPairs++;
+        selectedLeftMatch = null;
+
+        if (matchedPairs === currentMatchItems.length) {
+          setTimeout(() => {
+            addStars(5);
+            if (typeof ZahraAudio !== 'undefined') {
+              ZahraAudio.playFanfare();
+            }
+            document.getElementById('match-complete-msg').classList.remove('hidden');
+            confetti({
+              particleCount: 90,
+              spread: 85,
+              origin: { y: 0.55 }
+            });
+          }, 500);
+        }
+      } else {
+        // Salah
+        if (typeof ZahraAudio !== 'undefined') {
+          ZahraAudio.playMatchError();
+        }
+
+        rightEl.classList.add('animate-match-error', 'border-rose-400');
+        setTimeout(() => {
+          rightEl.classList.remove('animate-match-error', 'border-rose-400');
+        }, 450);
+      }
+    }
+
+    // Inisialisasi awal saat load
+    document.addEventListener('DOMContentLoaded', () => {
+      updateStarUI();
+      if (typeof ZahraAudio !== 'undefined') {
+        ZahraAudio.initUI();
+      }
+    });
+  </script>
+</body>
+</html>
