@@ -3,32 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Belajar Warna Bahasa Arab - Kelas 2 SD</title>
+  <title>Mengenal Warna (الأَلْوَانُ) - Belajar Zahra (Kelas 2 SD)</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts: Fredoka, Plus Jakarta Sans, & Amiri -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            softpink: '#FDE2E4',
-            softpurple: '#E2ECE9',
-            softlavender: '#E8DFF5',
-            softmint: '#D8F3DC',
-            softpeach: '#FEE1D8',
-            softyellow: '#FEF9D9',
-            softblue: '#D0F4DE',
-            cream: '#FCF8F2',
-            primary: '#7E6B9E',
-            primarydark: '#584277'
-          },
           fontFamily: {
-            sans: ['Nunito', 'sans-serif'],
-            arabic: ['Amiri', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            playful: ['Fredoka', 'cursive'],
+            arabic: ['Amiri', 'serif']
+          },
+          colors: {
+            cream: '#FAF7F2',
+            softbg: '#F6F1EA',
+            zahra: {
+              coral: '#F26E60',
+              coralLight: '#FEEFEF',
+              coralHover: '#E05A4C',
+              sage: '#568D80',
+              sageLight: '#E8F3F0',
+              yellow: '#F7C948',
+              yellowLight: '#FEF9E7',
+              purple: '#8462A0',
+              purpleLight: '#F3EEF9',
+              blue: '#4A90E2',
+              blueLight: '#EBF4FE'
+            }
           }
         }
       }
@@ -38,8 +53,12 @@
   <style>
     body {
       background-color: #FAF7F2;
-      font-family: 'Nunito', sans-serif;
+      color: #334155;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       user-select: none;
+    }
+    .font-playful {
+      font-family: 'Fredoka', cursive;
     }
     .font-arabic {
       font-family: 'Amiri', serif;
@@ -49,16 +68,24 @@
       transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .bubble-btn:hover {
-      transform: translateY(-3px) scale(1.02);
+      transform: translateY(-2px) scale(1.01);
     }
     .bubble-btn:active {
       transform: translateY(1px) scale(0.98);
     }
+    /* Floating subtle animation */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(2deg); }
+    }
+    .float-item {
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
     /* Animasi Pencocokan */
     @keyframes matchPop {
       0% { transform: scale(1); }
-      40% { transform: scale(1.12) rotate(-2deg); }
-      70% { transform: scale(0.95) rotate(2deg); }
+      40% { transform: scale(1.1) rotate(-2deg); }
+      70% { transform: scale(0.96) rotate(2deg); }
       100% { transform: scale(1) rotate(0deg); }
     }
     .animate-match-success {
@@ -88,157 +115,239 @@
       width: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #F4EFEA;
+      background: #FAF7F2;
     }
     ::-webkit-scrollbar-thumb {
       background: #CBD5E1;
       border-radius: 9999px;
     }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
   </style>
 </head>
-<body class="min-h-screen text-slate-700 flex flex-col justify-between">
+<body class="min-h-screen text-slate-700 flex flex-col justify-between selection:bg-rose-100 selection:text-rose-700">
 
-  <!-- Header & Navigasi -->
-  <header class="bg-white/80 backdrop-blur-md border-b border-purple-100 sticky top-0 z-40 px-4 py-3 shadow-sm">
-    <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center space-x-3">
-        <a href="../index.html" class="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-slate-100 hover:bg-purple-100 text-purple-700 font-bold text-xs transition border border-purple-100" title="Kembali ke Menu Utama Portal">
-          <span>🏠</span>
-          <span class="hidden sm:inline">Menu Utama</span>
+  <!-- ================= TOP HEADER NAVIGATION ================= -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.04)]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
+      
+      <!-- Left: Back Button & Brand Logo -->
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95" title="Kembali ke Menu Utama Portal">
+          <i class="fa-solid fa-arrow-left text-xs"></i>
+          <span>Menu Utama</span>
         </a>
-        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-200 to-pink-200 flex items-center justify-center text-2xl shadow-inner">
-          🎨
+
+        <div class="h-5 w-px bg-slate-200 hidden sm:block"></div>
+
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-200 via-rose-200 to-indigo-200 flex items-center justify-center text-xl shadow-inner group-hover:scale-105 transition-transform">
+            🎓
+          </div>
+          <div class="hidden sm:block">
+            <div class="flex items-center gap-1.5">
+              <span class="text-base font-normal tracking-wide text-slate-800 group-hover:text-rose-600 transition-colors">
+                Belajar Zahra
+              </span>
+              <span class="bg-rose-100/80 text-rose-700 text-[10px] px-2 py-0.5 rounded-full border border-rose-200 font-normal">
+                SD Ceria
+              </span>
+            </div>
+            <p class="text-[11px] text-slate-500 font-normal">Bahasa Arab • Bab 3 Mengenal Warna</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Right: Badges -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Bintang Score Badge -->
+        <div class="flex items-center bg-amber-50 border border-amber-200 px-3.5 py-1.5 rounded-2xl space-x-1.5 shadow-2xs">
+          <span class="text-base text-amber-500">⭐</span>
+          <span id="star-count" class="font-normal text-amber-800 text-xs sm:text-sm font-playful">0</span>
+          <span class="text-[11px] text-amber-700/80 font-normal hidden sm:inline">Bintang</span>
         </div>
-        <div>
-          <h1 class="text-xl font-extrabold text-primary flex items-center gap-2">
-            الأَلْوَانُ <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-bold">Kelas 2 SD</span>
-          </h1>
-          <p class="text-xs text-slate-500 font-medium">Mengenal Warna dalam Bahasa Arab</p>
+
+        <!-- Grade Badge -->
+        <div class="hidden sm:flex items-center gap-1.5 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-2xl text-xs font-normal text-slate-600">
+          <i class="fa-solid fa-moon text-purple-600"></i>
+          <span>Kelas 2 SD</span>
         </div>
       </div>
 
-      <!-- Nav Tabs -->
-      <div class="flex items-center space-x-2 bg-slate-100 p-1.5 rounded-2xl text-sm font-bold">
-        <button onclick="switchTab('flashcards')" id="tab-flashcards" class="tab-btn px-4 py-2 rounded-xl transition-all duration-200 bg-white text-primary shadow-sm">
-          📖 Kartu Warna
-        </button>
-        <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-4 py-2 rounded-xl transition-all duration-200 text-slate-600 hover:text-primary">
-          ⭐ Latihan Soal
-        </button>
-        <button onclick="switchTab('match')" id="tab-match" class="tab-btn px-4 py-2 rounded-xl transition-all duration-200 text-slate-600 hover:text-primary">
-          🧩 Pasangkan
-        </button>
-      </div>
-
-      <!-- Nilai Bintang -->
-      <div class="flex items-center bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-2xl space-x-1.5">
-        <span class="text-xl">⭐</span>
-        <span id="star-count" class="font-extrabold text-amber-700 text-base">0</span>
-      </div>
     </div>
   </header>
 
-  <!-- Konten Utama -->
-  <main class="max-w-4xl mx-auto w-full p-4 md:p-6 flex-1">
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 w-full flex-1 space-y-6">
+
+    <!-- HERO GREETING BANNER -->
+    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#F5EEF8] via-[#FFF3F1] to-[#FAF7F2] border border-purple-100/80 p-6 sm:p-8 shadow-sm">
+      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        
+        <div class="max-w-xl space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-purple-200 text-purple-800 text-xs font-normal font-playful shadow-xs">
+            <span>✨</span> Pelajaran Bahasa Arab • Bab 3
+          </div>
+          
+          <h1 class="font-playful text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-800 leading-tight">
+            Mengenal Warna 🎨<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-rose-500 to-amber-600 font-arabic text-3xl sm:text-4xl font-normal">
+              الأَلْوَانُ
+            </span>
+          </h1>
+          
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+            Mengenal nama-nama warna bentuk Mudzakkar & Muannats, dilengkapi flashcard pelafalan suara, kuis interaktif, dan permainan tarik garis warna.
+          </p>
+
+          <!-- Quick Stats Pills -->
+          <div class="pt-1 flex flex-wrap items-center gap-2 text-xs font-normal text-slate-600">
+            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+              <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+              <span class="font-normal text-slate-800">7</span> Warna Utama
+            </div>
+            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+              <span class="text-amber-500">⭐</span>
+              <span class="font-normal text-slate-800">20+</span> Soal & Game
+            </div>
+            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+              <span class="text-purple-500">🔊</span> Pelafalan Suara Arab
+            </div>
+          </div>
+        </div>
+
+        <!-- Mascot Badge Illustration -->
+        <div class="flex items-center justify-center self-center md:self-auto">
+          <div class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-3xl bg-white/80 backdrop-blur-sm border-2 border-white shadow-lg flex flex-col items-center justify-center p-3 text-center float-item">
+            <div class="text-5xl sm:text-6xl mb-1 select-none">🎈</div>
+            <span class="font-playful font-normal text-sm sm:text-base text-slate-800">Al-Alwan</span>
+            <span class="text-[11px] text-slate-500 font-arabic text-sm font-normal">الأَلْوَانُ</span>
+            
+            <div class="absolute -bottom-2 -right-2 bg-purple-600 text-white font-playful text-[11px] font-normal px-2.5 py-0.5 rounded-full shadow-md">
+              100% Interaktif 🎉
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Decorative subtle background blobs -->
+      <div class="absolute -top-16 -right-16 w-56 h-56 bg-purple-200/40 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-16 -left-16 w-56 h-56 bg-rose-200/40 rounded-full blur-3xl pointer-events-none"></div>
+    </section>
+
+    <!-- NAVIGATION TABS -->
+    <div class="flex items-center gap-2 p-1.5 bg-slate-100 border border-slate-200/80 rounded-2xl w-fit max-w-full overflow-x-auto">
+      <button onclick="switchTab('flashcards')" id="tab-flashcards" class="tab-btn px-4 py-2 rounded-xl transition-all duration-200 bg-purple-600 text-white shadow-xs font-normal text-xs sm:text-sm font-playful flex items-center gap-1.5">
+        <span>📖</span> Kartu Warna
+      </button>
+      <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-4 py-2 rounded-xl transition-all duration-200 text-slate-600 hover:text-purple-700 hover:bg-slate-200/50 font-normal text-xs sm:text-sm font-playful flex items-center gap-1.5">
+        <span>⭐</span> Latihan Soal
+      </button>
+      <button onclick="switchTab('match')" id="tab-match" class="tab-btn px-4 py-2 rounded-xl transition-all duration-200 text-slate-600 hover:text-purple-700 hover:bg-slate-200/50 font-normal text-xs sm:text-sm font-playful flex items-center gap-1.5">
+        <span>🧩</span> Pasangkan Warna
+      </button>
+    </div>
 
     <!-- TAB 1: KARTU MATERI BELAJAR -->
     <section id="view-flashcards" class="space-y-6">
       <!-- Petunjuk Ramah Anak -->
-      <div class="bg-gradient-to-r from-softpurple via-softpink to-softlavender p-5 rounded-3xl border border-purple-100 shadow-sm flex items-center justify-between">
+      <div class="bg-white border border-slate-200/80 p-5 rounded-3xl shadow-2xs flex items-center justify-between">
         <div>
-          <h2 class="text-lg font-bold text-slate-800">Mari Belajar Warna-Warna! 🌈</h2>
-          <p class="text-sm text-slate-600 mt-1">Pelajari nama-nama warna dalam tulisan Arab dan terjemahannya di bawah ini!</p>
+          <h2 class="text-base sm:text-lg font-normal text-slate-800 font-playful">Mari Belajar Warna-Warna! 🌈</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5 font-normal">Pelajari nama-nama warna dalam tulisan Arab Mudzakkar, Muannats, dan artinya di bawah ini!</p>
         </div>
-        <div class="hidden sm:block text-4xl">🧸</div>
+        <div class="hidden sm:block text-3xl float-item">🧸</div>
       </div>
 
       <!-- Grid Kartu Warna -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="cards-container">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5" id="cards-container">
         <!-- Rendered by JS -->
       </div>
-
     </section>
 
     <!-- TAB 2: LATIHAN SOAL / KUIS -->
     <section id="view-quiz" class="hidden space-y-6">
       <!-- Quiz Card Container -->
-      <div class="bg-white rounded-3xl p-6 md:p-8 border border-purple-100 shadow-sm max-w-2xl mx-auto relative overflow-hidden">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm max-w-2xl mx-auto relative overflow-hidden space-y-6">
         
         <!-- Header Kuis & Progress -->
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between gap-3">
           <div class="flex items-center gap-2">
-            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-purple-100 text-purple-700 rounded-full" id="quiz-category">
+            <span class="text-xs font-normal uppercase tracking-wider px-3 py-1 bg-purple-100 text-purple-800 border border-purple-200/70 rounded-xl font-playful" id="quiz-category">
               Soal Bergambar
             </span>
           </div>
-          <div class="text-sm font-bold text-slate-400">
-            Soal <span id="current-q-num" class="text-primary font-black">1</span> / <span id="total-q-num">10</span>
+          <div class="text-xs font-normal text-slate-500 bg-slate-100 px-2.5 py-1 rounded-xl border border-slate-200">
+            Soal <span id="current-q-num" class="text-purple-700 font-normal">1</span> dari <span id="total-q-num">10</span>
           </div>
         </div>
 
         <!-- Progress Bar Baris -->
-        <div class="w-full bg-slate-100 rounded-full h-2.5 mb-6 overflow-hidden">
-          <div id="quiz-progress-bar" class="bg-gradient-to-r from-purple-400 to-pink-400 h-2.5 rounded-full transition-all duration-300 w-1/10"></div>
+        <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+          <div id="quiz-progress-bar" class="bg-gradient-to-r from-purple-500 to-indigo-500 h-2.5 rounded-full transition-all duration-300 w-1/10"></div>
         </div>
 
         <!-- Pertanyaan -->
-        <div class="text-center py-2 space-y-3">
+        <div class="text-center py-2 space-y-2">
           <div id="quiz-visual" class="flex justify-center items-center my-3">
             <!-- Tempat Icon / Warna / Tombol Suara -->
           </div>
-          <h2 id="quiz-question-id" class="text-lg md:text-xl font-extrabold text-slate-800">
+          <h2 id="quiz-question-id" class="text-base sm:text-lg font-normal text-slate-800 font-playful">
             Pertanyaan dimuat...
           </h2>
-          <div id="quiz-arabic-sub" class="font-arabic text-2xl md:text-3xl font-bold text-primary py-1">
+          <div id="quiz-arabic-sub" class="font-arabic text-2xl sm:text-3xl font-normal text-purple-700 py-1">
             
           </div>
         </div>
 
         <!-- Tombol Pilihan Jawaban -->
-        <div id="quiz-options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+        <div id="quiz-options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <!-- Opsi dibuat dinamis -->
         </div>
 
         <!-- Feedback Singkat Otomatis -->
-        <div id="quiz-quick-feedback" class="h-6 mt-4 text-center font-extrabold text-sm transition-opacity opacity-0">
+        <div id="quiz-quick-feedback" class="h-6 text-center font-normal text-xs sm:text-sm transition-opacity opacity-0 font-playful">
           <span id="quick-feedback-text"></span>
         </div>
 
       </div>
 
       <!-- Hasil Skor & Review Modal (Tersembunyi Awal) -->
-      <div id="quiz-result-box" class="hidden bg-white rounded-3xl p-6 md:p-8 border border-purple-100 shadow-md max-w-2xl mx-auto space-y-6">
+      <div id="quiz-result-box" class="hidden bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm max-w-2xl mx-auto space-y-6">
         <div class="text-center space-y-2">
-          <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-4xl mx-auto shadow-inner">
+          <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
             🏆
           </div>
-          <h3 class="text-2xl font-black text-slate-800" id="result-title">Mumtaz! Luar Biasa!</h3>
-          <p class="text-slate-600 text-sm">Alhamdulillah, kamu telah menyelesaikan semua soal latihan.</p>
+          <h3 class="text-2xl font-normal text-slate-800 font-playful" id="result-title">Mumtaz! Luar Biasa!</h3>
+          <p class="text-slate-500 text-xs sm:text-sm font-normal">Alhamdulillah, kamu telah menyelesaikan semua soal latihan.</p>
         </div>
 
         <!-- Ringkasan Nilai -->
         <div class="bg-purple-50/70 border border-purple-100 p-4 rounded-2xl grid grid-cols-3 gap-2 text-center">
           <div>
-            <div class="text-xs text-slate-500 font-bold">BENAR</div>
-            <div class="text-2xl font-extrabold text-emerald-600" id="final-correct">0</div>
+            <div class="text-xs text-slate-500 font-normal font-playful">BENAR</div>
+            <div class="text-2xl font-normal text-emerald-600 font-playful" id="final-correct">0</div>
           </div>
           <div class="border-x border-purple-200">
-            <div class="text-xs text-slate-500 font-bold">SALAH</div>
-            <div class="text-2xl font-extrabold text-rose-500" id="final-wrong">0</div>
+            <div class="text-xs text-slate-500 font-normal font-playful">SALAH</div>
+            <div class="text-2xl font-normal text-rose-500 font-playful" id="final-wrong">0</div>
           </div>
           <div>
-            <div class="text-xs text-slate-500 font-bold">NILAI</div>
-            <div class="text-2xl font-extrabold text-primary" id="final-score">100</div>
+            <div class="text-xs text-slate-500 font-normal font-playful">NILAI</div>
+            <div class="text-2xl font-normal text-purple-700 font-playful" id="final-score">100</div>
           </div>
         </div>
 
         <!-- Review Jawaban Benar & Salah -->
         <div class="space-y-3">
           <div class="flex items-center justify-between">
-            <h4 class="font-extrabold text-slate-800 text-sm flex items-center gap-1.5">
-              <span>📋</span> Review & Kunci Jawaban:
+            <h4 class="font-normal text-slate-800 text-xs sm:text-sm flex items-center gap-1.5 font-playful">
+              <i class="fa-solid fa-list-check text-purple-600"></i>
+              <span>Review & Kunci Jawaban</span>
             </h4>
-            <span class="text-xs text-slate-400 font-semibold">10 Soal</span>
+            <span class="text-xs text-slate-400 font-normal">10 Soal</span>
           </div>
 
           <div id="quiz-review-list" class="space-y-2.5 max-h-80 overflow-y-auto pr-1">
@@ -246,27 +355,29 @@
           </div>
         </div>
 
-        <button onclick="restartQuiz()" class="bubble-btn w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-bold rounded-2xl shadow-lg flex items-center justify-center gap-2">
-          <span>🔄</span> Ulangi Latihan (Soal Acak Baru)
+        <button onclick="restartQuiz()" class="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-normal rounded-2xl shadow-sm flex items-center justify-center gap-2 font-playful active:scale-95 transition">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span>Ulangi Latihan (Soal Acak Baru)</span>
         </button>
       </div>
     </section>
 
     <!-- TAB 3: PASANGKAN KATA & WARNA (MATCHING GAME) -->
     <section id="view-match" class="hidden space-y-6">
-      <div class="bg-gradient-to-r from-softmint via-softblue to-softpink p-5 rounded-3xl border border-emerald-100 shadow-sm flex flex-wrap items-center justify-between gap-3">
+      <div class="bg-white border border-slate-200/80 p-5 rounded-3xl shadow-2xs flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 class="text-lg font-bold text-slate-800">Permainan Mencocokkan Warna 🎯</h2>
-          <p class="text-sm text-slate-600 mt-1">Pilih kartu di kiri, lalu cocokkan dengan pasangannya di kanan!</p>
+          <h2 class="text-base sm:text-lg font-normal text-slate-800 font-playful">Permainan Mencocokkan Warna 🎯</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5 font-normal">Pilih kartu warna di kiri, lalu sambungkan dengan tulisan Arabnya di kanan!</p>
         </div>
         <div class="flex items-center gap-2">
-          <button onclick="initMatchGame()" class="bubble-btn bg-white px-3 py-1.5 rounded-xl font-bold text-xs text-emerald-700 shadow-sm">
-            Acak Ulang 🔀
+          <button onclick="initMatchGame()" class="px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl font-normal text-xs text-emerald-800 shadow-2xs active:scale-95 transition flex items-center gap-1.5 font-playful">
+            <i class="fa-solid fa-shuffle"></i>
+            <span>Acak Ulang</span>
           </button>
         </div>
       </div>
 
-      <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm max-w-2xl mx-auto">
+      <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm max-w-2xl mx-auto">
         <div class="grid grid-cols-2 gap-4 md:gap-6 relative" id="match-container">
           <!-- Canvas Overlay SVG untuk Tali / Garis Penghubung -->
           <svg id="match-svg-lines" class="absolute inset-0 w-full h-full pointer-events-none z-20 overflow-visible" xmlns="http://www.w3.org/2000/svg">
@@ -289,9 +400,9 @@
 
         <div id="match-complete-msg" class="hidden mt-6 text-center p-5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl space-y-2 animate-match-success">
           <span class="text-3xl">🎉</span>
-          <h4 class="text-lg font-extrabold text-emerald-800">Mumtaz! Semua Pasangan Cocok!</h4>
-          <p class="text-xs text-emerald-600">Hebat sekali, kamu mendapatkan tambahan +5 Bintang! ⭐</p>
-          <button onclick="initMatchGame()" class="bubble-btn mt-2 px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow-md">
+          <h4 class="text-lg font-normal text-emerald-800 font-playful">Mumtaz! Semua Pasangan Cocok!</h4>
+          <p class="text-xs text-emerald-600 font-normal">Hebat sekali, kamu mendapatkan tambahan +5 Bintang! ⭐</p>
+          <button onclick="initMatchGame()" class="mt-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-normal shadow-sm font-playful active:scale-95 transition">
             Mainkan Lagi 🔄
           </button>
         </div>
@@ -300,9 +411,21 @@
 
   </main>
 
-  <!-- Footer -->
-  <footer class="text-center py-4 text-xs text-slate-400 border-t border-slate-100">
-    Pelajaran Bahasa Arab Madrasah Ibtidaiyah / SD Kelas 2 • Bab: Warna-Warna (الأَلْوَانُ)
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-slate-200/80 mt-12 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      
+      <div class="flex items-center gap-2">
+        <span class="text-slate-700 font-normal text-sm">🎓 Belajar Zahra</span>
+        <span>•</span>
+        <span>Pelajaran Bahasa Arab Kelas 2 SD • Bab 3 Mengenal Warna (الأَلْوَانُ)</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span>Dibuat dengan ❤️ untuk generasi cerdas masa depan</span>
+      </div>
+
+    </div>
   </footer>
 
   <script>
@@ -1203,10 +1326,10 @@
 
       q.options.forEach((opt, idx) => {
         const btn = document.createElement('button');
-        btn.className = "quiz-opt-btn bubble-btn w-full p-4 text-left bg-slate-50 hover:bg-purple-50 border-2 border-slate-200 hover:border-purple-300 rounded-2xl font-bold text-slate-700 flex items-center justify-between text-sm md:text-base transition-all";
+        btn.className = "quiz-opt-btn bubble-btn w-full p-4 text-left bg-white hover:bg-purple-50/70 border border-slate-200 hover:border-purple-300 rounded-2xl font-normal text-slate-700 flex items-center justify-between text-sm md:text-base transition-all shadow-2xs font-playful cursor-pointer";
         btn.innerHTML = `
           <span>${opt.text}</span>
-          <span class="w-6 h-6 rounded-full border border-slate-300 flex items-center justify-center text-xs text-slate-400 font-extrabold opt-bullet">${idx + 1}</span>
+          <span class="w-6 h-6 rounded-full border border-slate-300 flex items-center justify-center text-xs text-slate-400 font-normal opt-bullet">${idx + 1}</span>
         `;
         btn.onclick = () => handleQuizAnswer(btn, opt, q);
         optContainer.appendChild(btn);
@@ -1221,7 +1344,7 @@
       const allBtns = document.querySelectorAll('.quiz-opt-btn');
       allBtns.forEach(b => {
         b.disabled = true;
-        b.classList.remove('bubble-btn', 'hover:bg-purple-50', 'hover:border-purple-300');
+        b.classList.remove('bubble-btn', 'hover:bg-purple-50/70', 'hover:border-purple-300');
       });
 
       // Simpan riwayat jawaban untuk review akhir
@@ -1242,10 +1365,10 @@
       if (isCorrect) {
         addStars(1);
         quizScore++;
-        buttonEl.classList.remove('bg-slate-50', 'border-slate-200');
-        buttonEl.classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900', 'scale-102');
+        buttonEl.classList.remove('bg-white', 'border-slate-200');
+        buttonEl.classList.add('bg-emerald-50', 'border-emerald-400', 'text-emerald-900', 'scale-102');
 
-        quickText.className = "text-emerald-600 font-extrabold flex items-center justify-center gap-1.5";
+        quickText.className = "text-emerald-600 font-normal flex items-center justify-center gap-1.5 font-playful";
         quickText.innerHTML = '✨ Benar! Ahsant! (+1 ⭐)';
         quickFeedback.classList.remove('opacity-0');
 
@@ -1255,8 +1378,8 @@
           origin: { y: 0.7 }
         });
       } else {
-        buttonEl.classList.remove('bg-slate-50', 'border-slate-200');
-        buttonEl.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+        buttonEl.classList.remove('bg-white', 'border-slate-200');
+        buttonEl.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-900');
 
         // Tunjukkan juga jawaban yang benar secara halus
         allBtns.forEach(b => {
@@ -1265,8 +1388,8 @@
           }
         });
 
-        quickText.className = "text-rose-500 font-extrabold flex items-center justify-center gap-1.5";
-        quickText.innerHTML = '💡 Belum tepat, perhatikan jawabannya ya...';
+        quickText.className = "text-rose-500 font-normal flex items-center justify-center gap-1.5 font-playful";
+        quickText.innerHTML = '💡 Belum tepat, perhatikan kuncinya ya...';
         quickFeedback.classList.remove('opacity-0');
       }
 
@@ -1317,11 +1440,11 @@
         item.innerHTML = `
           <div class="flex items-start justify-between gap-2">
             <div>
-              <span class="text-xs font-bold text-slate-400">Soal ${ans.questionNumber}</span>
-              <p class="font-extrabold text-sm text-slate-800">${ans.question}</p>
-              ${ans.arabic ? `<div class="font-arabic text-lg text-primary font-bold mt-0.5">${ans.arabic}</div>` : ''}
+              <span class="text-xs font-normal text-slate-400">Soal ${ans.questionNumber}</span>
+              <p class="font-normal text-sm text-slate-800">${ans.question}</p>
+              ${ans.arabic ? `<div class="font-arabic text-lg text-primary font-normal mt-0.5">${ans.arabic}</div>` : ''}
             </div>
-            <span class="text-xs px-2 py-0.5 rounded-full font-bold flex-shrink-0 ${
+            <span class="text-xs px-2 py-0.5 rounded-full font-normal flex-shrink-0 ${
               isRight ? 'bg-emerald-200 text-emerald-800' : 'bg-rose-200 text-rose-800'
             }">
               ${isRight ? '✓ Benar' : '✗ Salah'}
@@ -1330,17 +1453,17 @@
 
           <div class="mt-2 pt-2 border-t border-slate-200/60 grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs">
             <div>
-              <span class="text-slate-400 font-semibold">Jawaban Kamu:</span>
-              <span class="font-bold ${isRight ? 'text-emerald-700' : 'text-rose-700'}">${ans.userAnswer}</span>
+              <span class="text-slate-400 font-normal">Jawaban Kamu:</span>
+              <span class="font-normal ${isRight ? 'text-emerald-700' : 'text-rose-700'}">${ans.userAnswer}</span>
             </div>
             ${!isRight ? `
             <div>
-              <span class="text-slate-400 font-semibold">Kunci Jawaban:</span>
-              <span class="font-bold text-emerald-700">${ans.correctAnswer}</span>
+              <span class="text-slate-400 font-normal">Kunci Jawaban:</span>
+              <span class="font-normal text-emerald-700">${ans.correctAnswer}</span>
             </div>
             ` : ''}
           </div>
-          ${ans.explanation ? `<div class="text-[11px] text-slate-500 mt-1 italic">${ans.explanation}</div>` : ''}
+          ${ans.explanation ? `<div class="text-[11px] text-slate-500 mt-1 italic font-normal">${ans.explanation}</div>` : ''}
         `;
         reviewContainer.appendChild(item);
       });
@@ -1394,12 +1517,12 @@
         const borderStyle = item.border ? 'border: 2px solid #CBD5E1;' : '';
         const btn = document.createElement('button');
         btn.id = `left-${item.id}`;
-        btn.className = "match-left-btn w-full p-3.5 rounded-2xl border-2 border-slate-200 bg-white hover:border-purple-300 flex items-center space-x-3 transition-all relative overflow-hidden group shadow-sm";
+        btn.className = "match-left-btn w-full p-3.5 rounded-2xl border border-slate-200 bg-white hover:border-purple-300 flex items-center space-x-3 transition-all relative overflow-hidden group shadow-2xs cursor-pointer active:scale-95";
         
         btn.innerHTML = `
           <div class="w-9 h-9 rounded-full shadow-inner flex-shrink-0 transition-transform group-hover:scale-110" style="background-color: ${item.hex}; ${borderStyle}"></div>
           <div class="text-left">
-            <span class="font-extrabold text-sm md:text-base text-slate-800 block">${item.name}</span>
+            <span class="font-normal text-sm md:text-base text-slate-800 block font-playful">${item.name}</span>
           </div>
           <div class="connection-pin-left ml-auto w-3 h-3 rounded-full border-2 border-slate-300 bg-slate-100 flex-shrink-0 transition-all"></div>
         `;
@@ -1411,12 +1534,12 @@
       shuffledRight.forEach(item => {
         const btn = document.createElement('button');
         btn.id = `right-${item.id}`;
-        btn.className = "match-right-btn w-full p-3.5 rounded-2xl border-2 border-slate-200 bg-white hover:border-purple-300 flex items-center justify-between transition-all relative overflow-hidden group shadow-sm";
+        btn.className = "match-right-btn w-full p-3.5 rounded-2xl border border-slate-200 bg-white hover:border-purple-300 flex items-center justify-between transition-all relative overflow-hidden group shadow-2xs cursor-pointer active:scale-95";
         btn.innerHTML = `
           <div class="connection-pin-right w-3 h-3 rounded-full border-2 border-slate-300 bg-slate-100 flex-shrink-0 mr-2 transition-all"></div>
           <div class="text-right flex-1 pr-1">
-            <div class="font-arabic text-2xl font-bold text-slate-800 leading-snug">${item.arabic}</div>
-            <div class="text-[11px] text-slate-400 font-bold tracking-wide">${item.latin}</div>
+            <div class="font-arabic text-2xl font-normal text-slate-800 leading-snug">${item.arabic}</div>
+            <div class="text-[11px] text-slate-400 font-normal tracking-wide font-playful">${item.latin}</div>
           </div>
         `;
         btn.onclick = () => selectRightMatch(item.id);
@@ -1514,7 +1637,7 @@
       COLOR_VOCAB.forEach(color => {
         const borderStyle = color.borderColor ? `border: 2px solid ${color.borderColor};` : '';
         const card = document.createElement('div');
-        card.className = "bg-white rounded-3xl p-4 md:p-5 border border-purple-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group";
+        card.className = "bg-white rounded-3xl p-5 border border-slate-200/80 shadow-2xs hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between group";
 
         card.innerHTML = `
           <div>
@@ -1523,21 +1646,21 @@
             </div>
             
             <div class="text-center space-y-1">
-              <div class="font-arabic text-2xl md:text-3xl font-bold text-slate-800 leading-normal">
+              <div class="font-arabic text-2xl md:text-3xl font-normal text-slate-800 leading-normal">
                 ${color.arabicMuzakkar}
               </div>
-              <div class="text-xs font-bold text-primary">
+              <div class="text-xs font-normal text-purple-700 font-playful">
                 ${color.latinMuzakkar}
               </div>
-              <div class="text-sm font-extrabold text-slate-700">
+              <div class="text-sm font-normal text-slate-800 font-playful">
                 ${color.colorName}
               </div>
             </div>
           </div>
 
-          <div class="mt-3 pt-2 border-t border-slate-100 text-[11px] text-slate-400 text-center flex items-center justify-center gap-1 font-semibold">
-            <span>Muannas:</span>
-            <span class="font-arabic text-xs font-bold text-slate-600">${color.arabicMuannas}</span>
+          <div class="mt-3 pt-2.5 border-t border-slate-100 text-[11px] text-slate-400 text-center flex items-center justify-center gap-1.5 font-normal">
+            <span>Muannats:</span>
+            <span class="font-arabic text-sm font-normal text-slate-700">${color.arabicMuannas}</span>
           </div>
         `;
         container.appendChild(card);
@@ -1554,12 +1677,12 @@
         if (t === tabName) {
           if (viewEl) viewEl.classList.remove('hidden');
           if (tabBtn) {
-            tabBtn.className = "tab-btn px-4 py-2 rounded-xl transition-all duration-200 bg-white text-primary shadow-sm font-bold";
+            tabBtn.className = "tab-btn px-4 py-2 rounded-xl transition-all duration-200 bg-purple-600 text-white shadow-xs font-normal text-xs sm:text-sm font-playful flex items-center gap-1.5";
           }
         } else {
           if (viewEl) viewEl.classList.add('hidden');
           if (tabBtn) {
-            tabBtn.className = "tab-btn px-4 py-2 rounded-xl transition-all duration-200 text-slate-600 hover:text-primary font-bold";
+            tabBtn.className = "tab-btn px-4 py-2 rounded-xl transition-all duration-200 text-slate-600 hover:text-purple-700 hover:bg-slate-200/50 font-normal text-xs sm:text-sm font-playful flex items-center gap-1.5";
           }
         }
       });
