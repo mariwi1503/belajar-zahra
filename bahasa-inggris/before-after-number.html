@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Numbers & Positions - Belajar Zahra (Kelas 2 SD)</title>
-  
+  <title>Numbers & Positions - Belajar Ceria (Kelas 2 SD)</title>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+
   <!-- Audio Effects Engine -->
   <script src="../script/sound-effects.js"></script>
-  
+
   <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -56,7 +59,7 @@
       color: #334155;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    
+
     .font-playful {
       font-family: 'Fredoka', cursive;
     }
@@ -71,9 +74,17 @@
 
     /* Floating subtle animation */
     @keyframes gentleFloat {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-8px) rotate(2deg); }
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(2deg);
+      }
     }
+
     .float-item {
       animation: gentleFloat 4s ease-in-out infinite;
     }
@@ -82,27 +93,34 @@
     ::-webkit-scrollbar {
       width: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: #FAF7F2;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #CBD5E1;
       border-radius: 9999px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #94A3B8;
     }
   </style>
 </head>
+
 <body class="min-h-screen flex flex-col justify-between selection:bg-rose-100 selection:text-rose-700">
 
   <!-- ================= TOP HEADER NAVIGATION ================= -->
-  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.04)]">
+  <header
+    class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.04)]">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
-      
+
       <!-- Left: Back Button & Brand Logo -->
       <div class="flex items-center gap-3">
-        <a href="../index.html" class="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95" title="Kembali ke Menu Utama Portal">
+        <a href="../index.html"
+          class="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95"
+          title="Kembali ke Menu Utama Portal">
           <i class="fa-solid fa-arrow-left text-xs"></i>
           <span>Menu Utama</span>
         </a>
@@ -110,15 +128,18 @@
         <div class="h-5 w-px bg-slate-200 hidden sm:block"></div>
 
         <a href="../index.html" class="flex items-center gap-2.5 group">
-          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-200 via-rose-200 to-indigo-200 flex items-center justify-center text-xl shadow-inner group-hover:scale-105 transition-transform">
+          <div
+            class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-200 via-rose-200 to-indigo-200 flex items-center justify-center text-xl shadow-inner group-hover:scale-105 transition-transform">
             🎓
           </div>
           <div class="hidden sm:block">
             <div class="flex items-center gap-1.5">
-              <span class="text-base font-normal tracking-wide text-slate-800 group-hover:text-rose-600 transition-colors">
-                Belajar Zahra
+              <span
+                class="text-base font-normal tracking-wide text-slate-800 group-hover:text-rose-600 transition-colors">
+                Belajar Ceria
               </span>
-              <span class="bg-rose-100/80 text-rose-700 font-normal text-[10px] px-2 py-0.5 rounded-full border border-rose-200">
+              <span
+                class="bg-rose-100/80 text-rose-700 font-normal text-[10px] px-2 py-0.5 rounded-full border border-rose-200">
                 SD Ceria
               </span>
             </div>
@@ -130,13 +151,16 @@
       <!-- Right: Badges & Audio Toggle -->
       <div class="flex items-center gap-2 sm:gap-3">
         <!-- Sound Toggle Button -->
-        <button onclick="ZahraAudio.toggleMute()" class="sound-toggle-btn flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95 shadow-2xs" title="Pengaturan Suara">
+        <button onclick="ZahraAudio.toggleMute()"
+          class="sound-toggle-btn flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95 shadow-2xs"
+          title="Pengaturan Suara">
           <i class="sound-icon fa-solid fa-volume-high text-emerald-600 animate-pulse"></i>
           <span class="sound-text hidden sm:inline">Suara Aktif</span>
         </button>
 
         <!-- Grade Badge -->
-        <div class="flex items-center gap-1.5 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-2xl text-xs font-normal text-slate-600">
+        <div
+          class="flex items-center gap-1.5 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-2xl text-xs font-normal text-slate-600">
           <i class="fa-solid fa-shapes text-teal-600"></i>
           <span>Kelas 2 SD</span>
         </div>
@@ -149,35 +173,41 @@
   <main class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 w-full flex-1 space-y-6">
 
     <!-- HERO GREETING BANNER -->
-    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#EAF5F2] via-[#F4F9F6] to-[#FFF9F2] border border-teal-100/80 p-6 sm:p-8 shadow-sm">
+    <section
+      class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#EAF5F2] via-[#F4F9F6] to-[#FFF9F2] border border-teal-100/80 p-6 sm:p-8 shadow-sm">
       <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-        
+
         <div class="max-w-xl space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-teal-200 text-teal-700 text-xs font-normal font-playful shadow-xs">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-teal-200 text-teal-700 text-xs font-normal font-playful shadow-xs">
             <span>✨</span> Unit Numbers & Positions
           </div>
-          
+
           <h1 class="font-playful text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-800 leading-tight">
             Numbers & Positions 🔢<br>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-emerald-600 to-amber-600">
               Before, After & Between
             </span>
           </h1>
-          
+
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-            Latihan menentukan posisi angka sebelum (<em>before</em>), sesudah (<em>after</em>), dan di antara (<em>between</em>) dalam Bahasa Inggris dilengkapi pelafalan suara otomatis.
+            Latihan menentukan posisi angka sebelum (<em>before</em>), sesudah (<em>after</em>), dan di antara
+            (<em>between</em>) dalam Bahasa Inggris dilengkapi pelafalan suara otomatis.
           </p>
 
           <!-- Quick Stats Pills -->
           <div class="pt-1 flex flex-wrap items-center gap-2 text-xs font-normal text-slate-600">
-            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div
+              class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
               <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
               <span class="font-normal text-slate-800">40</span> Soal Latihan
             </div>
-            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div
+              class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
               <span class="text-blue-500">🔊</span> Audio TTS Otomatis
             </div>
-            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div
+              class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
               <span class="text-amber-500">⭐</span> Evaluasi Nilai Lengkap
             </div>
           </div>
@@ -185,12 +215,14 @@
 
         <!-- Mascot Badge Illustration -->
         <div class="flex items-center justify-center self-center md:self-auto">
-          <div class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-3xl bg-white/80 backdrop-blur-sm border-2 border-white shadow-lg flex flex-col items-center justify-center p-3 text-center float-item">
+          <div
+            class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-3xl bg-white/80 backdrop-blur-sm border-2 border-white shadow-lg flex flex-col items-center justify-center p-3 text-center float-item">
             <div class="text-5xl sm:text-6xl mb-1 select-none">🧩</div>
             <span class="font-playful font-normal text-sm sm:text-base text-slate-800">English Numbers</span>
             <span class="text-[11px] text-slate-500 font-normal">Belajar Jadi Menyenangkan</span>
-            
-            <div class="absolute -bottom-2 -right-2 bg-teal-600 text-white font-playful text-[11px] font-normal px-2.5 py-0.5 rounded-full shadow-md">
+
+            <div
+              class="absolute -bottom-2 -right-2 bg-teal-600 text-white font-playful text-[11px] font-normal px-2.5 py-0.5 rounded-full shadow-md">
               Kuis Ceria 🎉
             </div>
           </div>
@@ -200,27 +232,33 @@
 
       <!-- Decorative subtle background blobs -->
       <div class="absolute -top-16 -right-16 w-56 h-56 bg-teal-200/40 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-16 -left-16 w-56 h-56 bg-amber-200/40 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-16 -left-16 w-56 h-56 bg-amber-200/40 rounded-full blur-3xl pointer-events-none">
+      </div>
     </section>
 
     <!-- ================= QUIZ PLAY AREA ================= -->
     <div class="w-full max-w-2xl mx-auto">
-      
+
       <!-- Quiz Play Card Area -->
-      <section id="quiz-container" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm relative overflow-hidden space-y-6">
-        
+      <section id="quiz-container"
+        class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm relative overflow-hidden space-y-6">
+
         <!-- Top Card Header: Badges & Audio Button -->
         <div class="flex items-center justify-between gap-3">
           <div class="flex items-center gap-2.5">
-            <span id="quiz-type-badge" class="text-xs px-3 py-1 rounded-xl font-normal bg-teal-100 text-teal-800 border border-teal-200/80 font-playful">
+            <span id="quiz-type-badge"
+              class="text-xs px-3 py-1 rounded-xl font-normal bg-teal-100 text-teal-800 border border-teal-200/80 font-playful">
               Pilihan Ganda
             </span>
-            <span id="question-num-badge" class="text-xs font-normal text-slate-500 bg-slate-100 px-2.5 py-1 rounded-xl border border-slate-200">
+            <span id="question-num-badge"
+              class="text-xs font-normal text-slate-500 bg-slate-100 px-2.5 py-1 rounded-xl border border-slate-200">
               Soal 1 dari 40
             </span>
           </div>
-          
-          <button id="tts-btn" onclick="speakQuestion(true)" class="flex items-center gap-2 px-3.5 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-2xl text-xs sm:text-sm font-normal transition shadow-xs font-playful active:scale-95" title="Dengarkan Ulang Soal">
+
+          <button id="tts-btn" onclick="speakQuestion(true)"
+            class="flex items-center gap-2 px-3.5 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-2xl text-xs sm:text-sm font-normal transition shadow-xs font-playful active:scale-95"
+            title="Dengarkan Ulang Soal">
             <i class="fa-solid fa-volume-high"></i>
             <span>Audio Soal</span>
           </button>
@@ -228,12 +266,15 @@
 
         <!-- Progress Bar -->
         <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-          <div id="progress-bar" class="bg-gradient-to-r from-teal-500 to-emerald-500 h-2.5 rounded-full transition-all duration-300" style="width: 2.5%"></div>
+          <div id="progress-bar"
+            class="bg-gradient-to-r from-teal-500 to-emerald-500 h-2.5 rounded-full transition-all duration-300"
+            style="width: 2.5%"></div>
         </div>
 
         <!-- Number Sequence Cards Visualization -->
         <div class="bg-teal-50/70 border border-teal-100 rounded-3xl p-5 sm:p-6 text-center">
-          <p id="card-label-text" class="text-teal-900/70 font-normal text-xs uppercase tracking-wider mb-3 font-playful">Urutan Angka</p>
+          <p id="card-label-text"
+            class="text-teal-900/70 font-normal text-xs uppercase tracking-wider mb-3 font-playful">Urutan Angka</p>
           <div id="number-cards-container" class="flex justify-center items-center gap-2.5 sm:gap-4 flex-wrap">
             <!-- Number cards rendered by JS -->
           </div>
@@ -256,12 +297,14 @@
 
         <!-- Navigation Controls -->
         <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-          <button id="prev-btn" onclick="prevQuestion()" class="px-4 py-2.5 rounded-2xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-normal text-xs sm:text-sm transition font-playful flex items-center gap-2 cursor-pointer bg-white active:scale-95">
+          <button id="prev-btn" onclick="prevQuestion()"
+            class="px-4 py-2.5 rounded-2xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-normal text-xs sm:text-sm transition font-playful flex items-center gap-2 cursor-pointer bg-white active:scale-95">
             <i class="fa-solid fa-arrow-left"></i>
             <span>Sebelum</span>
           </button>
-          
-          <button id="next-btn" onclick="nextQuestion()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-normal rounded-2xl text-xs sm:text-sm transition flex items-center gap-2 font-playful cursor-pointer active:scale-95">
+
+          <button id="next-btn" onclick="nextQuestion()"
+            class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-normal rounded-2xl text-xs sm:text-sm transition flex items-center gap-2 font-playful cursor-pointer active:scale-95">
             <span>Lewati / Selanjutnya</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -269,11 +312,13 @@
       </section>
 
       <!-- Final Summary & Overview Section -->
-      <section id="summary-container" class="hidden bg-white rounded-3xl p-6 sm:p-9 border border-slate-200/80 shadow-sm text-center space-y-6">
+      <section id="summary-container"
+        class="hidden bg-white rounded-3xl p-6 sm:p-9 border border-slate-200/80 shadow-sm text-center space-y-6">
         <div>
           <div class="text-5xl mb-2 float-item">🎉</div>
           <h2 class="text-2xl sm:text-3xl font-normal text-slate-800 font-playful">Kuis Selesai!</h2>
-          <p class="text-xs sm:text-sm text-slate-500 font-normal mt-1">Berikut adalah rekap nilai dan evaluasi jawaban kamu.</p>
+          <p class="text-xs sm:text-sm text-slate-500 font-normal mt-1">Berikut adalah rekap nilai dan evaluasi jawaban
+            kamu.</p>
         </div>
 
         <!-- Score Card -->
@@ -302,7 +347,8 @@
         </div>
 
         <div class="pt-4 flex justify-center">
-          <button onclick="restartQuiz()" class="px-8 py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-normal rounded-2xl transition text-sm font-playful shadow-sm active:scale-95 flex items-center gap-2">
+          <button onclick="restartQuiz()"
+            class="px-8 py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-normal rounded-2xl transition text-sm font-playful shadow-sm active:scale-95 flex items-center gap-2">
             <i class="fa-solid fa-rotate-right"></i>
             <span>Coba Ulangi Kuis</span>
           </button>
@@ -315,10 +361,11 @@
 
   <!-- ================= FOOTER ================= -->
   <footer class="bg-white border-t border-slate-200/80 mt-12 py-8">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-      
+    <div
+      class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+
       <div class="flex items-center gap-2">
-        <span class="text-slate-700 font-normal text-sm">🎓 Belajar Zahra</span>
+        <span class="text-slate-700 font-normal text-sm">🎓 Belajar Ceria</span>
         <span>•</span>
         <span>Pelajaran Bahasa Inggris Kelas 2 SD • Unit Numbers</span>
       </div>
@@ -384,7 +431,7 @@
     let isLocked = false;
 
     // Initialize quiz
-    window.onload = function() {
+    window.onload = function () {
       loadQuestion();
     };
 
@@ -409,11 +456,10 @@
         q.set.forEach((num) => {
           const isTarget = num === q.target;
           const card = document.createElement("div");
-          card.className = `w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-2xl font-playful text-xl sm:text-2xl transition-all ${
-            isTarget 
-              ? "bg-rose-500 text-white scale-110 shadow-md font-normal ring-4 ring-rose-200" 
-              : "bg-white text-slate-700 border border-slate-200/90 font-normal shadow-2xs"
-          }`;
+          card.className = `w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-2xl font-playful text-xl sm:text-2xl transition-all ${isTarget
+            ? "bg-rose-500 text-white scale-110 shadow-md font-normal ring-4 ring-rose-200"
+            : "bg-white text-slate-700 border border-slate-200/90 font-normal shadow-2xs"
+            }`;
           card.innerText = num;
           numberCardsContainer.appendChild(card);
         });
@@ -423,7 +469,7 @@
         // Pengenalan Angka (Numbers 1 - 20)
         document.getElementById("quiz-type-badge").innerText = "Pengenalan Angka";
         cardLabel.innerText = "Sebutkan Angka Ini";
-        
+
         const card = document.createElement("div");
         card.className = "w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-3xl font-playful text-4xl sm:text-5xl bg-rose-500 text-white shadow-md font-normal ring-4 ring-rose-200 scale-105";
         card.innerText = q.number;
@@ -440,11 +486,10 @@
         const btn = document.createElement("button");
         const isSelected = userAnswers[currentIndex] === optionText;
 
-        btn.className = `w-full text-left p-4 sm:p-4.5 rounded-2xl border transition-all duration-200 font-playful flex items-center justify-between text-sm sm:text-base cursor-pointer ${
-          isSelected 
-            ? "bg-teal-50 border-teal-500 text-teal-900 font-normal shadow-xs ring-2 ring-teal-200" 
-            : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-2xs font-normal"
-        }`;
+        btn.className = `w-full text-left p-4 sm:p-4.5 rounded-2xl border transition-all duration-200 font-playful flex items-center justify-between text-sm sm:text-base cursor-pointer ${isSelected
+          ? "bg-teal-50 border-teal-500 text-teal-900 font-normal shadow-xs ring-2 ring-teal-200"
+          : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-2xs font-normal"
+          }`;
 
         btn.onclick = () => selectOption(optionText);
 
@@ -498,7 +543,7 @@
         btn.disabled = true;
         const spanText = btn.querySelector("span") ? btn.querySelector("span").innerText.trim() : "";
         const icon = btn.querySelector("i");
-        
+
         if (spanText.toLowerCase() === selectedText.trim().toLowerCase()) {
           if (isCorrect) {
             btn.className = "w-full text-left p-4 sm:p-4.5 rounded-2xl border transition-all duration-200 font-playful flex items-center justify-between text-sm sm:text-base cursor-pointer bg-emerald-50 border-emerald-400 text-emerald-900 shadow-xs ring-2 ring-emerald-200 scale-102";
@@ -513,7 +558,7 @@
           if (icon) icon.className = "fa-solid fa-circle-check text-emerald-600 text-lg";
         }
       });
-      
+
       setTimeout(() => {
         isLocked = false;
         if (currentIndex < quizData.length - 1) {
@@ -567,15 +612,14 @@
       quizData.forEach((q, index) => {
         const userAns = userAnswers[index];
         const isCorrect = userAns && userAns.trim().toLowerCase() === q.answer.trim().toLowerCase();
-        
+
         if (isCorrect) correctCount++;
 
         const item = document.createElement("div");
-        item.className = `p-3.5 rounded-2xl border text-xs sm:text-sm font-playful ${
-          isCorrect ? "bg-emerald-50/80 border-emerald-200" : "bg-rose-50/80 border-rose-200"
-        }`;
+        item.className = `p-3.5 rounded-2xl border text-xs sm:text-sm font-playful ${isCorrect ? "bg-emerald-50/80 border-emerald-200" : "bg-rose-50/80 border-rose-200"
+          }`;
 
-        const questionLabel = q.type === "position" 
+        const questionLabel = q.type === "position"
           ? `Where is ${q.target}? (Urutan: ${q.set.join(', ')})`
           : `What number is ${q.number}?`;
 
@@ -620,4 +664,5 @@
     }
   </script>
 </body>
+
 </html>

@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Belajar Zahra - Portal Belajar & Latihan Soal SD</title>
-  
+  <title>Belajar Ceria - Portal Belajar & Latihan Soal SD</title>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+
   <!-- Audio Effects Engine -->
   <script src="script/sound-effects.js"></script>
-  
+
   <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -56,7 +59,7 @@
       color: #334155;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    
+
     .font-playful {
       font-family: 'Fredoka', cursive;
     }
@@ -75,9 +78,17 @@
 
     /* Floating subtle animation */
     @keyframes gentleFloat {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-8px) rotate(2deg); }
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(2deg);
+      }
     }
+
     .float-item {
       animation: gentleFloat 4s ease-in-out infinite;
     }
@@ -86,6 +97,7 @@
     .chevron-icon {
       transition: transform 0.28s cubic-bezier(0.34, 1.35, 0.64, 1);
     }
+
     .is-expanded .chevron-icon {
       transform: rotate(180deg);
     }
@@ -99,13 +111,16 @@
     ::-webkit-scrollbar {
       width: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: #FAF7F2;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #CBD5E1;
       border-radius: 9999px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #94A3B8;
     }
@@ -116,23 +131,28 @@
     }
   </style>
 </head>
+
 <body class="min-h-screen flex flex-col justify-between selection:bg-rose-100 selection:text-rose-700">
 
   <!-- ================= TOP HEADER NAVIGATION ================= -->
-  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.04)]">
+  <header
+    class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.04)]">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
-      
+
       <!-- Brand Logo -->
       <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-amber-200 via-rose-200 to-indigo-200 flex items-center justify-center text-2xl shadow-inner group-hover:scale-105 transition-transform">
+        <div
+          class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-amber-200 via-rose-200 to-indigo-200 flex items-center justify-center text-2xl shadow-inner group-hover:scale-105 transition-transform">
           🎓
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-xl sm:text-2xl font-normal tracking-wide text-slate-800 group-hover:text-rose-600 transition-colors font-playful">
-              Belajar Zahra
+            <span
+              class="text-xl sm:text-2xl font-normal tracking-wide text-slate-800 group-hover:text-rose-600 transition-colors font-playful">
+              Belajar Ceria
             </span>
-            <span class="bg-rose-100/80 text-rose-700 font-normal text-[11px] px-2.5 py-0.5 rounded-full border border-rose-200">
+            <span
+              class="bg-rose-100/80 text-rose-700 font-normal text-[11px] px-2.5 py-0.5 rounded-full border border-rose-200">
               SD Ceria
             </span>
           </div>
@@ -143,26 +163,32 @@
       <!-- Quick Action Right -->
       <div class="flex items-center gap-2 sm:gap-3">
         <!-- Sound Toggle Button -->
-        <button onclick="ZahraAudio.toggleMute()" class="sound-toggle-btn flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95 shadow-2xs" title="Pengaturan Suara">
+        <button onclick="ZahraAudio.toggleMute()"
+          class="sound-toggle-btn flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 rounded-2xl text-xs font-normal transition active:scale-95 shadow-2xs"
+          title="Pengaturan Suara">
           <i class="sound-icon fa-solid fa-volume-high text-emerald-600 animate-pulse"></i>
           <span class="sound-text hidden sm:inline">Suara Aktif</span>
         </button>
 
         <!-- Star Count Badge -->
-        <div class="flex items-center bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-2xl space-x-1.5 shadow-2xs">
+        <div
+          class="flex items-center bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-2xl space-x-1.5 shadow-2xs">
           <span class="text-base text-amber-500">⭐</span>
           <span id="star-count" class="font-normal text-amber-800 text-xs sm:text-sm font-playful">0</span>
           <span class="text-[11px] text-amber-700/80 font-normal hidden sm:inline">Bintang</span>
         </div>
 
         <!-- Grade Badge -->
-        <div class="hidden sm:flex items-center gap-2 bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-2xl text-xs font-normal text-slate-600">
+        <div
+          class="hidden sm:flex items-center gap-2 bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-2xl text-xs font-normal text-slate-600">
           <i class="fa-solid fa-graduation-cap text-indigo-500"></i>
           <span>Kelas 2 SD</span>
         </div>
 
         <!-- Info / Developer modal trigger -->
-        <button onclick="toggleInfoModal()" class="flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 rounded-2xl text-xs font-normal transition active:scale-95" title="Panduan Menambah Halaman">
+        <button onclick="toggleInfoModal()"
+          class="flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 rounded-2xl text-xs font-normal transition active:scale-95"
+          title="Panduan Menambah Halaman">
           <i class="fa-solid fa-circle-question text-amber-600"></i>
           <span class="hidden sm:inline">Panduan Tambah Bab</span>
         </button>
@@ -175,40 +201,47 @@
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 w-full flex-1 space-y-8">
 
     <!-- HERO GREETING BANNER -->
-    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#FFF6E9] via-[#FFF1ED] to-[#F1F6FF] border border-orange-100/80 p-6 sm:p-10 shadow-sm">
+    <section
+      class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#FFF6E9] via-[#FFF1ED] to-[#F1F6FF] border border-orange-100/80 p-6 sm:p-10 shadow-sm">
       <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-        
+
         <div class="max-w-xl space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-rose-200 text-rose-700 text-xs font-normal font-playful shadow-xs">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-rose-200 text-rose-700 text-xs font-normal font-playful shadow-xs">
             <span class="text-base">✨</span> Semangat Belajar Setiap Hari!
           </div>
-          
+
           <h1 class="font-playful text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-800 leading-tight">
-            Halo Zahra! 🌟<br>
+            Halo Ceria! 🌟<br>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-amber-500 to-indigo-600">
               Mau belajar apa hari ini?
             </span>
           </h1>
-          
+
           <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            Pilih mata pelajaran di bawah untuk membuka daftar bab dan materi latihan soal seru. Setiap materi dilengkapi penjelasan visual, pelafalan audio, dan kuis interaktif!
+            Pilih mata pelajaran di bawah untuk membuka daftar bab dan materi latihan soal seru. Setiap materi
+            dilengkapi penjelasan visual, pelafalan audio, dan kuis interaktif!
           </p>
 
           <!-- Quick Stats Pills -->
           <div class="pt-2 flex flex-wrap items-center gap-2.5 text-xs font-normal text-slate-600">
-            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div
+              class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span class="font-normal text-slate-800 font-playful" id="stat-active-subjects">3</span> Pelajaran Aktif
             </div>
-            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div
+              class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
               <span class="text-indigo-500 font-bold">📚</span>
               <span class="font-normal text-slate-800 font-playful" id="stat-active-chapters">3</span> Bab Siap Belajar
             </div>
-            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div
+              class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
               <span class="text-amber-500">⭐</span>
               <span class="font-normal text-slate-800 font-playful">120+</span> Soal & Game Kuis
             </div>
-            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div
+              class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
               <span class="text-blue-500">🔊</span> Audio Ramah Anak
             </div>
           </div>
@@ -216,12 +249,14 @@
 
         <!-- Mascot / Hero Badge Illustration -->
         <div class="flex items-center justify-center self-center md:self-auto">
-          <div class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl bg-white/70 backdrop-blur-sm border-2 border-white shadow-xl flex flex-col items-center justify-center p-4 text-center float-item">
+          <div
+            class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl bg-white/70 backdrop-blur-sm border-2 border-white shadow-xl flex flex-col items-center justify-center p-4 text-center float-item">
             <div class="text-6xl sm:text-7xl mb-2 select-none">🎈</div>
             <span class="font-playful font-normal text-base sm:text-lg text-slate-800">Belajar Jadi Asyik</span>
             <span class="text-xs text-slate-500 font-normal">Bisa diulang kapan saja!</span>
-            
-            <div class="absolute -bottom-3 -right-3 bg-rose-500 text-white font-playful text-xs font-normal px-3 py-1 rounded-full shadow-md">
+
+            <div
+              class="absolute -bottom-3 -right-3 bg-rose-500 text-white font-playful text-xs font-normal px-3 py-1 rounded-full shadow-md">
               100% Interaktif 🎉
             </div>
           </div>
@@ -231,58 +266,45 @@
 
       <!-- Decorative subtle background blobs -->
       <div class="absolute -top-16 -right-16 w-56 h-56 bg-rose-200/40 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-16 -left-16 w-56 h-56 bg-amber-200/40 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-16 -left-16 w-56 h-56 bg-amber-200/40 rounded-full blur-3xl pointer-events-none">
+      </div>
     </section>
 
     <!-- SEARCH & CONTROLS TOOLBAR -->
     <section class="space-y-3">
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-        
+
         <!-- Live Search Input -->
         <div class="relative flex-1">
           <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-          <input 
-            type="text" 
-            id="search-input" 
-            oninput="handleSearch(this.value)"
-            placeholder="Cari mata pelajaran, judul materi, atau kata kunci (contoh: pola, warna, angka)..." 
-            class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400/50 focus:border-rose-400 placeholder:text-slate-400 shadow-2xs transition"
-          >
-          <button 
-            id="clear-search-btn" 
-            onclick="clearSearch()" 
-            class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 text-xs items-center justify-center transition"
-          >
+          <input type="text" id="search-input" oninput="handleSearch(this.value)"
+            placeholder="Cari mata pelajaran, judul materi, atau kata kunci (contoh: pola, warna, angka)..."
+            class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400/50 focus:border-rose-400 placeholder:text-slate-400 shadow-2xs transition">
+          <button id="clear-search-btn" onclick="clearSearch()"
+            class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 text-xs items-center justify-center transition">
             ✕
           </button>
         </div>
 
         <!-- Filter & Expand Controls -->
         <div class="flex items-center gap-2 self-end sm:self-auto flex-wrap">
-          <label class="inline-flex items-center gap-2 text-xs font-normal text-slate-600 bg-white border border-slate-200 px-3.5 py-3 rounded-2xl cursor-pointer hover:bg-slate-50 transition shadow-2xs select-none">
-            <input 
-              type="checkbox" 
-              id="ready-only-toggle" 
-              onchange="toggleReadyOnly(this.checked)"
-              class="rounded border-slate-300 text-rose-500 focus:ring-rose-400 w-4 h-4"
-            >
+          <label
+            class="inline-flex items-center gap-2 text-xs font-normal text-slate-600 bg-white border border-slate-200 px-3.5 py-3 rounded-2xl cursor-pointer hover:bg-slate-50 transition shadow-2xs select-none">
+            <input type="checkbox" id="ready-only-toggle" onchange="toggleReadyOnly(this.checked)"
+              class="rounded border-slate-300 text-rose-500 focus:ring-rose-400 w-4 h-4">
             <span>Hanya yang siap</span>
           </label>
 
-          <button 
-            onclick="expandAllSubjects(true)" 
+          <button onclick="expandAllSubjects(true)"
             class="px-3 py-2.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-600 rounded-2xl text-xs font-normal transition active:scale-95 shadow-2xs font-playful flex items-center gap-1.5"
-            title="Buka semua daftar bab"
-          >
+            title="Buka semua daftar bab">
             <i class="fa-solid fa-up-right-and-down-left-from-center text-[10px]"></i>
             <span>Buka Semua</span>
           </button>
 
-          <button 
-            onclick="expandAllSubjects(false)" 
+          <button onclick="expandAllSubjects(false)"
             class="px-3 py-2.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-600 rounded-2xl text-xs font-normal transition active:scale-95 shadow-2xs font-playful flex items-center gap-1.5"
-            title="Tutup semua daftar bab"
-          >
+            title="Tutup semua daftar bab">
             <i class="fa-solid fa-down-left-and-up-right-to-center text-[10px]"></i>
             <span>Tutup Semua</span>
           </button>
@@ -298,7 +320,8 @@
           <h2 class="text-xl sm:text-2xl font-normal text-slate-800 tracking-wide font-playful">
             Daftar Mata Pelajaran
           </h2>
-          <span id="subject-count-badge" class="text-xs bg-slate-200/80 text-slate-600 font-normal px-2.5 py-0.5 rounded-full font-playful">
+          <span id="subject-count-badge"
+            class="text-xs bg-slate-200/80 text-slate-600 font-normal px-2.5 py-0.5 rounded-full font-playful">
             6 Pelajaran
           </span>
         </div>
@@ -314,13 +337,16 @@
       </div>
 
       <!-- Empty State (When no match found) -->
-      <div id="empty-state" class="hidden text-center py-16 px-4 bg-white rounded-3xl border border-dashed border-slate-300">
+      <div id="empty-state"
+        class="hidden text-center py-16 px-4 bg-white rounded-3xl border border-dashed border-slate-300">
         <div class="text-5xl mb-3">🔍</div>
         <h3 class="text-lg font-normal text-slate-700 font-playful">Pelajaran atau Bab Tidak Ditemukan</h3>
         <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-sm mx-auto font-normal">
-          Tidak ada mata pelajaran atau materi yang cocok dengan pencarianmu. Coba gunakan kata kunci lain atau reset filter.
+          Tidak ada mata pelajaran atau materi yang cocok dengan pencarianmu. Coba gunakan kata kunci lain atau reset
+          filter.
         </p>
-        <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-600 font-normal text-xs rounded-xl border border-rose-200 transition font-playful">
+        <button onclick="resetFilters()"
+          class="mt-4 px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-600 font-normal text-xs rounded-xl border border-rose-200 transition font-playful">
           Reset Filter & Cari Ulang
         </button>
       </div>
@@ -333,7 +359,8 @@
           💡
         </div>
         <div>
-          <h3 class="text-lg font-normal text-slate-800 tracking-wide font-playful">Tips Belajar Seru di Belajar Zahra</h3>
+          <h3 class="text-lg font-normal text-slate-800 tracking-wide font-playful">Tips Belajar Seru di Belajar Ceria
+          </h3>
           <p class="text-xs text-slate-500 font-normal">Cara terbaik menggunakan materi dan latihan soal</p>
         </div>
       </div>
@@ -343,7 +370,8 @@
           <div class="text-2xl mb-2">🔊</div>
           <h4 class="font-normal text-sm text-slate-800 mb-1.5 font-playful">Dengarkan Suara</h4>
           <p class="text-xs text-slate-600 leading-relaxed font-normal">
-            Klik tombol audio pada kartu atau soal untuk mendengarkan pelafalan Bahasa Arab dan Bahasa Inggris yang tepat.
+            Klik tombol audio pada kartu atau soal untuk mendengarkan pelafalan Bahasa Arab dan Bahasa Inggris yang
+            tepat.
           </p>
         </div>
 
@@ -351,7 +379,8 @@
           <div class="text-2xl mb-2">🎮</div>
           <h4 class="font-normal text-sm text-slate-800 mb-1.5 font-playful">Coba Mode Game</h4>
           <p class="text-xs text-slate-600 leading-relaxed font-normal">
-            Selain kuis pilihan ganda, coba fitur interaktif seperti mencocokkan garis warna & pola untuk melatih daya ingat visual.
+            Selain kuis pilihan ganda, coba fitur interaktif seperti mencocokkan garis warna & pola untuk melatih daya
+            ingat visual.
           </p>
         </div>
 
@@ -369,10 +398,11 @@
 
   <!-- ================= FOOTER ================= -->
   <footer class="bg-white border-t border-slate-200/80 mt-12 py-8">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-      
+    <div
+      class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+
       <div class="flex items-center gap-2">
-        <span class="text-slate-700 font-normal text-sm font-playful">🎓 Belajar Zahra</span>
+        <span class="text-slate-700 font-normal text-sm font-playful">🎓 Belajar Ceria</span>
         <span>•</span>
         <span>Portal Belajar Interaktif Siswa SD Kelas 2</span>
       </div>
@@ -385,17 +415,21 @@
   </footer>
 
   <!-- ================= TOAST NOTIFICATION ================= -->
-  <div id="toast-notification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none">
-    <div class="bg-slate-900/90 text-white text-xs sm:text-sm px-4 py-3 rounded-2xl shadow-xl border border-slate-700 flex items-center gap-2.5 backdrop-blur-md">
+  <div id="toast-notification"
+    class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none">
+    <div
+      class="bg-slate-900/90 text-white text-xs sm:text-sm px-4 py-3 rounded-2xl shadow-xl border border-slate-700 flex items-center gap-2.5 backdrop-blur-md">
       <span class="text-base">📢</span>
       <span id="toast-message">Pesan notifikasi</span>
     </div>
   </div>
 
   <!-- ================= MODAL: PANDUAN PENGEMBANG / TAMBAH MATERI ================= -->
-  <div id="info-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-200 space-y-4 max-h-[90vh] overflow-y-auto">
-      
+  <div id="info-modal"
+    class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div
+      class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-200 space-y-4 max-h-[90vh] overflow-y-auto">
+
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2.5">
           <div class="w-9 h-9 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg">
@@ -403,14 +437,16 @@
           </div>
           <h3 class="font-playful text-xl font-normal text-slate-800">Cara Menambahkan Halaman / Bab Baru</h3>
         </div>
-        <button onclick="toggleInfoModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-xs transition">
+        <button onclick="toggleInfoModal()"
+          class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-xs transition">
           ✕
         </button>
       </div>
 
       <div class="text-xs sm:text-sm text-slate-600 space-y-3 leading-relaxed font-normal">
         <p>
-          Sistem portal sekarang telah dikelompokkan <strong>berdasarkan folder mata pelajaran</strong>. Dalam 1 folder pelajaran bisa memiliki banyak file HTML materi atau bab!
+          Sistem portal sekarang telah dikelompokkan <strong>berdasarkan folder mata pelajaran</strong>. Dalam 1 folder
+          pelajaran bisa memiliki banyak file HTML materi atau bab!
         </p>
 
         <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 space-y-2">
@@ -418,20 +454,28 @@
             <i class="fa-solid fa-code"></i> Langkah Menambah File Materi Baru:
           </h4>
           <ol class="list-decimal list-inside text-xs text-amber-900 space-y-1.5 font-normal">
-            <li>Buat file HTML baru di folder pelajaran terkait (contoh: <code class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">matematika/pelajaran-5-pengukuran.html</code>).</li>
+            <li>Buat file HTML baru di folder pelajaran terkait (contoh: <code
+                class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">matematika/pelajaran-5-pengukuran.html</code>).
+            </li>
             <li>Buka file <code class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">index.html</code>.</li>
-            <li>Temukan mata pelajaran tersebut di dalam array <code class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">studySubjects</code>.</li>
-            <li>Tambahkan satu objek baru ke dalam daftar <code class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">chapters: [...]</code>, atur <code class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">file: 'pelajaran-5-pengukuran.html'</code> dan <code class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">isAvailable: true</code>.</li>
+            <li>Temukan mata pelajaran tersebut di dalam array <code
+                class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">studySubjects</code>.</li>
+            <li>Tambahkan satu objek baru ke dalam daftar <code
+                class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">chapters: [...]</code>, atur <code
+                class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">file: 'pelajaran-5-pengukuran.html'</code>
+              dan <code class="bg-white/90 px-1.5 py-0.5 rounded font-mono text-[11px]">isAvailable: true</code>.</li>
           </ol>
         </div>
 
         <p class="text-xs text-slate-500">
-          Begitu disimpan, materi baru akan otomatis muncul di bawah mata pelajaran tersebut ketika diklik atau diperluas (expand)!
+          Begitu disimpan, materi baru akan otomatis muncul di bawah mata pelajaran tersebut ketika diklik atau
+          diperluas (expand)!
         </p>
       </div>
 
       <div class="pt-2 flex justify-end">
-        <button onclick="toggleInfoModal()" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-playful text-xs rounded-xl transition">
+        <button onclick="toggleInfoModal()"
+          class="px-5 py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-playful text-xs rounded-xl transition">
           Tutup Panduan
         </button>
       </div>
@@ -446,319 +490,319 @@
      * Dikelompokkan per mata pelajaran (folder). Setiap pelajaran dapat memiliki banyak file HTML!
      */
     const studySubjects = [
-  {
-    "id": "matematika",
-    "name": "Matematika",
-    "tagline": "Pola Bilangan, Bangun Datar, & Berhitung Seru",
-    "folder": "matematika",
-    "icon": "fa-solid fa-shapes",
-    "theme": {
-      "accent": "amber",
-      "tagBg": "bg-amber-100",
-      "tagText": "text-amber-800",
-      "border": "border-amber-200",
-      "hoverBorder": "hover:border-amber-400",
-      "bgLight": "bg-amber-50/50",
-      "cardIconBg": "bg-amber-100 text-amber-700",
-      "badgeGradient": "from-amber-500 to-orange-500",
-      "btnBg": "bg-amber-600 hover:bg-amber-700"
-    },
-    "chapters": [
       {
-        "id": "matematika-pola",
-        "chapterNumber": "Pelajaran 4",
-        "title": "Mengenal & Melengkapi Pola",
-        "desc": "Mengenal keteraturan pola gambar bangun datar, pola warna, gerak tari saman, dan irama bunyi drum. Dilengkapi 60 soal latihan interaktif dan permainan tali penghubung.",
-        "file": "pelajaran-4-pola.html",
-        "features": [
+        "id": "matematika",
+        "name": "Matematika",
+        "tagline": "Pola Bilangan, Bangun Datar, & Berhitung Seru",
+        "folder": "matematika",
+        "icon": "fa-solid fa-shapes",
+        "theme": {
+          "accent": "amber",
+          "tagBg": "bg-amber-100",
+          "tagText": "text-amber-800",
+          "border": "border-amber-200",
+          "hoverBorder": "hover:border-amber-400",
+          "bgLight": "bg-amber-50/50",
+          "cardIconBg": "bg-amber-100 text-amber-700",
+          "badgeGradient": "from-amber-500 to-orange-500",
+          "btnBg": "bg-amber-600 hover:bg-amber-700"
+        },
+        "chapters": [
           {
-            "icon": "fa-shapes",
-            "label": "Pola Bangun & Warna"
+            "id": "matematika-pola",
+            "chapterNumber": "Pelajaran 4",
+            "title": "Mengenal & Melengkapi Pola",
+            "desc": "Mengenal keteraturan pola gambar bangun datar, pola warna, gerak tari saman, dan irama bunyi drum. Dilengkapi 60 soal latihan interaktif dan permainan tali penghubung.",
+            "file": "pelajaran-4-pola.html",
+            "features": [
+              {
+                "icon": "fa-shapes",
+                "label": "Pola Bangun & Warna"
+              },
+              {
+                "icon": "fa-person-running",
+                "label": "Pola Gerak & Bunyi"
+              },
+              {
+                "icon": "fa-trophy",
+                "label": "60 Soal & Game Garis"
+              }
+            ],
+            "stats": "60 Soal Interaktif",
+            "badge": "Siap Belajar 🎉",
+            "isAvailable": true
           },
           {
-            "icon": "fa-person-running",
-            "label": "Pola Gerak & Bunyi"
-          },
-          {
-            "icon": "fa-trophy",
-            "label": "60 Soal & Game Garis"
+            "id": "matematika-hitung",
+            "chapterNumber": "Bab 1",
+            "title": "Penjumlahan & Pengurangan Bilangan",
+            "desc": "Belajar berhitung sampai 100 dengan ilustrasi benda visual menarik, soal cerita sehari-hari, dan kuis uji kecepatan menghitung.",
+            "file": "penjumlahan-pengurangan.html",
+            "features": [
+              {
+                "icon": "fa-cubes",
+                "label": "Visual Benda"
+              },
+              {
+                "icon": "fa-stopwatch",
+                "label": "Tantangan Hitung"
+              }
+            ],
+            "stats": "Dalam Penyusunan",
+            "badge": "Segera Hadir 🚀",
+            "isAvailable": false
           }
-        ],
-        "stats": "60 Soal Interaktif",
-        "badge": "Siap Belajar 🎉",
-        "isAvailable": true
+        ]
       },
       {
-        "id": "matematika-hitung",
-        "chapterNumber": "Bab 1",
-        "title": "Penjumlahan & Pengurangan Bilangan",
-        "desc": "Belajar berhitung sampai 100 dengan ilustrasi benda visual menarik, soal cerita sehari-hari, dan kuis uji kecepatan menghitung.",
-        "file": "penjumlahan-pengurangan.html",
-        "features": [
+        "id": "bahasa-arab",
+        "name": "Bahasa Arab",
+        "tagline": "Kosakata, Pelafalan Suara, & Bahasa Al-Qur'an",
+        "folder": "bahasa-arab",
+        "icon": "fa-solid fa-moon",
+        "theme": {
+          "accent": "purple",
+          "tagBg": "bg-purple-100",
+          "tagText": "text-purple-800",
+          "border": "border-purple-200",
+          "hoverBorder": "hover:border-purple-400",
+          "bgLight": "bg-purple-50/50",
+          "cardIconBg": "bg-purple-100 text-purple-700",
+          "badgeGradient": "from-purple-500 to-indigo-600",
+          "btnBg": "bg-purple-600 hover:bg-purple-700"
+        },
+        "chapters": [
           {
-            "icon": "fa-cubes",
-            "label": "Visual Benda"
+            "id": "arab-bab-3",
+            "chapterNumber": "Bab 3",
+            "title": "Mengenal Warna (الأَلْوَانُ)",
+            "desc": "Mengenal nama-nama warna bentuk Mudzakkar & Muannats, dilengkapi flashcard pelafalan suara, kuis interaktif, dan permainan tarik garis warna.",
+            "file": "bab-3-warna.html",
+            "features": [
+              {
+                "icon": "fa-volume-high",
+                "label": "Audio Suara Arab"
+              },
+              {
+                "icon": "fa-layer-group",
+                "label": "Kartu Bergambar"
+              },
+              {
+                "icon": "fa-puzzle-piece",
+                "label": "Tarik Garis & Kuis"
+              }
+            ],
+            "stats": "23 Soal & Game",
+            "badge": "Siap Belajar 🎉",
+            "isAvailable": true
           },
           {
-            "icon": "fa-stopwatch",
-            "label": "Tantangan Hitung"
+            "id": "arab-bab-1",
+            "chapterNumber": "Bab 1",
+            "title": "Perkenalan Diri (التَّعَارُفُ)",
+            "desc": "Belajar menyapa, menanyakan nama, dan memperkenalkan diri dalam Bahasa Arab dengan rekaman pelafalan kata ramah anak.",
+            "file": "bab-1-taaruf.html",
+            "features": [
+              {
+                "icon": "fa-comments",
+                "label": "Percakapan Ceria"
+              },
+              {
+                "icon": "fa-microphone",
+                "label": "Latihan Lafal"
+              }
+            ],
+            "stats": "Dalam Penyusunan",
+            "badge": "Segera Hadir 🚀",
+            "isAvailable": false
           }
-        ],
-        "stats": "Dalam Penyusunan",
-        "badge": "Segera Hadir 🚀",
-        "isAvailable": false
-      }
-    ]
-  },
-  {
-    "id": "bahasa-arab",
-    "name": "Bahasa Arab",
-    "tagline": "Kosakata, Pelafalan Suara, & Bahasa Al-Qur'an",
-    "folder": "bahasa-arab",
-    "icon": "fa-solid fa-moon",
-    "theme": {
-      "accent": "purple",
-      "tagBg": "bg-purple-100",
-      "tagText": "text-purple-800",
-      "border": "border-purple-200",
-      "hoverBorder": "hover:border-purple-400",
-      "bgLight": "bg-purple-50/50",
-      "cardIconBg": "bg-purple-100 text-purple-700",
-      "badgeGradient": "from-purple-500 to-indigo-600",
-      "btnBg": "bg-purple-600 hover:bg-purple-700"
-    },
-    "chapters": [
-      {
-        "id": "arab-bab-3",
-        "chapterNumber": "Bab 3",
-        "title": "Mengenal Warna (الأَلْوَانُ)",
-        "desc": "Mengenal nama-nama warna bentuk Mudzakkar & Muannats, dilengkapi flashcard pelafalan suara, kuis interaktif, dan permainan tarik garis warna.",
-        "file": "bab-3-warna.html",
-        "features": [
-          {
-            "icon": "fa-volume-high",
-            "label": "Audio Suara Arab"
-          },
-          {
-            "icon": "fa-layer-group",
-            "label": "Kartu Bergambar"
-          },
-          {
-            "icon": "fa-puzzle-piece",
-            "label": "Tarik Garis & Kuis"
-          }
-        ],
-        "stats": "23 Soal & Game",
-        "badge": "Siap Belajar 🎉",
-        "isAvailable": true
+        ]
       },
       {
-        "id": "arab-bab-1",
-        "chapterNumber": "Bab 1",
-        "title": "Perkenalan Diri (التَّعَارُفُ)",
-        "desc": "Belajar menyapa, menanyakan nama, dan memperkenalkan diri dalam Bahasa Arab dengan rekaman pelafalan kata ramah anak.",
-        "file": "bab-1-taaruf.html",
-        "features": [
+        "id": "bahasa-inggris",
+        "name": "Bahasa Inggris",
+        "tagline": "Numbers, Daily Vocabulary, & Interactive Quizzes",
+        "folder": "bahasa-inggris",
+        "icon": "fa-solid fa-language",
+        "theme": {
+          "accent": "teal",
+          "tagBg": "bg-teal-100",
+          "tagText": "text-teal-800",
+          "border": "border-teal-200",
+          "hoverBorder": "hover:border-teal-400",
+          "bgLight": "bg-teal-50/50",
+          "cardIconBg": "bg-teal-100 text-teal-700",
+          "badgeGradient": "from-teal-500 to-emerald-600",
+          "btnBg": "bg-teal-600 hover:bg-teal-700"
+        },
+        "chapters": [
           {
-            "icon": "fa-comments",
-            "label": "Percakapan Ceria"
+            "id": "inggris-before-after",
+            "chapterNumber": "Unit Numbers",
+            "title": "Numbers & Positions (Before & After)",
+            "desc": "Latihan menentukan urutan angka sebelum (before), sesudah (after), dan di antara (between) dalam Bahasa Inggris dengan narasi audio otomatis.",
+            "file": "before-after-number.html",
+            "features": [
+              {
+                "icon": "fa-volume-high",
+                "label": "Audio Soal (TTS)"
+              },
+              {
+                "icon": "fa-check-double",
+                "label": "Pilihan Ganda"
+              },
+              {
+                "icon": "fa-trophy",
+                "label": "Skor & Pembahasan"
+              }
+            ],
+            "stats": "40 Soal Interaktif",
+            "badge": "Siap Belajar 🎉",
+            "isAvailable": true
           },
           {
-            "icon": "fa-microphone",
-            "label": "Latihan Lafal"
+            "id": "inggris-greetings",
+            "chapterNumber": "Unit Greetings",
+            "title": "Daily Greetings & Expressions",
+            "desc": "Mengenal sapaan Good Morning, Good Afternoon, Thank You, dan ungkapan sopan sehari-hari dalam Bahasa Inggris.",
+            "file": "greetings.html",
+            "features": [
+              {
+                "icon": "fa-sun",
+                "label": "Morning & Night"
+              },
+              {
+                "icon": "fa-music",
+                "label": "Lagu Sapaan"
+              }
+            ],
+            "stats": "Dalam Penyusunan",
+            "badge": "Segera Hadir 🚀",
+            "isAvailable": false
           }
-        ],
-        "stats": "Dalam Penyusunan",
-        "badge": "Segera Hadir 🚀",
-        "isAvailable": false
-      }
-    ]
-  },
-  {
-    "id": "bahasa-inggris",
-    "name": "Bahasa Inggris",
-    "tagline": "Numbers, Daily Vocabulary, & Interactive Quizzes",
-    "folder": "bahasa-inggris",
-    "icon": "fa-solid fa-language",
-    "theme": {
-      "accent": "teal",
-      "tagBg": "bg-teal-100",
-      "tagText": "text-teal-800",
-      "border": "border-teal-200",
-      "hoverBorder": "hover:border-teal-400",
-      "bgLight": "bg-teal-50/50",
-      "cardIconBg": "bg-teal-100 text-teal-700",
-      "badgeGradient": "from-teal-500 to-emerald-600",
-      "btnBg": "bg-teal-600 hover:bg-teal-700"
-    },
-    "chapters": [
-      {
-        "id": "inggris-before-after",
-        "chapterNumber": "Unit Numbers",
-        "title": "Numbers & Positions (Before & After)",
-        "desc": "Latihan menentukan urutan angka sebelum (before), sesudah (after), dan di antara (between) dalam Bahasa Inggris dengan narasi audio otomatis.",
-        "file": "before-after-number.html",
-        "features": [
-          {
-            "icon": "fa-volume-high",
-            "label": "Audio Soal (TTS)"
-          },
-          {
-            "icon": "fa-check-double",
-            "label": "Pilihan Ganda"
-          },
-          {
-            "icon": "fa-trophy",
-            "label": "Skor & Pembahasan"
-          }
-        ],
-        "stats": "40 Soal Interaktif",
-        "badge": "Siap Belajar 🎉",
-        "isAvailable": true
+        ]
       },
       {
-        "id": "inggris-greetings",
-        "chapterNumber": "Unit Greetings",
-        "title": "Daily Greetings & Expressions",
-        "desc": "Mengenal sapaan Good Morning, Good Afternoon, Thank You, dan ungkapan sopan sehari-hari dalam Bahasa Inggris.",
-        "file": "greetings.html",
-        "features": [
+        "id": "ipas",
+        "name": "IPAS (Sains)",
+        "tagline": "Alam Sekitar, Panca Indra, & Eksplorasi Sains",
+        "folder": "ipas",
+        "icon": "fa-solid fa-seedling",
+        "theme": {
+          "accent": "emerald",
+          "tagBg": "bg-emerald-100",
+          "tagText": "text-emerald-800",
+          "border": "border-emerald-200",
+          "hoverBorder": "hover:border-emerald-400",
+          "bgLight": "bg-emerald-50/50",
+          "cardIconBg": "bg-emerald-100 text-emerald-700",
+          "badgeGradient": "from-emerald-500 to-green-600",
+          "btnBg": "bg-emerald-600 hover:bg-emerald-700"
+        },
+        "chapters": [
           {
-            "icon": "fa-sun",
-            "label": "Morning & Night"
-          },
-          {
-            "icon": "fa-music",
-            "label": "Lagu Sapaan"
+            "id": "ipas-tubuh",
+            "chapterNumber": "Bab 1",
+            "title": "Mengenal Panca Indra & Fungsinya",
+            "desc": "Mengenal mata, hidung, telinga, lidah, dan kulit beserta fungsinya menjaga kesehatan tubuh lewat gambar seru dan tebak indra.",
+            "file": "panca-indra.html",
+            "features": [
+              {
+                "icon": "fa-eye",
+                "label": "Eksplorasi Gambar"
+              },
+              {
+                "icon": "fa-star",
+                "label": "Tebak Fungsi"
+              }
+            ],
+            "stats": "Dalam Penyusunan",
+            "badge": "Segera Hadir 🚀",
+            "isAvailable": false
           }
-        ],
-        "stats": "Dalam Penyusunan",
-        "badge": "Segera Hadir 🚀",
-        "isAvailable": false
-      }
-    ]
-  },
-  {
-    "id": "ipas",
-    "name": "IPAS (Sains)",
-    "tagline": "Alam Sekitar, Panca Indra, & Eksplorasi Sains",
-    "folder": "ipas",
-    "icon": "fa-solid fa-seedling",
-    "theme": {
-      "accent": "emerald",
-      "tagBg": "bg-emerald-100",
-      "tagText": "text-emerald-800",
-      "border": "border-emerald-200",
-      "hoverBorder": "hover:border-emerald-400",
-      "bgLight": "bg-emerald-50/50",
-      "cardIconBg": "bg-emerald-100 text-emerald-700",
-      "badgeGradient": "from-emerald-500 to-green-600",
-      "btnBg": "bg-emerald-600 hover:bg-emerald-700"
-    },
-    "chapters": [
+        ]
+      },
       {
-        "id": "ipas-tubuh",
-        "chapterNumber": "Bab 1",
-        "title": "Mengenal Panca Indra & Fungsinya",
-        "desc": "Mengenal mata, hidung, telinga, lidah, dan kulit beserta fungsinya menjaga kesehatan tubuh lewat gambar seru dan tebak indra.",
-        "file": "panca-indra.html",
-        "features": [
+        "id": "pkn",
+        "name": "Pendidikan Pancasila",
+        "tagline": "Nilai Luhur, Gotong Royong, & Sikap Baik",
+        "folder": "pendidikan-pancasila",
+        "icon": "fa-solid fa-landmark",
+        "theme": {
+          "accent": "rose",
+          "tagBg": "bg-rose-100",
+          "tagText": "text-rose-800",
+          "border": "border-rose-200",
+          "hoverBorder": "hover:border-rose-400",
+          "bgLight": "bg-rose-50/50",
+          "cardIconBg": "bg-rose-100 text-rose-700",
+          "badgeGradient": "from-rose-500 to-red-600",
+          "btnBg": "bg-rose-600 hover:bg-rose-700"
+        },
+        "chapters": [
           {
-            "icon": "fa-eye",
-            "label": "Eksplorasi Gambar"
-          },
-          {
-            "icon": "fa-star",
-            "label": "Tebak Fungsi"
+            "id": "pkn-pancasila",
+            "chapterNumber": "Bab 2",
+            "title": "Simbol & Sila Pancasila",
+            "desc": "Belajar 5 lambang sila dalam burung Garuda Pancasila dan contoh penerapan sikap baik di rumah dan di sekolah.",
+            "file": "simbol-sila-pancasila.html",
+            "features": [
+              {
+                "icon": "fa-heart",
+                "label": "Cerita Kebaikan"
+              },
+              {
+                "icon": "fa-medal",
+                "label": "Kuis Simbol"
+              }
+            ],
+            "stats": "Dalam Penyusunan",
+            "badge": "Segera Hadir 🚀",
+            "isAvailable": false
           }
-        ],
-        "stats": "Dalam Penyusunan",
-        "badge": "Segera Hadir 🚀",
-        "isAvailable": false
-      }
-    ]
-  },
-  {
-    "id": "pkn",
-    "name": "Pendidikan Pancasila",
-    "tagline": "Nilai Luhur, Gotong Royong, & Sikap Baik",
-    "folder": "pendidikan-pancasila",
-    "icon": "fa-solid fa-landmark",
-    "theme": {
-      "accent": "rose",
-      "tagBg": "bg-rose-100",
-      "tagText": "text-rose-800",
-      "border": "border-rose-200",
-      "hoverBorder": "hover:border-rose-400",
-      "bgLight": "bg-rose-50/50",
-      "cardIconBg": "bg-rose-100 text-rose-700",
-      "badgeGradient": "from-rose-500 to-red-600",
-      "btnBg": "bg-rose-600 hover:bg-rose-700"
-    },
-    "chapters": [
+        ]
+      },
       {
-        "id": "pkn-pancasila",
-        "chapterNumber": "Bab 2",
-        "title": "Simbol & Sila Pancasila",
-        "desc": "Belajar 5 lambang sila dalam burung Garuda Pancasila dan contoh penerapan sikap baik di rumah dan di sekolah.",
-        "file": "simbol-sila-pancasila.html",
-        "features": [
+        "id": "pai",
+        "name": "PAI & Budi Pekerti",
+        "tagline": "Huruf Hijaiyah, Surah Pendek, & Akhlak Mulia",
+        "folder": "pai",
+        "icon": "fa-solid fa-mosque",
+        "theme": {
+          "accent": "sky",
+          "tagBg": "bg-sky-100",
+          "tagText": "text-sky-800",
+          "border": "border-sky-200",
+          "hoverBorder": "hover:border-sky-400",
+          "bgLight": "bg-sky-50/50",
+          "cardIconBg": "bg-sky-100 text-sky-700",
+          "badgeGradient": "from-sky-500 to-blue-600",
+          "btnBg": "bg-sky-600 hover:bg-sky-700"
+        },
+        "chapters": [
           {
-            "icon": "fa-heart",
-            "label": "Cerita Kebaikan"
-          },
-          {
-            "icon": "fa-medal",
-            "label": "Kuis Simbol"
+            "id": "pai-hijaiyah",
+            "chapterNumber": "Bab 1",
+            "title": "Huruf Hijaiyah Bersambung & Surah Al-Fatihah",
+            "desc": "Mengenal kaidah penulisan huruf hijaiyah bersambung dan hafalan arti surah pendek dengan kuis susun kata.",
+            "file": "huruf-hijaiyah.html",
+            "features": [
+              {
+                "icon": "fa-book-quran",
+                "label": "Latihan Sambung"
+              },
+              {
+                "icon": "fa-headphones",
+                "label": "Lafal Surah"
+              }
+            ],
+            "stats": "Dalam Penyusunan",
+            "badge": "Segera Hadir 🚀",
+            "isAvailable": false
           }
-        ],
-        "stats": "Dalam Penyusunan",
-        "badge": "Segera Hadir 🚀",
-        "isAvailable": false
+        ]
       }
-    ]
-  },
-  {
-    "id": "pai",
-    "name": "PAI & Budi Pekerti",
-    "tagline": "Huruf Hijaiyah, Surah Pendek, & Akhlak Mulia",
-    "folder": "pai",
-    "icon": "fa-solid fa-mosque",
-    "theme": {
-      "accent": "sky",
-      "tagBg": "bg-sky-100",
-      "tagText": "text-sky-800",
-      "border": "border-sky-200",
-      "hoverBorder": "hover:border-sky-400",
-      "bgLight": "bg-sky-50/50",
-      "cardIconBg": "bg-sky-100 text-sky-700",
-      "badgeGradient": "from-sky-500 to-blue-600",
-      "btnBg": "bg-sky-600 hover:bg-sky-700"
-    },
-    "chapters": [
-      {
-        "id": "pai-hijaiyah",
-        "chapterNumber": "Bab 1",
-        "title": "Huruf Hijaiyah Bersambung & Surah Al-Fatihah",
-        "desc": "Mengenal kaidah penulisan huruf hijaiyah bersambung dan hafalan arti surah pendek dengan kuis susun kata.",
-        "file": "huruf-hijaiyah.html",
-        "features": [
-          {
-            "icon": "fa-book-quran",
-            "label": "Latihan Sambung"
-          },
-          {
-            "icon": "fa-headphones",
-            "label": "Lafal Surah"
-          }
-        ],
-        "stats": "Dalam Penyusunan",
-        "badge": "Segera Hadir 🚀",
-        "isAvailable": false
-      }
-    ]
-  }
-];
+    ];
 
     // State Aplikasi
     let expandedSubjectIds = new Set();
@@ -773,7 +817,7 @@
         if (starEl && savedStars) {
           starEl.innerText = parseInt(savedStars, 10) || 0;
         }
-      } catch(e) {}
+      } catch (e) { }
     }
 
     // Inisialisasi Halaman
@@ -851,9 +895,9 @@
       if (searchQuery.length > 0) {
         studySubjects.forEach(sub => {
           const matchSub = sub.name.toLowerCase().includes(searchQuery) || sub.tagline.toLowerCase().includes(searchQuery);
-          const matchChap = sub.chapters.some(c => 
-            c.title.toLowerCase().includes(searchQuery) || 
-            c.desc.toLowerCase().includes(searchQuery) || 
+          const matchChap = sub.chapters.some(c =>
+            c.title.toLowerCase().includes(searchQuery) ||
+            c.desc.toLowerCase().includes(searchQuery) ||
             c.chapterNumber.toLowerCase().includes(searchQuery)
           );
           if (matchSub || matchChap) {
@@ -905,12 +949,12 @@
 
         // Filter Pencarian
         if (searchQuery) {
-          const matchSub = sub.name.toLowerCase().includes(searchQuery) || 
-                           sub.tagline.toLowerCase().includes(searchQuery) || 
-                           sub.folder.toLowerCase().includes(searchQuery);
-          const matchChap = sub.chapters.some(c => 
-            c.title.toLowerCase().includes(searchQuery) || 
-            c.desc.toLowerCase().includes(searchQuery) || 
+          const matchSub = sub.name.toLowerCase().includes(searchQuery) ||
+            sub.tagline.toLowerCase().includes(searchQuery) ||
+            sub.folder.toLowerCase().includes(searchQuery);
+          const matchChap = sub.chapters.some(c =>
+            c.title.toLowerCase().includes(searchQuery) ||
+            c.desc.toLowerCase().includes(searchQuery) ||
             c.chapterNumber.toLowerCase().includes(searchQuery)
           );
           if (!matchSub && !matchChap) return false;
@@ -1133,4 +1177,5 @@
     }
   </script>
 </body>
+
 </html>
